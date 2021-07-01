@@ -3,47 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class startPCR : MonoBehaviour
 {
-    public static Text uiText,run,num,reminder,screen;
-    public GameObject inputField,submit,chooseTemperature;
-    public static bool[] set = new bool[4];
-    private string text;
-    public float x;
-    public float y;
-    public bool started,sure;
+    public static Text remain,reminder;
+    
+    public Transform tube;
+    private string instrution;
+    
+    public bool started;
+    public bool wait = false;//电泳先显示文字，再图片
     public int n;//pcr cycle
     string[] counter ;
     public int timer;//counter of fixedupdate 
-    Rect rect;
+
+    private TextMesh num;
+    private Renderer countdown;
     
     // Start is called before the first frame update
     void Start()
     {
-        set[0] =set[1]=set[2]=set[3]= false;
-        text = "";
-        started = false;sure=false;
-        GameObject.Find("倒计时").GetComponent<Renderer>().enabled = false;
-        inputField = GameObject.Find("输入循环次数");
-        inputField.GetComponent<CanvasGroup>().alpha = 0;
-        inputField.GetComponent<CanvasGroup>().interactable = false;
-        inputField.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        submit = GameObject.Find("确认");
-        submit.GetComponent<CanvasGroup>().alpha = 0;
-        submit.GetComponent<CanvasGroup>().interactable = false;
-        submit.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        chooseTemperature = GameObject.Find("选温度");
-
-        run = GameObject.Find("run").GetComponent<Text>();
-        num = GameObject.Find("num").GetComponent<Text>();
-        reminder = GameObject.Find("提示").GetComponent<Text>();
-        screen = GameObject.Find("屏幕").GetComponent<Text>();
-        
+        started = false;
+        initComps();
+        if (countdown != null) countdown.enabled = false;
         counter = new string[36]{"0","1","2","3","4","5","6","7","8","9","10" ,"11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"};
         timer = 0;
-        
+        instrution = GameObject.Find("首页").GetComponent<Text>().text;
+        tube = GameObject.Find("试管").transform;
+    }
 
+    private void initComps()
+    {
+        if (countdown == null && GameObject.Find("倒计时")) countdown = GameObject.Find("倒计时").GetComponent<Renderer>();
+        if (remain == null && GameObject.Find("remain")) remain = GameObject.Find("remain").GetComponent<Text>();
+        if (num == null && GameObject.Find("num")) num = GameObject.Find("num").GetComponent<TextMesh>();
+        if (reminder == null && GameObject.Find("提示")) reminder = GameObject.Find("提示").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -57,137 +52,127 @@ public class startPCR : MonoBehaviour
             }
             else timer = 0;
         }
+        if(wait)
+        {
+            if(timer < 200) 
+            {
+                timer++;
+            }
+        }
     } 
-    void FixedUpdate()
-    {
-        
-    }
+    
     void OnMouseover()
     {
         
     }
     void OnMouseUp()
     {
-        if(!primer.employed || !template.employed || !polymerase.employed || !rawMaterial.employed)
+        if(!PCR_hat.employed)
         {
-            reminder.text = "请将所有试剂准备完成\n再启动PCR仪";
+            reminder.text = "请先将试管放入PCR仪\n再启动PCR仪";
             return;
         }
-        if(run.text == "剩余循环次数") 
+        if(remain.text == "剩余循环次数") 
         {
-            Debug.Log("running");
+            Debug.Log("remainning");
             reminder.text = "仪器正在运行中\n请耐心等待";
         }
         else
         {
-            set[0] = true;
+            GameObject.Find("程序顺序").GetComponent<Text>().text = "";
+            GameObject.Find("设置程序").GetComponent<CanvasGroup>().alpha = 1;
+            GameObject.Find("设置程序").GetComponent<CanvasGroup>().interactable = true;
+            GameObject.Find("设置程序").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            GameObject.Find("首页").GetComponent<Text>().text = instrution;
         }
+    }
+    public void click()//确定循环次数后开始扩增
+    {
+        n = int.Parse(GameObject.Find("次数").GetComponent<Text>().text);
+        GameObject.Find("变性程序文本").GetComponent<Text>().text = "+";
+        GameObject.Find("退火程序文本").GetComponent<Text>().text = "+";
+        GameObject.Find("延伸程序文本").GetComponent<Text>().text = "+";
+        GameObject.Find("循环程序").GetComponent<CanvasGroup>().alpha = 0;
+        GameObject.Find("循环程序").GetComponent<CanvasGroup>().interactable = false;
+        GameObject.Find("循环程序").GetComponent<CanvasGroup>().blocksRaycasts = false;
+        GameObject.Find("设置程序").GetComponent<CanvasGroup>().alpha = 0;
+        GameObject.Find("设置程序").GetComponent<CanvasGroup>().interactable = false;
+        GameObject.Find("设置程序").GetComponent<CanvasGroup>().blocksRaycasts = false;
+        started = true;
     }
     void OnMouseExit()
     {
-        if(reminder.text == "请将所有试剂准备完成\n再启动PCR仪"|| reminder.text == "仪器正在运行中\n请耐心等待")reminder.text="";
+        initComps();
+        if (reminder != null)
+        {
+            if(reminder.text == "请先将试管放入PCR仪\n再启动PCR仪"|| reminder.text == "仪器正在运行中\n请耐心等待")reminder.text="";
+        }
     }
             
     void OnGUI()
     {
-        if(set[0]==true)
+        if(wait&&timer==200)
         {
-            //变性
-            screen.text = "变性";
-            reminder.text = "请选择变性温度\n选错则无法继续哦";
-            chooseTemperature.GetComponent<CanvasGroup>().alpha = 1;
-            chooseTemperature.GetComponent<CanvasGroup>().interactable = true;
-            chooseTemperature.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            if(GameObject.Find("95").GetComponent<Toggle>().isOn == true)
-            {
-                set[1]=true;
-                set[0]=false;
-            }
+            wait = false;timer=0;
+            GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳结果";
+            GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
+            GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
+            GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
-        if(set[1]==true)
-        {
-            screen.text = "退火";
-            reminder.text = "请选择退火温度\n选错则无法继续哦";
-            if(GameObject.Find("55").GetComponent<Toggle>().isOn == true)
-            {
-                set[2]=true;
-                set[1]=false;
-            }
-        }
-        if(set[2]==true)
-        {
-            screen.text = "延伸";
-            reminder.text = "请选择延伸温度\n选错则无法继续哦";
-            if(GameObject.Find("72").GetComponent<Toggle>().isOn == true)
-            {
-                set[3]=true;
-                set[2]=false;
-            }
-        }     
-        if(set[3]==true)  
-        {
-            screen.text = "";
-            reminder.text = "设置循环次数\n请输入25～35之间的整数";
-            chooseTemperature.GetComponent<CanvasGroup>().alpha = 0;
-            chooseTemperature.GetComponent<CanvasGroup>().interactable = false;
-            chooseTemperature.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            inputField.GetComponent<CanvasGroup>().alpha = 1;
-            inputField.GetComponent<CanvasGroup>().interactable = true;
-            inputField.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            submit.GetComponent<CanvasGroup>().alpha = 1;
-            submit.GetComponent<CanvasGroup>().interactable = true;
-            submit.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            text = GameObject.Find("cycles").GetComponent<Text>().text;
-            List<string> valid = new List<string>(){"25","26","27","28","29","30","31","32","33","34","35"};
-            if(sure)
-            {
-                sure = false;
-                if(valid.Contains(text))
-                {
-                    reminder.text = "";
-                    inputField.GetComponent<CanvasGroup>().alpha = 0;
-                    inputField.GetComponent<CanvasGroup>().interactable = false;
-                    inputField.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        
-                    submit.GetComponent<CanvasGroup>().alpha = 0;
-                    submit.GetComponent<CanvasGroup>().interactable = false;
-                    submit.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                    started = true;
-
-                    screen.DOText("运行中",3);
-                    n = int.Parse(text);
-                    set[3]=false;
-                }
-            }  
-        }           
-    
         if(started)
         {
-            GameObject.Find("倒计时").GetComponent<Renderer>().enabled = true;
-            run.text = "剩余循环次数";
+            initComps();
+            if (countdown != null) countdown.enabled = true;
             if(timer == 60) {
                 n--;
                 timer = 0;
             }
             if(n>=0){
-                num.text = counter[n];
+                if (num != null)
+                {
+                    num.text = counter[n];
+                    GameObject.Find("运行中").GetComponent<TextMesh>().text = "运行中";
+                    GameObject.Find("剩余循环次数").GetComponent<TextMesh>().text = "剩余循环次数";
+                }
             }
             if(n<0){
                 started = false;
-                screen.text="";
-                GameObject.Find("倒计时").GetComponent<Renderer>().enabled = false;
-                run.text = "";
+                wait = true;timer = 0;
+                if (countdown) countdown.gameObject.SetActive(false);
+                remain.text = "";
                 num.text = "";
                 reminder.text = "";
-                uiText = GameObject.Find("电泳结果").GetComponent<Text>();
-                uiText.DOText("\u3000\u3000" + "电泳结果", 2);
-                GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
+                GameObject.Find("正在进行电泳").GetComponent<TextMesh>().text = "恭喜你完成了DNA扩增！\n下面进行电泳";
             }
         }
     }
-
-    public void clickSure()
+    public void reset()//一次结束，再玩一次
     {
-        sure = true;
+        SceneManager.LoadScene("t1");
+        // dianyongRes.text = "";
+        // GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = false;
+        // GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 0;
+        // GameObject.Find("again").GetComponent<CanvasGroup>().interactable = false;
+        // GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = false;
+        // primer.employed = false;
+        // template.employed = false;
+        // polymerase.employed = false;
+        // rawMaterial.employed = false;
+        // PCR_hat.employed = false;
+        // bianxing.programCache = false;
+        // bianxing.temperatureCache = false;
+        // tuihuo.programCache = false;
+        // tuihuo.temperatureCache = false;
+        // yanshen.programCache = false;
+        // yanshen.temperatureCache = false;
+        // //
+        // Sequence se = DOTween.Sequence();
+        // se.Append(tube.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(-0.05f , 0.05f,0),1.5f));
+        // //se.Append(GameObject.Find("试管").transform.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(0f , 0.1f,0),1.5f));
+        // //se.Pause();
+        // se.Append(tube.DOLocalRotate(new Vector3(0, 0, -60), 2f, RotateMode.WorldAxisAdd));
+        // se.Append(tube.DOLocalRotate(new Vector3(0, 0, 60), 2f, RotateMode.WorldAxisAdd));
+        // se.Append(tube.DOMove(PCR_hat.tubePos,1.5f));
     }
 }
