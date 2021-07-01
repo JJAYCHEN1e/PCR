@@ -149,7 +149,7 @@ public class startPCR : MonoBehaviour
     }
     public void reset()//一次结束，再玩一次
     {
-        SceneManager.LoadScene("t1");
+        SceneManager.LoadScene("Scene2");
         // dianyongRes.text = "";
         // GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = false;
         // GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 0;

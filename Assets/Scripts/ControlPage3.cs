@@ -74,7 +74,7 @@ public class ControlPage3 : MonoBehaviour
         canvasGroup.DOFade(0, 1);
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
-        SceneManager.LoadScene("t1");
+        SceneManager.LoadScene("Scene2");
         //dnaAnimator.SetBool("start", true);
         //dnaAnimator.Play("step1");
         //dnaAnimator.SetBool("circle1_step1to2", true);
