@@ -9,11 +9,9 @@ public class PCR_hat : MonoBehaviour
     // Start is called before the first frame update
     public bool opened = false;
     public static bool employed = false;
-    public static Text reminder;
     public static Vector3 tubePos;
     void Start()
     {
-        reminder = GameObject.Find("提示").GetComponent<Text>();
         tubePos = GameObject.Find("试管").transform.position;
     }
 
@@ -24,22 +22,29 @@ public class PCR_hat : MonoBehaviour
         }
         if(!primer.employed )
         {
-            reminder.text = "还未采样引物试剂";
+            UnityToast.ShowAlert("操作失误", "还未采样引物试剂");
+            SpeechController.Speak("操作失误，还未采样引物试剂");
         }
         else if(!template.employed )
         {
-            reminder.text = "还未采样模板试剂";
+            UnityToast.ShowAlert("操作失误", "还未采样模板试剂");
+            SpeechController.Speak("操作失误，还未采样模板试剂");
         }
         else if(!polymerase.employed )
         {
-            reminder.text = "还未采样Taq酶试剂";
+            UnityToast.ShowAlert("操作失误", "还未采样 Taq 酶试剂");
+            SpeechController.Speak("操作失误，还未采样 Taq 酶试剂");
         }
         else if(!rawMaterial.employed)
         {
-            reminder.text = "还未采样原料试剂";
-            return;
+            UnityToast.ShowAlert("操作失误", "还未采样原料试剂");
+            SpeechController.Speak("操作失误，还未采样原料试剂");
         }
-        else if(employed) reminder.text = "已放入,请勿重复操作";
+        else if (employed)
+        {
+            UnityToast.ShowAlert("操作失误", "已放入，请勿重复操作");
+            SpeechController.Speak("已放入，请勿重复操作");
+        }
         else{
             open();
             employed = true;
@@ -47,7 +52,6 @@ public class PCR_hat : MonoBehaviour
     }
     void OnMouseExit()
     {
-        reminder.text="";
     }
     private void open(){
         int t=90;

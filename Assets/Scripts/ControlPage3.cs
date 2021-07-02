@@ -38,6 +38,7 @@ public class ControlPage3 : MonoBehaviour
         warningText = GameObject.Find("Canvas/page3/warningWindow/Image/Text").GetComponent<Text>();
         uiText = GameObject.Find("Canvas/page3/layer0/Image/Text").GetComponent<Text>();
         words = "科学家Saiki等在黄石公园温泉中分离的一株水生嗜热杆菌(thermus\u3000aquaticus,\u3000Taq)中提取到一种耐高温DNA聚合酶。该酶耐高温的性质使其热变性时不会被钝化,不必在每次扩增反应后再加新酶,从而极大地提高了PCR扩增的效率。Taq酶的发现，使得PCR真正变为现实，为其自动化铺平了道路。";
+        SpeechController.Speak("科学家Saiki等在黄石公园温泉中分离的一株水生嗜热杆菌(thermus\u3000aquaticus,\u3000Taq)中提取到一种耐高温DNA聚合酶。该酶耐高温的性质使其热变性时不会被钝化,不必在每次扩增反应后再加新酶,从而极大地提高了PCR扩增的效率。Taq酶的发现，使得PCR真正变为现实，为其自动化铺平了道路。");
         //Debug.Log(isPrint);
         canvasGroup = GameObject.Find("Canvas/page3/layer0/Image").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(1, 2);
@@ -45,7 +46,7 @@ public class ControlPage3 : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
         //uiText.text = "\u3000\u3000" + words;
         uiText.DOText("\u3000\u3000" + words, 6);
-        DOTween.To(() => timer, a => timer = a, 1, 5).OnComplete(() => showButton());
+        DOTween.To(() => timer, a => timer = a, 1, 30).OnComplete(() => showButton());
         
     }
     void showButton()

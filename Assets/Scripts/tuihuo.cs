@@ -28,6 +28,8 @@ public class tuihuo : MonoBehaviour
         }
         else {
             GameObject.Find("程序顺序").GetComponent<Text>().text = "请按顺序添加程序!";
+            UnityToast.ShowAlert("操作失误", "请按顺序添加程序!");
+            SpeechController.Speak("操作失误，请按顺序添加程序!");
             
             GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().alpha = 0;
             GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().interactable = false;

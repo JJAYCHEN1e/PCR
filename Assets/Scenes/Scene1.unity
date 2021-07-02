@@ -8540,7 +8540,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285019339}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -11283,7 +11283,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350863157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -19866,7 +19866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33968ad8435d4752a00f8a5a08f9811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speechController: {fileID: 1088936365}
 --- !u!225 &637335989
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -22306,7 +22305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732782430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -24939,7 +24938,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8BF7\u5148\u52A0\u5165\u6837\u54C1DNA\uFF0C\u8C03\u8282\u53CD\u5E94\u4F53\u7CFB\u6E29\u5EA6\u4E3A95\xB0C"
+  m_Text: 
 --- !u!222 &794979665
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30069,7 +30068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &940381231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31320,7 +31319,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u53CC\u94FE\u5DF2\u89E3\u5F00\uFF0C\u4F46\u64CD\u4F5C\u65E0\u6CD5\u7EE7\u7EED\uFF0C\u56E0\u4E3A\u65B0\u94FE\u65E0\u6CD5\u5408\u6210\uFF0C\u8BF7\u52A0\u5165\u5F15\u7269!"
+  m_Text: 
 --- !u!222 &979906431
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34292,17 +34291,6 @@ MonoBehaviour:
   OriginalPosition: {x: 102, y: -126, z: 0}
   animator: {fileID: 1191295503}
   animationstr: DNA_pol
---- !u!114 &1088936365 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8560023582690050265, guid: f28229dc5455f46dcabe45923ab84f85, type: 3}
-  m_PrefabInstance: {fileID: 8560023581286435576}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd883d3cf5864dc7af9f82a78d58b60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1089686079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64122,7 +64110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2021981219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75619,6 +75607,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8560023582566631438, guid: f28229dc5455f46dcabe45923ab84f85, type: 3}
+      propertyPath: Culture
+      value: zh-TW
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560023582566631438, guid: f28229dc5455f46dcabe45923ab84f85, type: 3}
+      propertyPath: RTVoiceNameIOS
+      value: Mei-Jia
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560023582566631438, guid: f28229dc5455f46dcabe45923ab84f85, type: 3}
+      propertyPath: RTVoiceNameMac
+      value: Mei-Jia
+      objectReference: {fileID: 0}
     - target: {fileID: 8560023582690050264, guid: f28229dc5455f46dcabe45923ab84f85, type: 3}
       propertyPath: m_RootOrder
       value: 9

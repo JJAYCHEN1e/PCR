@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Crosstales.RTVoice;
 using Crosstales.RTVoice.Tool;
 using UnityEngine;
 
 public class SpeechController : MonoBehaviour
 {
-    public SpeechText speechText;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +19,27 @@ public class SpeechController : MonoBehaviour
         // UnityToast.ShowAlert("操作失误", "请先加入AAAA。");
     }
 
-    public void Speak(string text)
+    public static void Speak(string text, bool toast = true)
     {
-        speechText.Text = text;
-        speechText.Speak();
-        UnityToast.ShowBotToast(text, 0.22f * text.Length);
+        SpeechText speechText = GameObject.Find("SpeechController/SpeechText").GetComponent<SpeechText>();
+        if (speechText)
+        {
+            speechText.Text = text;
+            speechText.Silence();
+            speechText.Speak();
+            if (toast) UnityToast.ShowBotToast(text, 0.22f * text.Length);
+        }
+    }
+    
+    public static void Speak(string text, float duration, bool toast = true)
+    {
+        SpeechText speechText = GameObject.Find("SpeechController/SpeechText").GetComponent<SpeechText>();
+        if (speechText)
+        {
+            speechText.Text = text;
+            speechText.Silence();
+            speechText.Speak();
+            if (toast) UnityToast.ShowBotToast(text, duration);
+        }
     }
 }

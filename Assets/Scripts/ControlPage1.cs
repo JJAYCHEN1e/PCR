@@ -61,30 +61,59 @@ public class ControlPage1 : MonoBehaviour
         showText1();
         //dnaAnimator.SetBool("dnaCopy", true);
     }
-    
+
+    private bool f1, f2, f3, f4, f5 = false;
     void showText1()
     {
+        
         canvasGroup=GameObject.Find("Canvas/page1/layer0/jieshuoImage").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(1, 1);
-        tips.text = "DNA解旋酶解开DNA双链";
-        DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => showText2());
+        // tips.text = "DNA解旋酶解开DNA双链";
+        if (!f1)
+        {
+            f1 = !f1;
+            SpeechController.Speak("DNA解旋酶解开DNA双链");
+            DOTween.To(() => timer, a => timer = a, 1, 5f).OnComplete(() => showText2());
+        }
     }
     void showText2()
     {
-        tips.text = "RNA引物结合";
-        DOTween.To(() => timer, a => timer = a, 1, 4).OnComplete(() => showText3());
+        // tips.text = "RNA引物结合";
+        if (!f2)
+        {
+            f2 = !f2;
+            SpeechController.Speak("RNA引物结合");
+            DOTween.To(() => timer, a => timer = a, 1, 4).OnComplete(() => showText3());
+        }
     }
     void showText3()
     {
-        tips.text = "DNA聚合酶催化底物dNTP分子聚合形成子代DNA";
-        DOTween.To(() => timer, a => timer = a, 1, 5).OnComplete(() => showText4());
+        // tips.text = "DNA聚合酶催化底物dNTP分子聚合形成子代DNA";
+        if (!f3)
+        {
+            f3 = !f3;
+            SpeechController.Speak("DNA聚合酶催化底物dNTP分子聚合形成子代DNA");
+            DOTween.To(() => timer, a => timer = a, 1, 9).OnComplete(() => showText4());
+        }
+
     }
     void showText4()
     {
-        tips.text = "两条链分别进行半保留复制，其中一条链进行不连续复制";
+        // tips.text = "两条链分别进行半保留复制，其中一条链进行不连续复制";
+        if (!f4)
+        {
+            f4 = !f4;
+            SpeechController.Speak("两条链分别进行半保留复制，其中一条链进行不连续复制");
+        }
     }
     void showCanvasOne()
     {
+        if (!f5)
+        {
+            f5 = !f5;
+            SpeechController.Speak("看完DNA体内复制的过程，你是否得到了启发，知道如何构建一个反应体系来实现DNA的体外扩增了呢？来试试吧!", false);
+        }
+        
         canvasGroup = GameObject.Find("Canvas/page1/layer0").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(0, 1);
         canvasGroup = GameObject.Find("Canvas/page1/layer2").GetComponent<CanvasGroup>();
