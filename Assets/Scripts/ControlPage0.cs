@@ -14,14 +14,12 @@ public class ControlPage0 : MonoBehaviour
     private float timer;
     
     CanvasGroup canvasGroup;
-    public SpeechText speaker;
     //GameObject gameObject;
     //private int text_length = 0;
     //private string Ctext;
     // Use this for initialization
     void Start()
     {
-
         canvasGroup = GameObject.Find("Canvas/page0/layer0").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(1, 2);
         canvasGroup.interactable = true;
