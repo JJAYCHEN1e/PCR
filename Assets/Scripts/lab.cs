@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class lab : MonoBehaviour
 {
     public bool showTip;
-    public static Text rule,hideOrShow;
+    public static Text hideOrShow;
     public static string a;
+
+    private GameObject rule;
     // Start is called before the first frame update
     void Start()
     {
         showTip = true;
-        rule = GameObject.Find("实验规范").GetComponent<Text>();
-        a = rule.text;
+        rule = GameObject.Find("实验规范");
         hideOrShow = GameObject.Find("hideOrshow").GetComponent<Text>();
         
     }
@@ -27,12 +28,12 @@ public class lab : MonoBehaviour
     {
         if(hideOrShow.text == "隐藏")
         {
-            rule.text = "";
+            rule.SetActive(false);
             hideOrShow.text = "显示实验规范";
         }
         else
         {
-            rule.text = a;
+            rule.SetActive(true);
             hideOrShow.text = "隐藏";
         }
     }
