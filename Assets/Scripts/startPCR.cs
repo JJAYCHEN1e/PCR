@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 public class startPCR : MonoBehaviour
 {
     public static Text remain,reminder;
-    
+    public Sprite[] s = new Sprite[11];
     public Transform tube;
     private string instrution;
-    
+    public static int cnt = -3;//玩游戏的次数
     public bool started;
     public bool wait = false;//电泳先显示文字，再图片
     public int n;//pcr cycle
@@ -89,6 +89,9 @@ public class startPCR : MonoBehaviour
     public void click()//确定循环次数后开始扩增
     {
         n = int.Parse(GameObject.Find("次数").GetComponent<Text>().text);
+        int index = n - 25;
+        Debug.Log(s[index].name);
+        GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = s[index];
         GameObject.Find("变性程序文本").GetComponent<Text>().text = "+";
         GameObject.Find("退火程序文本").GetComponent<Text>().text = "+";
         GameObject.Find("延伸程序文本").GetComponent<Text>().text = "+";
@@ -150,6 +153,7 @@ public class startPCR : MonoBehaviour
     public void reset()//一次结束，再玩一次
     {
         SceneManager.LoadScene("Scene2");
+        cnt++;
         // dianyongRes.text = "";
         // GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = false;
         // GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 0;

@@ -39,6 +39,11 @@ public class PCR_hat : MonoBehaviour
             reminder.text = "还未采样原料试剂";
             return;
         }
+        else if(!buffer.employed)
+        {
+            reminder.text = "还未采样缓冲液";
+            return;
+        }
         else if(employed) reminder.text = "已放入,请勿重复操作";
         else{
             open();
@@ -57,7 +62,7 @@ public class PCR_hat : MonoBehaviour
         }
         Vector3 HatPos = GameObject.Find("PCR仪_ 1").transform.position;
         GameObject.Find("试管").transform.DOMove(GameObject.Find("移液枪架").transform.position + new Vector3(-0.01f,0.1f,0) * 0.5f,2.5f);
-        GameObject.Find("试管").transform.DOMove(HatPos + new Vector3(-0.02f,0.02f,0) * 0.5f,2.5f);
+        GameObject.Find("试管").transform.DOMove(HatPos + new Vector3(-0.02f,0f,-0.02f) * 0.5f,2.5f);
         opened = true;
     }
     private void close(){

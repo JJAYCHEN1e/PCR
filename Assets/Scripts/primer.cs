@@ -7,9 +7,8 @@ public class primer : MonoBehaviour
 {
     public static bool employed;
     public static string type = "";
-    public GameObject o;
-    Transform s,m,l;
-    Vector3 originSpos,originMpos,originLpos,pos;
+    Transform s,m,l,hat;
+    Vector3 originSpos,originMpos,originLpos,originHatpos;
     bool startCheck = false;
     // Start is called before the first frame update
     void Start()
@@ -18,11 +17,11 @@ public class primer : MonoBehaviour
         s = GameObject.Find("2.5").transform;
         m = GameObject.Find("10").transform;
         l = GameObject.Find("100").transform;
+        hat = GameObject.Find("引物试剂盖").transform;
         originSpos = s.position;
         originMpos = m.position;
         originLpos = l.position;
-        o =  GameObject.Find("引物试剂");
-        pos = o.transform.position;
+        originHatpos = hat.position;
     }
 
     // Update is called once per frame
@@ -51,17 +50,19 @@ public class primer : MonoBehaviour
     void OnMouseUp()
     {
         if(type != "") return;
-        if(true){
-        // if(s.position == originSpos){
+        if(buffer.type == "" && polymerase.type== "" && rawMaterial.type == "" && template.type == ""){
             type = "2.5";
 
             Sequence se = DOTween.Sequence();
-            se.Append(s.DOMove(pos + new Vector3(0.02f , 0.2f,0),1.5f));
-            se.Append(s.DOMove(GameObject.Find("引物试剂").transform.position + new Vector3(0 , 0.05f,0) * 0.5f,1.5f));
-            se.Append(s.DOMove(GameObject.Find("试管").transform.position + new Vector3(0f , 0.08f,0.03f) * 0.5f,2.5f));
-            se.Append(s.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(-0.1f , 0.15f,0) * 0.5f,1.5f));
-            se.Append(s.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(0f , 0.1f,0) * 0.5f,1.5f));
-            se.Append(s.DOMove(originSpos,1.5f));
+            se.Append(s.DOMove(GameObject.Find("枪头盒").transform.position + new Vector3(startPCR.cnt*0.01f , 0.05f,0.01f) * 0.5f,2f));
+            se.Append(hat.DOMove(originHatpos + new Vector3(-0.02f , 0.05f,0) * 0.5f,2f));
+            se.Append(s.DOMove(GameObject.Find("引物试剂").transform.position + new Vector3(0f , 0.2f,0) * 0.5f,2f));
+            se.Append(s.DOMove(GameObject.Find("引物试剂").transform.position + new Vector3(0 , 0.1f,0.02f) * 0.5f,2f));
+            se.Append(s.DOMove(GameObject.Find("试管").transform.position + new Vector3(0f , 0.08f,0.03f) * 0.5f,2f));
+            se.Append(hat.DOMove(originHatpos ,2f));
+            se.Append(s.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(-0.050f , 0.2f,0) * 0.5f,2f));
+            se.Append(s.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(0f , 0.1f,0.02f) * 0.5f,2f));
+            se.Append(s.DOMove(originSpos,1.5f));  
         } 
         // else if(m.position == originMpos){
         //     type = "10";
