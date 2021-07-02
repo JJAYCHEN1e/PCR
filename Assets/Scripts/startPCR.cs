@@ -52,7 +52,7 @@ public class startPCR : MonoBehaviour
         }
         if(wait)
         {
-            if(timer < 200) 
+            if(timer < 400) 
             {
                 timer++;
             }
@@ -110,7 +110,7 @@ public class startPCR : MonoBehaviour
             
     void OnGUI()
     {
-        if(wait&&timer==200)
+        if(wait&&timer==400)
         {
             wait = false;timer=0;
             GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;

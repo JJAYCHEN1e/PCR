@@ -35,8 +35,8 @@ public class ControlPage0 : MonoBehaviour
 
         //speaker.Speak();
         //Debug.Log(Crosstales.RTVoice.Speaker.Cultures.Count);
-        DOTween.To(() => timer, a => timer = a, 1, 34).OnComplete(() => SpeechController.Speak("如何在细胞外实现DNA扩增？让我们一起探索吧！"));
-        DOTween.To(() => timer, a => timer = a, 1, 38).OnComplete(() => showCanvasThree());
+        DOTween.To(() => timer, a => timer = a, 1, 36).OnComplete(() => SpeechController.Speak("如何在细胞外实现DNA扩增？让我们一起探索吧！"));
+        DOTween.To(() => timer, a => timer = a, 1, 40).OnComplete(() => showCanvasThree());
         // DOTween.To(() => timer, a => timer = a, 1, 5).OnComplete(() => showCanvasOne());
         // DOTween.To(() => timer, a => timer = a, 1, 7).OnComplete(() => showCanvasTwo());
         // DOTween.To(() => timer, a => timer = a, 1, 9).OnComplete(() => showCanvasThree());
