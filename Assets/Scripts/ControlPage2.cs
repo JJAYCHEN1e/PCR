@@ -149,7 +149,7 @@ public class ControlPage2 : MonoBehaviour
             {
                 // warningText.text = "还未加入DNA聚合酶和dNTPs反应原料！";
                 UnityToast.ShowAlert("操作错误", "还未加入DNA聚合酶和dNTPs反应原料！");
-                SpeechController.Speak("还未加入dNTPs反应原料！", false);
+                SpeechController.Speak("还未加入DNA聚合酶和dNTPs反应原料！", false);
                 //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
                 canvasGroup = warningWindow.GetComponent<CanvasGroup>();
                 canvasGroup.interactable = true;

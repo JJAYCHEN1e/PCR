@@ -16,7 +16,11 @@ public class lab : MonoBehaviour
         showTip = true;
         rule = GameObject.Find("实验规范");
         hideOrShow = GameObject.Find("hideOrshow").GetComponent<Text>();
+        CustomNativeView.InitSceneTwoRuleView();
+        CustomNativeView.InitExitAppButton();
         
+        SpeechController.Speak("双指单击平面以放置、拖动实验器材");
+        UnityToast.ShowBotToast("双指单击平面以放置、拖动实验器材", 10);
     }
 
     // Update is called once per frame

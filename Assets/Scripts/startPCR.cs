@@ -29,14 +29,14 @@ public class startPCR : MonoBehaviour
         if (countdown != null) countdown.enabled = false;
         counter = new string[36]{"0","1","2","3","4","5","6","7","8","9","10" ,"11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"};
         timer = 0;
-        instrution = GameObject.Find("首页").GetComponent<Text>().text;
-        tube = GameObject.Find("试管").transform;
     }
 
     private void initComps()
     {
         if (countdown == null && GameObject.Find("倒计时")) countdown = GameObject.Find("倒计时").GetComponent<Renderer>();
         if (num == null && GameObject.Find("num")) num = GameObject.Find("num").GetComponent<TextMesh>();
+        if (instrution == null && GameObject.Find("首页")) instrution = GameObject.Find("首页").GetComponent<Text>().text;
+        if (tube == null && GameObject.Find("试管"))  tube = GameObject.Find("试管").transform;
     }
 
     // Update is called once per frame

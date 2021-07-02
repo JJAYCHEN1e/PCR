@@ -19,6 +19,7 @@ public class ControlPage0 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        CustomNativeView.InitExitAppButton();
         canvasGroup = GameObject.Find("Canvas/page0/layer0").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(1, 2);
         canvasGroup.interactable = true;
@@ -93,6 +94,7 @@ public class ControlPage0 : MonoBehaviour
     void showNextPage()
     {
         canvasGroup = GameObject.Find("Canvas/page1").GetComponent<CanvasGroup>();
+        UnityToast.ShowTopToast("让我们来观察细胞中DNA的复制过程", 25);
         canvasGroup.DOFade(1, 1);
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
