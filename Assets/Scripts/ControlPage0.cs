@@ -6,6 +6,7 @@ using DG.Tweening;
 using Crosstales.RTVoice.Tool;
 public class ControlPage0 : MonoBehaviour
 {
+    public SpeechController speechController;
 
     private Text uiText;
     //储存中间值
@@ -26,6 +27,7 @@ public class ControlPage0 : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
         uiText = GameObject.Find("Canvas/page0/layer0/Text-bg/Text").GetComponent<Text>();
         words = "\u3000\u3000某城市突然爆发流感，医生通过鼻咽拭子获取了患者身上的病毒株，为了判断该病毒是否是普通的流行性感冒病毒，医生需要将其遗传物质与已知的流感病毒进行比对。\n\u3000\u3000但直接从患者病毒样本提取的核酸（DNA/RNA）往往不足以进行比对或者测序，这就需要进行遗传物质的数量的扩增，这就是聚合酶链式反应（Polymerase Chain Reaction, PCR）";
+        speechController.Speak("\u3000\u3000某城市突然爆发流感，医生通过鼻咽拭子获取了患者身上的病毒株，为了判断该病毒是否是普通的流行性感冒病毒，医生需要将其遗传物质与已知的流感病毒进行比对。\n\u3000\u3000但直接从患者病毒样本提取的核酸（DNA/RNA）往往不足以进行比对或者测序，这就需要进行遗传物质的数量的扩增，这就是聚合酶链式反应（Polymerase Chain Reaction, PCR）");
         //Debug.Log(isPrint);
         uiText.DOText(words, 5);
         //isPrint = true;
