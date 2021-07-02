@@ -47,10 +47,16 @@ public class PCR_hat : MonoBehaviour
         }
         else if(!buffer.employed)
         {
-            reminder.text = "还未采样缓冲液";
-            return;
+            UnityToast.ShowAlert("操作失误", "还未采样缓冲液");
+            SpeechController.Speak("操作失误，还未采样缓冲液");
+                return;
         }
-        else if(employed) reminder.text = "已放入,请勿重复操作";
+        else if (employed)
+        {
+            UnityToast.ShowAlert("提示", "已放入,请勿重复操作");
+            SpeechController.Speak("已放入,请勿重复操作");
+
+        }
         else{
             open();
             employed = true;
