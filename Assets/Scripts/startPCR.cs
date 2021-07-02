@@ -36,9 +36,7 @@ public class startPCR : MonoBehaviour
     private void initComps()
     {
         if (countdown == null && GameObject.Find("倒计时")) countdown = GameObject.Find("倒计时").GetComponent<Renderer>();
-        if (remain == null && GameObject.Find("remain")) remain = GameObject.Find("remain").GetComponent<Text>();
         if (num == null && GameObject.Find("num")) num = GameObject.Find("num").GetComponent<TextMesh>();
-        if (reminder == null && GameObject.Find("提示")) reminder = GameObject.Find("提示").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -69,13 +67,14 @@ public class startPCR : MonoBehaviour
     {
         if(!PCR_hat.employed)
         {
-            reminder.text = "请先将试管放入PCR仪\n再启动PCR仪";
+            UnityToast.ShowAlert("操作失误", "请先将试管放入 PCR 仪，再启动 PCR 仪");
+            SpeechController.Speak("操作失误，请先将试管放入 PCR 仪，再启动 PCR 仪");
             return;
         }
-        if(remain.text == "剩余循环次数") 
+        if(GameObject.Find("剩余循环次数").GetComponent<TextMesh>().text == "剩余循环次数") 
         {
-            Debug.Log("remainning");
-            reminder.text = "仪器正在运行中\n请耐心等待";
+            UnityToast.ShowAlert("提示", "仪器正在运行中，请耐心等待");
+            SpeechController.Speak("仪器正在运行中，请耐心等待");
         }
         else
         {
@@ -102,14 +101,11 @@ public class startPCR : MonoBehaviour
         GameObject.Find("设置程序").GetComponent<CanvasGroup>().interactable = false;
         GameObject.Find("设置程序").GetComponent<CanvasGroup>().blocksRaycasts = false;
         started = true;
+        SpeechController.Speak("PCR 仪已启动，一共需要 " + n + " 次循环。");
     }
     void OnMouseExit()
     {
-        initComps();
-        if (reminder != null)
-        {
-            if(reminder.text == "请先将试管放入PCR仪\n再启动PCR仪"|| reminder.text == "仪器正在运行中\n请耐心等待")reminder.text="";
-        }
+        
     }
             
     void OnGUI()
@@ -119,6 +115,9 @@ public class startPCR : MonoBehaviour
             wait = false;timer=0;
             GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
             GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳结果";
+            UnityToast.ShowAlert("电泳完成", "电泳完成，请查看 PCR 仪上方的电泳结果。");
+            SpeechController.Speak("电泳完成，请查看 PCR 仪上方的电泳结果。你可以点击屏幕下方的按钮再次进行实验。");
+            
             GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
             GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -143,10 +142,10 @@ public class startPCR : MonoBehaviour
                 started = false;
                 wait = true;timer = 0;
                 if (countdown) countdown.gameObject.SetActive(false);
-                remain.text = "";
                 num.text = "";
-                reminder.text = "";
                 GameObject.Find("正在进行电泳").GetComponent<TextMesh>().text = "恭喜你完成了DNA扩增！\n下面进行电泳";
+                UnityToast.ShowAlert("DNA 扩增完成", "恭喜你完成了 DNA 扩增！\n下面进行电泳。");
+                SpeechController.Speak("恭喜你完成了 DNA 扩增！\n下面进行电泳。");
             }
         }
     }
