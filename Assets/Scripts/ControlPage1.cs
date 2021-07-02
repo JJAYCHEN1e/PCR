@@ -82,7 +82,7 @@ public class ControlPage1 : MonoBehaviour
         if (!f2)
         {
             f2 = !f2;
-            SpeechController.Speak("RNA引物结合");
+            SpeechController.Speak("引物结合");
             DOTween.To(() => timer, a => timer = a, 1, 4).OnComplete(() => showText3());
         }
     }
