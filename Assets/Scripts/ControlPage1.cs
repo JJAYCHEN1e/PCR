@@ -72,8 +72,8 @@ public class ControlPage1 : MonoBehaviour
         if (!f1)
         {
             f1 = !f1;
-            SpeechController.Speak("DNA解旋酶解开DNA双链");
-            DOTween.To(() => timer, a => timer = a, 1, 5f).OnComplete(() => showText2());
+            SpeechController.Speak("我们先来观察DNA在细胞内是如何复制的吧！DNA解旋酶解开DNA双链");
+            DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => showText2());
         }
     }
     void showText2()
@@ -147,7 +147,7 @@ public class ControlPage1 : MonoBehaviour
         //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
         //canvasGroup.interactable = true;
         //canvasGroup.blocksRaycasts = true;
-        GameObject.Find("Canvas/page2").GetComponent<ControlPage2>().enabled = true;
+        GameObject.Find("Canvas/page11").GetComponent<ControlPage11>().enabled = true;
     }
     public void confirmClick()
     {

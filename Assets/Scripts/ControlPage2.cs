@@ -52,12 +52,14 @@ public class ControlPage2 : MonoBehaviour
         temp5btn = GameObject.Find("Temp5").GetComponent<Button>();
         temp7btn = GameObject.Find("Temp7").GetComponent<Button>();
         temp9btn = GameObject.Find("Temp9").GetComponent<Button>();
-        SpeechController.Speak("请先加入样品DNA，调节反应体系温度为95°", 999);
+        SpeechController.Speak("掌握了温度对DNA双链的影响，接下来我们来看看PCR的过程到底是怎样进行的吧！请先加入样品DNA，调节反应体系温度为95°", 999);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (targetAdded)
+            GameObject.Find("Image-target").GetComponent<ControlDrag>().enabled = false;
         animatorInfo = dnaAnimator.GetCurrentAnimatorStateInfo(0);
         //Debug.Log(animationPlaying+":"+animatorInfo.normalizedTime);
         if (animationPlaying && animatorInfo.normalizedTime > 0.85f && animatorInfo.normalizedTime<1.0f)
@@ -130,7 +132,7 @@ public class ControlPage2 : MonoBehaviour
             DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0, 1));
             return;
         }
-        temp.text = "当前温度：52°";
+        temp.text = "当前温度：52°C";
         circle.text = "当前阶段：退火";
         animationPlaying = true;
         temp5btn.interactable = false;
@@ -235,7 +237,7 @@ public class ControlPage2 : MonoBehaviour
             DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0, 1));
             return;
         }
-        temp.text = "当前温度：72°";
+        temp.text = "当前温度：72°C";
         circle.text = "当前阶段：延伸";
         animationPlaying = true;
         temp5btn.interactable = true;
@@ -288,7 +290,7 @@ public class ControlPage2 : MonoBehaviour
         }
         DNApolAdded = false;
         polAnimator.Play("wait");
-        temp.text = "当前温度：95°";
+        temp.text = "当前温度：95°C";
         circle.text = "当前阶段：变性";
         animationPlaying = true;
         temp5btn.interactable = true;
