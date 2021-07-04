@@ -15,17 +15,48 @@ static UIView* _topToastView = nil;
 
 static UIView* _bottomToastView = nil;
 
++(UIMenu *)getUIMenu {
+    UIAction *actionOne = [UIAction actionWithTitle:@"Page0" image:[UIImage systemImageNamed:@"1.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "1");
+    }];
+
+    UIAction *actionTwo = [UIAction actionWithTitle:@"Page1" image:[UIImage systemImageNamed:@"2.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "2");
+    }];
+    
+    UIAction *actionThree = [UIAction actionWithTitle:@"Page11" image:[UIImage systemImageNamed:@"3.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "3");
+    }];
+    
+    UIAction *actionFour = [UIAction actionWithTitle:@"Page2" image:[UIImage systemImageNamed:@"4.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "4");
+    }];
+    
+    UIAction *actionFive = [UIAction actionWithTitle:@"Page3" image:[UIImage systemImageNamed:@"5.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "5");
+    }];
+    
+    UIAction *actionSix = [UIAction actionWithTitle:@"Scene2" image:[UIImage systemImageNamed:@"6.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "6");
+    }];
+    
+    return [UIMenu menuWithTitle:@"" children:@[actionSix, actionFive, actionFour, actionThree, actionTwo, actionOne]];
+}
+
 +(void)initBotEmojiView {
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"🤖️";
-    label.font = [UIFont systemFontOfSize: 100.0];
+    
+    UIButton *button = [[UIButton alloc] init];
+    [button setTitle:@"🤖️" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize: 100.0];
+    button.menu = [UnityToast getUIMenu];
+    button.showsMenuAsPrimaryAction = YES;
     
     UIViewController *vc = UnityGetGLViewController();
-    [vc.view addSubview:label];
-    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [vc.view addSubview:button];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [label.leadingAnchor constraintEqualToAnchor:vc.view.leadingAnchor constant:16],
-        [label.bottomAnchor constraintEqualToAnchor:vc.view.bottomAnchor constant:-16],
+        [button.leadingAnchor constraintEqualToAnchor:vc.view.leadingAnchor constant:16],
+        [button.bottomAnchor constraintEqualToAnchor:vc.view.bottomAnchor constant:-16],
     ]];
 }
 

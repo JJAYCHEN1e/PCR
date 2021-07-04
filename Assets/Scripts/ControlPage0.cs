@@ -83,22 +83,32 @@ public class ControlPage0 : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1;
     }
-    public void enterClick()
+
+    public void ClearPage()
     {
         canvasGroup= GameObject.Find("Canvas/page0").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(0, 1);
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+    }
+
+    public void ShowPage()
+    {
+        return;
+    }
+    
+    public void enterClick()
+    {
+        ClearPage();
         DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => showNextPage());
     }
+    
     void showNextPage()
     {
-        canvasGroup = GameObject.Find("Canvas/page1").GetComponent<CanvasGroup>();
-        UnityToast.ShowTopToast("首先让我们来观察细胞中DNA的复制过程", 25);
-        canvasGroup.DOFade(1, 1);
-        canvasGroup.interactable = true;
-        canvasGroup.blocksRaycasts = true;
-        //ControlPage1.enterPage1 = true;
-        GameObject.Find("Canvas/page1").GetComponent<ControlPage1>().enabled = true;
+        // gameObject.GetComponent<ControlPage0>().enabled = false;
+        // ControlPage1 controlPage1 = GameObject.Find("Canvas/page1").GetComponent<ControlPage1>();
+        // controlPage1.enabled = true;
+        // controlPage1.ShowPage();
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMissionInSceneOne(2);
     }
 }

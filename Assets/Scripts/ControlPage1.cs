@@ -125,30 +125,7 @@ public class ControlPage1 : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
         DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(1,1));
     }
-    public void showNextPage()
-    {
-        canvasGroup = GameObject.Find("Canvas/page1/layer1").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = GameObject.Find("Canvas/page1").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        //canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        //canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        GameObject.Find("Canvas/page11").GetComponent<ControlPage11>().enabled = true;
-    }
+    
     public void confirmClick()
     {
         if ((ChosenCondition.Count == 3 && ChosenCondition.Contains("模板") && ChosenCondition.Contains("DNA聚合酶")
@@ -277,5 +254,41 @@ public class ControlPage1 : MonoBehaviour
             ChosenCondition.Add("高温");
             GameObject.Find("Canvas/page1/layer1/select/highTemperature").GetComponent<Image>().color = Color.green;
         }
+    }
+
+    public void ClearPage()
+    {
+        canvasGroup = GameObject.Find("Canvas/page1/layer1").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page1/warningWindow").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page1").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public void ShowPage()
+    {
+        canvasGroup = GameObject.Find("Canvas/page1").GetComponent<CanvasGroup>();
+        UnityToast.ShowTopToast("首先让我们来观察细胞中DNA的复制过程", 25);
+        canvasGroup.DOFade(1, 1);
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        //ControlPage1.enterPage1 = true;
+    }
+    
+    public void showNextPage()
+    {
+        // ClearPage();
+        // gameObject.GetComponent<ControlPage1>().enabled = false;
+        // ControlPage11 controlPage11 = GameObject.Find("Canvas/page11").GetComponent<ControlPage11>();
+        // controlPage11.enabled = true;
+        // controlPage11.ShowPage();
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMissionInSceneOne(3);
     }
 }

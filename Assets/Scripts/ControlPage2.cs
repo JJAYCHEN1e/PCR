@@ -302,35 +302,6 @@ public class ControlPage2 : MonoBehaviour
         canvasGroup.DOFade(0, 1);
     }
     
-    public void nextPageClick()
-    {
-        dnaAnimator.Play("wait");
-        canvasGroup = GameObject.Find("Canvas/page2/layer1").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        //canvasGroup = GameObject.Find("Canvas/page3").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        GameObject.Find("ATCG").GetComponent<Animator>().Play("wait");
-        GameObject.Find("Prime").GetComponent<Animator>().Play("wait");
-        GameObject.Find("DNA_pol").GetComponent<Animator>().Play("wait");
-        //GameObject.Find("").GetComponent<Animator>().Play("wait");
-        GameObject.Find("Canvas/page3").GetComponent<ControlPage3>().enabled = true;
-    }
     void step1animatorEnd()
     {
         Debug.Log("step1end");
@@ -527,6 +498,44 @@ public class ControlPage2 : MonoBehaviour
         //DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0, 1));
         //DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => step4());
     }
-    
-    
+
+    public void ClearPage()
+    {
+        GameObject.Find("DNA_Line").GetComponent<Animator>().Play("wait");
+        canvasGroup = GameObject.Find("Canvas/page2/layer1").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page2/warningWindow").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        GameObject.Find("ATCG").GetComponent<Animator>().Play("wait");
+        GameObject.Find("Prime").GetComponent<Animator>().Play("wait");
+        GameObject.Find("DNA_pol").GetComponent<Animator>().Play("wait");
+        //GameObject.Find("").GetComponent<Animator>().Play("wait");
+    }
+
+    public void ShowPage()
+    {
+        return;
+    }
+
+    public void nextPageClick()
+    {
+        // ClearPage();
+        // gameObject.GetComponent<ControlPage2>().enabled = false;
+        // ControlPage3 controlPage3 = GameObject.Find("Canvas/page3").GetComponent<ControlPage3>();
+        // controlPage3.enabled = true;
+        // controlPage3.ShowPage();
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMissionInSceneOne(5);
+    }
 }

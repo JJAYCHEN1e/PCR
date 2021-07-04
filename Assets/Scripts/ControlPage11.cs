@@ -377,33 +377,6 @@ public class ControlPage11 : MonoBehaviour
     //        GameObject.Instantiate(A_above, t.position, t.rotation, t);
 
     //}
-    public void showNextPage()
-    {
-        canvasGroup = GameObject.Find("Canvas/page11/layer0").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        
-        canvasGroup = GameObject.Find("Canvas/page11").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        //canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        //canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        GameObject.Find("Canvas/page2").GetComponent<ControlPage2>().enabled = true;
-        gameObject.GetComponent<ControlPage11>().enabled = false;
-        DestroyImmediate(dna_line);
-        //SpeechController.Speak("掌握了温度对DNA双链的影响，接下来我们来看看PCR的过程到底是怎样进行的吧！");
-
-        //var timer = 0f;
-        //DOTween.To(() => timer, a => timer = a, 1, 6).OnComplete(() => next());
-    }
 
     //void next()
     //{
@@ -439,5 +412,35 @@ public class ControlPage11 : MonoBehaviour
         jielian(src, tar, duration);
     }
 
+    public void ClearPage()
+    {
+        canvasGroup = GameObject.Find("Canvas/page11/layer0").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        
+        canvasGroup = GameObject.Find("Canvas/page11").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        
+        DestroyImmediate(dna_line);
+    }
+
+    public void ShowPage()
+    {
+        return;
+    }
+    
+    
+    public void showNextPage()
+    {
+        // ClearPage();
+        // gameObject.GetComponent<ControlPage11>().enabled = false;
+        // ControlPage2 controlPage2 = GameObject.Find("Canvas/page2").GetComponent<ControlPage2>(); 
+        // controlPage2.enabled = true;
+        // controlPage2.ShowPage();
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMissionInSceneOne(4);
+    }
 
 }
