@@ -10,6 +10,7 @@ public class rawMaterial : MonoBehaviour
     Transform s,m,l,hat;
     Vector3 originSpos,originMpos,originLpos,originHatpos;
     bool startCheck = false;
+    float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,14 +55,21 @@ public class rawMaterial : MonoBehaviour
         if(buffer.type == "" && polymerase.type== "" && primer.type == "" && template.type == ""){
             type = "2.5";
             Sequence se = DOTween.Sequence();
-            se.Append(s.DOMove(GameObject.Find("枪头盒").transform.position + new Vector3(startPCR.cnt*0.01f, 0.05f,0.05f) * 0.5f,2f));
-            se.Append(hat.DOMove(originHatpos + new Vector3(-0.02f , 0.05f,0) * 0.5f,2f));
-            se.Append(s.DOMove(GameObject.Find("原料试剂").transform.position + new Vector3(0f , 0.2f,0) * 0.5f,2f));
-            se.Append(s.DOMove(GameObject.Find("原料试剂").transform.position + new Vector3(-0.01f , 0.08f,0) * 0.5f,2f));
-            se.Append(s.DOMove(GameObject.Find("试管").transform.position + new Vector3(0f , 0.1f,0.03f) * 0.5f,2f));
+            se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
+            SpeechController.Speak("移液枪装枪头");
+            DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有原料的试管"));
+            se.Append(hat.DOMove(GameObject.Find("原料开盖").transform.position,2f));
+            se.Append(s.DOMove(GameObject.Find("原料上方").transform.position,2f));
+            DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集原料"));
+            se.Append(s.DOLocalRotate(new Vector3(28.333f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+            se.Append(s.DOMove(GameObject.Find("原料采样").transform.position,2f));
+            se.Append(s.DOMove(GameObject.Find("原料上方").transform.position,2f));
+            se.Append(s.DOLocalRotate(new Vector3(-28.333f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+            se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
             se.Append(hat.DOMove(originHatpos ,2f));
-            se.Append(s.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(-0.050f , 0.2f,0) * 0.5f,2f));
-            se.Append(s.DOMove(GameObject.Find("医疗垃圾桶").transform.position + new Vector3(0f , 0.1f,0.02f) * 0.5f,2f));
+            DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
+            se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
+            se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
             se.Append(s.DOMove(originSpos,1.5f));  
         }
         // else if(m.position == originMpos){
