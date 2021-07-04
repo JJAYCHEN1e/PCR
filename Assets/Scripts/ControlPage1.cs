@@ -20,6 +20,8 @@ public class ControlPage1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(MissionController.currentMissionIndex);
+        ControlMedals.ShowMedalInfo();
         //enterPage1 = false;
         dnaAnimator = GameObject.Find("DNA_Line").GetComponent<Animator>();
         warningWindow = GameObject.Find("Canvas/page1/warningWindow");
@@ -40,11 +42,7 @@ public class ControlPage1 : MonoBehaviour
         //Debug.Log(animatorInfo.normalizedTime);
         if (animatorInfo.normalizedTime > 0.8f && animatorInfo.IsName("dnaCopy"))
         {
-            //Debug.Log("copy end");
-            //dnaAnimator.Play("wait");
-            //dnaAnimator.SetBool("dnaCopy", false);
-            //canvasGroup = GameObject.Find("DNA_Line").GetComponent<CanvasGroup>();
-            //canvasGroup.alpha = 0;
+           
             dnaAnimator.SetBool("dnaCopyFinished", true);
             showCanvasOne();
         }
@@ -54,9 +52,7 @@ public class ControlPage1 : MonoBehaviour
     {
         enterPage1 = false;
         dnaShow = false;
-        //Debug.Log(123);
-        //canvasGroup = GameObject.Find("DNA_Line").GetComponent<CanvasGroup>();
-        //canvasGroup.alpha = 0;
+        
         dnaAnimator.Play("dnaCopy");
         showText1();
         //dnaAnimator.SetBool("dnaCopy", true);
@@ -73,7 +69,7 @@ public class ControlPage1 : MonoBehaviour
         {
             f1 = !f1;
             SpeechController.Speak("我们先来观察DNA在细胞内是如何复制的吧！DNA解旋酶解开DNA双链");
-            DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => showText2());
+            DOTween.To(() => timer, a => timer = a, 1, 10f).OnComplete(() => showText2());
         }
     }
     void showText2()
@@ -126,52 +122,7 @@ public class ControlPage1 : MonoBehaviour
         DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(1,1));
     }
     
-    public void confirmClick()
-    {
-        if ((ChosenCondition.Count == 3 && ChosenCondition.Contains("模板") && ChosenCondition.Contains("DNA聚合酶")
-            && ChosenCondition.Contains("原料(dNTPs)")) || (ChosenCondition.Count == 4 && ChosenCondition.Contains("模板")
-            && ChosenCondition.Contains("DNA聚合酶")&& ChosenCondition.Contains("原料(dNTPs)")&& ChosenCondition.Contains("引物")))
-        {
-            GameObject.Find("Canvas/page1/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
-            warningText.text = "DNA双链无法打开，DNA体外扩增还需要高温帮助解旋。请重新选择！";
-            canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-            canvasGroup.DOFade(1, 1);
-            DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0,1));
-        }
-        else if (ChosenCondition.Count == 4 && ChosenCondition.Contains("模板") && ChosenCondition.Contains("DNA聚合酶")
-            && ChosenCondition.Contains("原料(dNTPs)") && ChosenCondition.Contains("高温"))
-        {
-            GameObject.Find("Canvas/page1/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
-            warningText.text = "新链无法合成，DNA体外扩增需要加入引物。请重新选择！";
-            canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-            canvasGroup.DOFade(1, 1);
-            DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0, 1));
-        }
-        else if (ChosenCondition.Count == 5)
-        {
-            warningText.text = "恭喜你选择正确，让我们开始做实验吧！";
-            GameObject.Find("Canvas/page1/warningWindow/Image").GetComponent<Image>().color = new Color(0.6F, 0.7F, 0.9F, 1F);
-            canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-            canvasGroup.DOFade(1, 1);
-            DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => showNextPage());
-        }
-        
-        else
-        {
-            warningText.text = "看来你对DNA复制过程还不太了解哦，让我们再重新来看一遍吧！";
-            GameObject.Find("Canvas/page1/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
-            canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
-            canvasGroup.DOFade(1, 1);
-            //DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0, 1));
-            canvasGroup = GameObject.Find("Canvas/page1/warningWindow/Button").GetComponent<CanvasGroup>();
-            canvasGroup.alpha = 1;
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
-        }
-       
-    }
+   
     public void showAnimationAgain()
     {
         canvasGroup = GameObject.Find("Canvas/page1/layer0").GetComponent<CanvasGroup>();
@@ -190,71 +141,7 @@ public class ControlPage1 : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
         showDNAAnimation();
     }
-    public void clickTemplate()
-    {
-        if (ChosenCondition.Contains("模板") == true)
-        {
-            ChosenCondition.Remove("模板");
-            GameObject.Find("Canvas/page1/layer1/select/template").GetComponent<Image>().color = Color.white;
-        }
-        else
-        {
-            ChosenCondition.Add("模板");
-            GameObject.Find("Canvas/page1/layer1/select/template").GetComponent<Image>().color = Color.green;
-        }
-    }
-    public void clickPolymerase()
-    {
-        if (ChosenCondition.Contains("DNA聚合酶") == true)
-        {
-            ChosenCondition.Remove("DNA聚合酶");
-            GameObject.Find("Canvas/page1/layer1/select/polymerase").GetComponent<Image>().color = Color.white;
-        }
-        else
-        {
-            ChosenCondition.Add("DNA聚合酶");
-            GameObject.Find("Canvas/page1/layer1/select/polymerase").GetComponent<Image>().color = Color.green;
-        }
-    }
-    public void clickRawMaterial()
-    {
-        if (ChosenCondition.Contains("原料(dNTPs)") == true)
-        {
-            ChosenCondition.Remove("原料(dNTPs)");
-            GameObject.Find("Canvas/page1/layer1/select/rawMaterial").GetComponent<Image>().color = Color.white;
-        }
-        else
-        {
-            ChosenCondition.Add("原料(dNTPs)");
-            GameObject.Find("Canvas/page1/layer1/select/rawMaterial").GetComponent<Image>().color = Color.green;
-        }
-    }
-    public void clickPrimer()
-    {
-        if (ChosenCondition.Contains("引物") == true)
-        {
-            ChosenCondition.Remove("引物");
-            GameObject.Find("Canvas/page1/layer1/select/primer").GetComponent<Image>().color = Color.white;
-        }
-        else
-        {
-            ChosenCondition.Add("引物");
-            GameObject.Find("Canvas/page1/layer1/select/primer").GetComponent<Image>().color = Color.green;
-        }
-    }
-    public void clickHighTemperature()
-    {
-        if (ChosenCondition.Contains("高温") == true)
-        {
-            ChosenCondition.Remove("高温");
-            GameObject.Find("Canvas/page1/layer1/select/highTemperature").GetComponent<Image>().color = Color.white;
-        }
-        else
-        {
-            ChosenCondition.Add("高温");
-            GameObject.Find("Canvas/page1/layer1/select/highTemperature").GetComponent<Image>().color = Color.green;
-        }
-    }
+    
 
     public void ClearPage()
     {
@@ -274,6 +161,7 @@ public class ControlPage1 : MonoBehaviour
 
     public void ShowPage()
     {
+        ControlMedals.ShowMedalInfo();
         canvasGroup = GameObject.Find("Canvas/page1").GetComponent<CanvasGroup>();
         UnityToast.ShowTopToast("首先让我们来观察细胞中DNA的复制过程", 25);
         canvasGroup.DOFade(1, 1);
@@ -289,6 +177,6 @@ public class ControlPage1 : MonoBehaviour
         // ControlPage11 controlPage11 = GameObject.Find("Canvas/page11").GetComponent<ControlPage11>();
         // controlPage11.enabled = true;
         // controlPage11.ShowPage();
-        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMissionInSceneOne(3);
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("3");
     }
 }

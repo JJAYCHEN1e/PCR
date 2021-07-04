@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MissionController : MonoBehaviour
 {
     private const int sceneOneMissionCount = 5;
-    private static int currentMissionIndex = 1;
+    public static int currentMissionIndex = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +76,7 @@ public class MissionController : MonoBehaviour
             }
             else
             {
+                currentMissionIndex = missionIndex;
                 SwitchMissionInSceneOne(missionIndex);
             }
         } else if (missionIndex >= sceneOneMissionCount + 1 && missionIndex <= sceneOneMissionCount + 1)

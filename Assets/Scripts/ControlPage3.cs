@@ -20,6 +20,8 @@ public class ControlPage3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(MissionController.currentMissionIndex);
+        ControlMedals.ShowMedalInfo();
         animationPlaying = false;
         canvasGroup = GameObject.Find("Canvas/page3").GetComponent<CanvasGroup>();
         DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
@@ -90,6 +92,7 @@ public class ControlPage3 : MonoBehaviour
 
     public void ShowPage()
     {
+        ControlMedals.ShowMedalInfo();
         return;
     }
     
@@ -97,7 +100,7 @@ public class ControlPage3 : MonoBehaviour
     {
         // ClearPage();
         // SceneManager.LoadScene("Scene2");
-        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMissionInSceneOne(6);
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("6");
     }
 
 }

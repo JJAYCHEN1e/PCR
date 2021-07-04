@@ -77,6 +77,8 @@ public class ControlPage11 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.Log(MissionController.currentMissionIndex);
+        ControlMedals.ShowMedalInfo();
         thermometer = GameObject.Find("温度计液面").GetComponent<Image>();
         thermometerUp = thermometerDown = false;
 
@@ -429,6 +431,7 @@ public class ControlPage11 : MonoBehaviour
 
     public void ShowPage()
     {
+        ControlMedals.ShowMedalInfo();
         return;
     }
     
@@ -440,7 +443,10 @@ public class ControlPage11 : MonoBehaviour
         // ControlPage2 controlPage2 = GameObject.Find("Canvas/page2").GetComponent<ControlPage2>(); 
         // controlPage2.enabled = true;
         // controlPage2.ShowPage();
-        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMissionInSceneOne(4);
+        ControlMedals.GetMedal(1);
+        SpeechController.Speak("恭喜你点亮了一枚奖牌！");
+        var timer = 0;
+        DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("4"));
     }
 
 }
