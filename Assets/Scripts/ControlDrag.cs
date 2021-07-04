@@ -70,7 +70,7 @@ public class ControlDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     {
         Debug.Log(eventData);
         Vector2 mouseDrag = eventData.position; //当鼠标拖动时的屏幕坐标
-        if(mouseDrag.x>420f||mouseDrag.y<580f)
+        if(mouseDrag.x>420f||mouseDrag.y<1080f)
         {
             imgRect.anchoredPosition = OriginalPosition;
             animator.Play(animationstr);
@@ -82,6 +82,10 @@ public class ControlDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
                 ControlPage2.PrimeAdded = true;
             else if (gameObject.name.Equals("Image-DNApol"))
                 ControlPage2.DNApolAdded = true;
+        }
+        else
+        {
+            imgRect.anchoredPosition = OriginalPosition;
         }
 
         offset = Vector2.zero;
