@@ -77,6 +77,8 @@ public class ControlPage11 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.Log(MissionController.currentMissionIndex);
+        ControlMedals.ShowMedalInfo();
         thermometer = GameObject.Find("温度计液面").GetComponent<Image>();
         thermometerUp = thermometerDown = false;
 
@@ -377,33 +379,6 @@ public class ControlPage11 : MonoBehaviour
     //        GameObject.Instantiate(A_above, t.position, t.rotation, t);
 
     //}
-    public void showNextPage()
-    {
-        canvasGroup = GameObject.Find("Canvas/page11/layer0").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        
-        canvasGroup = GameObject.Find("Canvas/page11").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        //canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        //canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        GameObject.Find("Canvas/page2").GetComponent<ControlPage2>().enabled = true;
-        gameObject.GetComponent<ControlPage11>().enabled = false;
-        DestroyImmediate(dna_line);
-        //SpeechController.Speak("掌握了温度对DNA双链的影响，接下来我们来看看PCR的过程到底是怎样进行的吧！");
-
-        //var timer = 0f;
-        //DOTween.To(() => timer, a => timer = a, 1, 6).OnComplete(() => next());
-    }
 
     //void next()
     //{
@@ -439,5 +414,39 @@ public class ControlPage11 : MonoBehaviour
         jielian(src, tar, duration);
     }
 
+    public void ClearPage()
+    {
+        canvasGroup = GameObject.Find("Canvas/page11/layer0").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        
+        canvasGroup = GameObject.Find("Canvas/page11").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        
+        DestroyImmediate(dna_line);
+    }
+
+    public void ShowPage()
+    {
+        ControlMedals.ShowMedalInfo();
+        return;
+    }
+    
+    
+    public void showNextPage()
+    {
+        // ClearPage();
+        // gameObject.GetComponent<ControlPage11>().enabled = false;
+        // ControlPage2 controlPage2 = GameObject.Find("Canvas/page2").GetComponent<ControlPage2>(); 
+        // controlPage2.enabled = true;
+        // controlPage2.ShowPage();
+        ControlMedals.GetMedal(1);
+        SpeechController.Speak("恭喜你点亮了一枚奖牌！");
+        var timer = 0;
+        DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("4"));
+    }
 
 }

@@ -28,6 +28,8 @@ public class ControlPage2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(MissionController.currentMissionIndex);
+        ControlMedals.ShowMedalInfo();
         dnaAnimator = GameObject.Find("DNA_Line").GetComponent<Animator>();
         //dnaAnimator.Play("Target_wait");
         warningWindow = GameObject.Find("Canvas/page2/warningWindow");
@@ -302,35 +304,6 @@ public class ControlPage2 : MonoBehaviour
         canvasGroup.DOFade(0, 1);
     }
     
-    public void nextPageClick()
-    {
-        dnaAnimator.Play("wait");
-        canvasGroup = GameObject.Find("Canvas/page2/layer1").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        //canvasGroup = GameObject.Find("Canvas/page3").GetComponent<CanvasGroup>();
-        //DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
-        //canvasGroup.interactable = true;
-        //canvasGroup.blocksRaycasts = true;
-        GameObject.Find("ATCG").GetComponent<Animator>().Play("wait");
-        GameObject.Find("Prime").GetComponent<Animator>().Play("wait");
-        GameObject.Find("DNA_pol").GetComponent<Animator>().Play("wait");
-        //GameObject.Find("").GetComponent<Animator>().Play("wait");
-        GameObject.Find("Canvas/page3").GetComponent<ControlPage3>().enabled = true;
-    }
     void step1animatorEnd()
     {
         Debug.Log("step1end");
@@ -514,7 +487,8 @@ public class ControlPage2 : MonoBehaviour
         //warningText.text = "恭喜你完成了第三轮复制，并且得到了目标DNA！";
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.6F, 0.7F, 0.9F, 1F);
         //canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-        SpeechController.Speak("恭喜你，完成了3次DNA体外扩增，现在我们获得了目标DNA。但是目的基因量依旧不足，需要再次加入DNA聚合酶循环操作。你是否觉得这样的步骤很繁琐，有什么好的方法能简化操作呢？让我们继续探索吧！", false);
+        ControlMedals.GetMedal(2);
+        SpeechController.Speak("恭喜你，完成了3次DNA体外扩增，又点亮了一枚奖牌，现在我们获得了目标DNA。但是目的基因量依旧不足，需要再次加入DNA聚合酶循环操作。你是否觉得这样的步骤很繁琐，有什么好的方法能简化操作呢？让我们继续探索吧！", false);
         canvasGroup = GameObject.Find("Canvas/page2/nextPageTip").GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
@@ -527,6 +501,48 @@ public class ControlPage2 : MonoBehaviour
         //DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0, 1));
         //DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => step4());
     }
-    
-    
+
+    public void ClearPage()
+    {
+        GameObject.Find("DNA_Line").GetComponent<Animator>().Play("wait");
+        canvasGroup = GameObject.Find("Canvas/page2/layer1").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page2/warningWindow").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        GameObject.Find("ATCG").GetComponent<Animator>().Play("wait");
+        GameObject.Find("Prime").GetComponent<Animator>().Play("wait");
+        GameObject.Find("DNA_pol").GetComponent<Animator>().Play("wait");
+        //GameObject.Find("").GetComponent<Animator>().Play("wait");
+    }
+
+    public void ShowPage()
+    {
+        ControlMedals.ShowMedalInfo();
+        return;
+    }
+
+    public void nextPageClick()
+    {
+        // ClearPage();
+        // gameObject.GetComponent<ControlPage2>().enabled = false;
+        // ControlPage3 controlPage3 = GameObject.Find("Canvas/page3").GetComponent<ControlPage3>();
+        // controlPage3.enabled = true;
+        // controlPage3.ShowPage();
+        
+        
+        
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("5");
+    }
 }

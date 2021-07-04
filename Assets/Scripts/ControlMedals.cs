@@ -1,0 +1,80 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using DG.Tweening;
+public class ControlMedals : MonoBehaviour
+{
+
+    public static GameObject cup;
+    public static CanvasGroup canvasGroup_medals;
+    public static CanvasGroup canvasGroup_cup;
+    public static CanvasGroup[] canvasGroup_medal_list=new CanvasGroup[3];
+    public static float[] medal_list=new float[3] { 0.3f,0.3f,0.3f};
+
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        canvasGroup_cup = GameObject.Find("cup").GetComponent<CanvasGroup>();
+        canvasGroup_medals = GameObject.Find("medals").GetComponent<CanvasGroup>();
+        canvasGroup_medal_list[0]= GameObject.Find("medal1").GetComponent<CanvasGroup>();
+        canvasGroup_medal_list[1] = GameObject.Find("medal2").GetComponent<CanvasGroup>();
+        canvasGroup_medal_list[2] = GameObject.Find("medal3").GetComponent<CanvasGroup>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.Log(MissionController.currentMissionIndex);
+        
+    }
+
+    //用于各页面初始化时控制奖牌显示
+    public static void ShowMedalInfo()
+    {
+        
+        if (MissionController.currentMissionIndex < 3)//page0和page1不显示
+        {   
+            canvasGroup_medals.alpha = 0;
+        }
+        else
+        {
+            canvasGroup_medals.alpha = 1;
+            //根据当前任务完成度显示
+            for (int i = 0; i < 3; i++)
+            {
+                canvasGroup_medal_list[i].alpha = medal_list[i];
+            }
+        }
+    }
+
+    //完成任务，点亮相应奖牌
+    public static void GetMedal(int task)
+    {
+        switch(task)
+        {
+            case 1:
+                canvasGroup_medal_list[0].DOFade(1, 2);
+                medal_list[0] = 1;
+                break;
+            case 2:
+                canvasGroup_medal_list[1].DOFade(1, 2);
+                medal_list[1] = 2;
+                break;
+            case 3:
+                canvasGroup_medal_list[2].DOFade(1, 2);
+                medal_list[2] = 3;
+                break;
+        }
+    }
+
+    //通关之后显示奖杯，由小变大
+    public static void Win()
+    {
+        canvasGroup_cup.alpha = 1;
+        Vector3 originalScale = cup.transform.localScale;
+        Vector3 targetScale = new Vector3(1, 1, 1);
+        DOTween.To(() => originalScale, x => cup.transform.localScale = x, targetScale, 2);
+    }
+
+}

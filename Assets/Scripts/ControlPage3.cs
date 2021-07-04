@@ -20,6 +20,8 @@ public class ControlPage3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(MissionController.currentMissionIndex);
+        ControlMedals.ShowMedalInfo();
         animationPlaying = false;
         canvasGroup = GameObject.Find("Canvas/page3").GetComponent<CanvasGroup>();
         DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => canvasGroup.DOFade(1, 2));
@@ -69,27 +71,7 @@ public class ControlPage3 : MonoBehaviour
             success();
         }
     }
-
-    public void NextClick()
-    {
-        canvasGroup= GameObject.Find("Canvas/page3/layer0").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(0, 1);
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        SceneManager.LoadScene("Scene2");
-        //dnaAnimator.SetBool("start", true);
-        //dnaAnimator.Play("step1");
-        //dnaAnimator.SetBool("circle1_step1to2", true);
-        //dnaAnimator.SetBool("circle1_step2to3", true);
-        //dnaAnimator.SetBool("circle1to2", true);
-        //dnaAnimator.SetBool("circle2_step1to2", true);
-        //dnaAnimator.SetBool("circle2_step2to3", true);
-        //dnaAnimator.SetBool("circle2to3", true);
-        //dnaAnimator.SetBool("circle3_step1to2", true);
-        //dnaAnimator.SetBool("circle3_step2to3", true);
-        //animationPlaying = true;
-        //dnaAnimator.SetBool("quit", true);
-    }
+    
     void success()
     {
         warningText.text = "恭喜你使用Taq酶完成了PCR扩增的自动化操作!";
@@ -99,7 +81,26 @@ public class ControlPage3 : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
         canvasGroup.DOFade(1, 1);
     }
-    
 
+    public void ClearPage()
+    {
+        canvasGroup= GameObject.Find("Canvas/page3/layer0").GetComponent<CanvasGroup>();
+        canvasGroup.DOFade(0, 1);
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public void ShowPage()
+    {
+        ControlMedals.ShowMedalInfo();
+        return;
+    }
+    
+    public void NextClick()
+    {
+        // ClearPage();
+        // SceneManager.LoadScene("Scene2");
+        GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("6");
+    }
 
 }

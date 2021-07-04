@@ -11,22 +11,83 @@
 
 static UIView* _botToastView = nil;
 
+static int imageIndex = 0;
+static UIButton *_botButtonView = nil;
+
 static UIView* _topToastView = nil;
 
 static UIView* _bottomToastView = nil;
 
++(UIMenu *)getUIMenu {
+    UIAction *actionOne = [UIAction actionWithTitle:@"Page0" image:[UIImage systemImageNamed:@"1.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "1");
+    }];
+
+    UIAction *actionTwo = [UIAction actionWithTitle:@"Page1" image:[UIImage systemImageNamed:@"2.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "2");
+    }];
+    
+    UIAction *actionThree = [UIAction actionWithTitle:@"Page11" image:[UIImage systemImageNamed:@"3.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "3");
+    }];
+    
+    UIAction *actionFour = [UIAction actionWithTitle:@"Page2" image:[UIImage systemImageNamed:@"4.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "4");
+    }];
+    
+    UIAction *actionFive = [UIAction actionWithTitle:@"Page3" image:[UIImage systemImageNamed:@"5.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "5");
+    }];
+    
+    UIAction *actionSix = [UIAction actionWithTitle:@"Scene2" image:[UIImage systemImageNamed:@"6.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        UnitySendMessage("MissionController", "SwitchMission", "6");
+    }];
+    
+    return [UIMenu menuWithTitle:@"" children:@[actionSix, actionFive, actionFour, actionThree, actionTwo, actionOne]];
+}
+
 +(void)initBotEmojiView {
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"🤖️";
-    label.font = [UIFont systemFontOfSize: 100.0];
+    UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
+    
+    UIButton *button = [[UIButton alloc] init];
+    button.menu = [UnityToast getUIMenu];
+    button.showsMenuAsPrimaryAction = YES;
+    [button setImage:botImage0 forState:UIControlStateNormal];
+    [button setImage:botImage0 forState:UIControlStateHighlighted];
+    _botButtonView = button;
     
     UIViewController *vc = UnityGetGLViewController();
-    [vc.view addSubview:label];
-    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [vc.view addSubview:button];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [label.leadingAnchor constraintEqualToAnchor:vc.view.leadingAnchor constant:16],
-        [label.bottomAnchor constraintEqualToAnchor:vc.view.bottomAnchor constant:-16],
+        [button.leadingAnchor constraintEqualToAnchor:vc.view.leadingAnchor constant:16],
+        [button.bottomAnchor constraintEqualToAnchor:vc.view.bottomAnchor constant:-16],
+        [button.widthAnchor constraintEqualToConstant:100],
+        [button.heightAnchor constraintEqualToConstant:122],
     ]];
+    
+    [UnityToast botImageAnimator];
+}
+
++(void)botImageAnimator {
+    UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
+    UIImage *botImage1 = [UIImage imageNamed:@"Bot_1"];
+    dispatch_time_t temp_time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
+    dispatch_after(temp_time, dispatch_get_main_queue(), ^(void){
+        if (_botToastView != nil) {
+            if (imageIndex == 0) {
+                [_botButtonView setImage:botImage1 forState:UIControlStateNormal];
+                [_botButtonView setImage:botImage1 forState:UIControlStateHighlighted];
+                imageIndex = 1;
+            } else {
+                imageIndex = 0;
+                [_botButtonView setImage:botImage0 forState:UIControlStateNormal];
+                [_botButtonView setImage:botImage0 forState:UIControlStateHighlighted];
+            }
+        }
+
+        [UnityToast botImageAnimator];
+    });
 }
 
 +(void)showBotToast:(NSString *)string with:(float) duration {
