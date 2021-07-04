@@ -44,7 +44,7 @@ public class ControlPage1 : MonoBehaviour
         {
            
             dnaAnimator.SetBool("dnaCopyFinished", true);
-            showCanvasOne();
+            DOTween.To(() => timer, a => timer = a, 1, 5f).OnComplete(() => showCanvasOne());
         }
 
     }

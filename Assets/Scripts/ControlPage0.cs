@@ -18,7 +18,7 @@ public class ControlPage0 : MonoBehaviour
     void Start()
     {
         Debug.Log(MissionController.currentMissionIndex);
-        ControlMedals.ShowMedalInfo();
+        //ControlMedals.ShowMedalInfo();
         CustomNativeView.InitExitAppButton();
         canvasGroup = GameObject.Find("Canvas/page0/layer0").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(1, 2);
@@ -30,8 +30,8 @@ public class ControlPage0 : MonoBehaviour
         //Debug.Log(isPrint);
         uiText.DOText(words, 28);
         
-        DOTween.To(() => timer, a => timer = a, 1, 28).OnComplete(() => SpeechController.Speak("那如何在细胞外实现DNA扩增呢？让我们一起探索吧！"));
-        DOTween.To(() => timer, a => timer = a, 1, 28).OnComplete(() => showCanvasThree());
+        DOTween.To(() => timer, a => timer = a, 1, 29).OnComplete(() => SpeechController.Speak("那如何在细胞外实现DNA扩增呢？让我们一起探索吧！"));
+        DOTween.To(() => timer, a => timer = a, 1, 29).OnComplete(() => showCanvasThree());
         
     }
 

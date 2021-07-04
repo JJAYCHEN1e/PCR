@@ -10,6 +10,7 @@ public class lab : MonoBehaviour
     public static string a;
 
     private GameObject rule;
+    bool isShow = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,11 @@ public class lab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!isShow)
+        {
+            isShow = true;
+            ControlMedals.ShowMedalInfo();
+        }
     }
     public void click()
     {

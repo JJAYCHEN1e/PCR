@@ -10,6 +10,9 @@ public class ControlMedals : MonoBehaviour
     public static CanvasGroup canvasGroup_cup;
     public static CanvasGroup[] canvasGroup_medal_list=new CanvasGroup[3];
     public static float[] medal_list=new float[3] { 0.3f,0.3f,0.3f};
+    public static bool task1 = false;
+    public static bool task2 = false;
+    public static bool task3 = false;
 
     
     // Start is called before the first frame update
@@ -26,7 +29,8 @@ public class ControlMedals : MonoBehaviour
     void Update()
     {
         //Debug.Log(MissionController.currentMissionIndex);
-        
+        if (task1 && task2 && task3)
+            Win();
     }
 
     //用于各页面初始化时控制奖牌显示
@@ -55,21 +59,24 @@ public class ControlMedals : MonoBehaviour
         {
             case 1:
                 canvasGroup_medal_list[0].DOFade(1, 2);
+                task1 = true;
                 medal_list[0] = 1;
                 break;
             case 2:
                 canvasGroup_medal_list[1].DOFade(1, 2);
-                medal_list[1] = 2;
+                task2 = true;
+                medal_list[1] = 1;
                 break;
             case 3:
                 canvasGroup_medal_list[2].DOFade(1, 2);
-                medal_list[2] = 3;
+                medal_list[2] = 1;
+                task3 = true;
                 break;
         }
     }
 
     //通关之后显示奖杯，由小变大
-    public static void Win()
+    void Win()
     {
         canvasGroup_cup.alpha = 1;
         Vector3 originalScale = cup.transform.localScale;
