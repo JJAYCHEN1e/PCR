@@ -11,6 +11,10 @@
 
 static UIView* _botToastView = nil;
 
+static UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
+static UIImage *botImage1 = [UIImage imageNamed:@"Bot_1"];
+static UIButton *_botButtonView = nil;
+
 static UIView* _topToastView = nil;
 
 static UIView* _bottomToastView = nil;
@@ -46,10 +50,11 @@ static UIView* _bottomToastView = nil;
 +(void)initBotEmojiView {
     
     UIButton *button = [[UIButton alloc] init];
-    [button setTitle:@"🤖️" forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize: 100.0];
     button.menu = [UnityToast getUIMenu];
     button.showsMenuAsPrimaryAction = YES;
+    [button setImage:botImage0 forState:UIControlStateNormal];
+    [button setImage:botImage0 forState:UIControlStateHighlighted];
+    _botButtonView = button;
     
     UIViewController *vc = UnityGetGLViewController();
     [vc.view addSubview:button];
@@ -57,7 +62,28 @@ static UIView* _bottomToastView = nil;
     [NSLayoutConstraint activateConstraints:@[
         [button.leadingAnchor constraintEqualToAnchor:vc.view.leadingAnchor constant:16],
         [button.bottomAnchor constraintEqualToAnchor:vc.view.bottomAnchor constant:-16],
+        [button.widthAnchor constraintEqualToConstant:100],
+        [button.heightAnchor constraintEqualToConstant:122],
     ]];
+    
+    [UnityToast botImageAnimator];
+}
+
++(void)botImageAnimator {
+//    dispatch_time_t temp_time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
+//    dispatch_after(temp_time, dispatch_get_main_queue(), ^(void){
+//        if (_botToastView != nil) {
+//            if (_botButtonView.imageView.image == botImage0) {
+//                [_botButtonView setImage:botImage1 forState:UIControlStateNormal];
+//                [_botButtonView setImage:botImage1 forState:UIControlStateHighlighted];
+//            } else {
+//                [_botButtonView setImage:botImage0 forState:UIControlStateNormal];
+//                [_botButtonView setImage:botImage0 forState:UIControlStateHighlighted];
+//            }
+//        }
+//
+//        [UnityToast botImageAnimator];
+//    });
 }
 
 +(void)showBotToast:(NSString *)string with:(float) duration {
