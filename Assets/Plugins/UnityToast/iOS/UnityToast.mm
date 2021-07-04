@@ -11,8 +11,7 @@
 
 static UIView* _botToastView = nil;
 
-static UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
-static UIImage *botImage1 = [UIImage imageNamed:@"Bot_1"];
+static int imageIndex = 0;
 static UIButton *_botButtonView = nil;
 
 static UIView* _topToastView = nil;
@@ -48,6 +47,7 @@ static UIView* _bottomToastView = nil;
 }
 
 +(void)initBotEmojiView {
+    UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
     
     UIButton *button = [[UIButton alloc] init];
     button.menu = [UnityToast getUIMenu];
@@ -70,20 +70,24 @@ static UIView* _bottomToastView = nil;
 }
 
 +(void)botImageAnimator {
-//    dispatch_time_t temp_time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
-//    dispatch_after(temp_time, dispatch_get_main_queue(), ^(void){
-//        if (_botToastView != nil) {
-//            if (_botButtonView.imageView.image == botImage0) {
-//                [_botButtonView setImage:botImage1 forState:UIControlStateNormal];
-//                [_botButtonView setImage:botImage1 forState:UIControlStateHighlighted];
-//            } else {
-//                [_botButtonView setImage:botImage0 forState:UIControlStateNormal];
-//                [_botButtonView setImage:botImage0 forState:UIControlStateHighlighted];
-//            }
-//        }
-//
-//        [UnityToast botImageAnimator];
-//    });
+    UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
+    UIImage *botImage1 = [UIImage imageNamed:@"Bot_1"];
+    dispatch_time_t temp_time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
+    dispatch_after(temp_time, dispatch_get_main_queue(), ^(void){
+        if (_botToastView != nil) {
+            if (imageIndex == 0) {
+                [_botButtonView setImage:botImage1 forState:UIControlStateNormal];
+                [_botButtonView setImage:botImage1 forState:UIControlStateHighlighted];
+                imageIndex = 1;
+            } else {
+                imageIndex = 0;
+                [_botButtonView setImage:botImage0 forState:UIControlStateNormal];
+                [_botButtonView setImage:botImage0 forState:UIControlStateHighlighted];
+            }
+        }
+
+        [UnityToast botImageAnimator];
+    });
 }
 
 +(void)showBotToast:(NSString *)string with:(float) duration {
