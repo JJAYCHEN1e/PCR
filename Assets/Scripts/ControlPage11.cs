@@ -82,6 +82,11 @@ public class ControlPage11 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        t = dna_line.GetComponent<Transform>();
+        //t.localScale=Vector3.one * reduce_scale;
+        p = t.position;
+
+        t.transform.position -= Vector3.right * x_space * dna_length / 2;//居于视野中央
     }
 
 
@@ -115,11 +120,11 @@ public class ControlPage11 : MonoBehaviour
             dpn.options.Add(data1);
         }
         canvasGroup = GameObject.Find("Canvas/page11").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(1, 2);
+        canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
         canvasGroup = GameObject.Find("Canvas/page11/layer0").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(1, 2);
+        canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
         dna_line = GameObject.Find("DNA");
@@ -127,9 +132,9 @@ public class ControlPage11 : MonoBehaviour
         //t.localScale=Vector3.one * reduce_scale;
         p = t.position;
 
-        t.transform.position -= Vector3.right * x_space * dna_length / 2;//居于视野中央
+        //t.transform.position -= Vector3.right * x_space * dna_length / 2;//居于视野中央
         CreateNewLine();
-        SpeechController.Speak("第一个小任务，先来探索一下温度对DNA双链的影响吧！你可以设置不同温度来观察DNA的变化情况。");
+        SpeechController.Speak("来探索一下温度对DNA双链的影响吧！你可以设置不同温度来观察DNA的变化情况。");
     }
 
 
@@ -205,15 +210,15 @@ public class ControlPage11 : MonoBehaviour
 
     public void CreateNewLine()
     {
-        //重新生成，销毁之前的对象
-        if (keyList.Count != 0)
-        {
-            for (int i = 0; i < dna_length; i++)
-                DestroyImmediate(keyList[i]);
-            dna_above.Clear();
-            dna_below.Clear();
-            keyList.Clear();
-        }
+        ////重新生成，销毁之前的对象
+        //if (keyList.Count != 0)
+        //{
+        //    for (int i = 0; i < dna_length; i++)
+        //        DestroyImmediate(keyList[i]);
+        //    dna_above.Clear();
+        //    dna_below.Clear();
+        //    keyList.Clear();
+        //}
 
         //上下碱基为一对，方便旋转，创建空白的父对象列表
         for (int i = 0; i < dna_length; i++)
@@ -431,8 +436,15 @@ public class ControlPage11 : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+
+        for (int i=0;i<keyList.Count;i++)
+        {
+            DestroyImmediate(keyList[i]);
+        }
+        keyList.Clear();
+        dna_above.Clear();
+        dna_below.Clear();
         
-        DestroyImmediate(dna_line);
     }
 
     public void ShowPage()
