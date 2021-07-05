@@ -26,8 +26,8 @@ public class rawMaterial : MonoBehaviour
     void Update()
     {
         if(type == "2.5") {
-            if(s.position != originSpos) startCheck = true;
-            if(startCheck && s.position == originSpos){
+            if(s.position != GameObject.Find("2.5备份").transform.position) startCheck = true;
+            if(startCheck && s.position == GameObject.Find("2.5备份").transform.position){
                 type = "";employed = true;startCheck = false;
             }
         }

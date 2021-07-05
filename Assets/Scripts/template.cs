@@ -19,15 +19,14 @@ public class template : MonoBehaviour
         m = GameObject.Find("10").transform;
         l = GameObject.Find("100").transform;
         hat = GameObject.Find("模板试剂盖").transform;
-        originSpos = s.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(type == "2.5") {
-            if(s.position != originSpos) startCheck = true;
-            if(startCheck && s.position == originSpos){
+            if(s.position != GameObject.Find("2.5备份").transform.position) startCheck = true;
+            if(startCheck && s.position == GameObject.Find("2.5备份").transform.position){
                 type = "";employed = true;startCheck = false;
             }
         }
@@ -48,7 +47,7 @@ public class template : MonoBehaviour
     void OnMouseUp()
     {
 #if !UNITY_EDITOR
-        if(GameObject.Find("ARSessionOrigin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
+        if(GameObject.Find("AR Session Origin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
             SpeechController.Speak("请放置实验器材");
             return;
         }
