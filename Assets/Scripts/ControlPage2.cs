@@ -71,7 +71,7 @@ public class ControlPage2 : MonoBehaviour
         temp7btn = GameObject.Find("Temp7").GetComponent<Button>();
         temp9btn = GameObject.Find("Temp9").GetComponent<Button>();
         
-        SpeechController.Speak("在这个任务中，让我们来看看PCR的过程到底是怎样进行的吧！请先加入样品DNA，调节反应体系温度为95°", 999);
+        SpeechController.Speak("在这个任务中，让我们来看看PCR的过程到底是怎样进行的吧！请先加入样品DNA，调节反应体系温度为95°C", "在这个任务中，让我们来看看PCR的过程到底是怎样进行的吧！请先加入样品DNA，条节反应体系温度为95°", 999);
     }
 
     // Update is called once per frame
@@ -153,8 +153,8 @@ public class ControlPage2 : MonoBehaviour
         else if (step==1||step==4||step==7)
         {
             // warningText.text = "请调整至指定温度！";
-            UnityToast.ShowAlert("操作错误", "请调整至指定温度！");
-            SpeechController.Speak("请调整至指定温度！", false);
+            UnityToast.ShowAlert("操作错误", "请整至指定温度！");
+            SpeechController.Speak("请调整至指定温度！", "请条整至指定温度！", false);
             //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
             canvasGroup = warningWindow.GetComponent<CanvasGroup>();
             canvasGroup.interactable = true;
@@ -259,7 +259,7 @@ public class ControlPage2 : MonoBehaviour
         {
             // warningText.text =  "请调整至指定温度！";
             UnityToast.ShowAlert("操作错误", "请调整至指定温度！");
-            SpeechController.Speak("请调整至指定温度！", false);
+            SpeechController.Speak("请调整至指定温度！", "请条整至指定温度！", false);
             //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
             canvasGroup = warningWindow.GetComponent<CanvasGroup>();
             canvasGroup.interactable = true;
@@ -302,7 +302,7 @@ public class ControlPage2 : MonoBehaviour
         {
             // warningText.text =  "请调整至指定温度！";
             UnityToast.ShowAlert("操作错误", "请调整至指定温度！");
-            SpeechController.Speak("请调整至指定温度！", false);
+            SpeechController.Speak("请调整至指定温度！", "请条整至指定温度！", false);
             //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
             canvasGroup = warningWindow.GetComponent<CanvasGroup>();
             canvasGroup.interactable = true;
@@ -341,12 +341,12 @@ public class ControlPage2 : MonoBehaviour
         if (!PrimeAdded)
         {
             // warningText.text = "双链已解开，但操作无法继续，因为新链无法合成，请加入引物!";
-            SpeechController.Speak("双链已解开，但操作无法继续，因为新链无法合成，请加入引物，并调节反应温度为52°", 999);
+            SpeechController.Speak("双链已解开，但操作无法继续，因为新链无法合成，请加入引物，并调节反应温度为52°C", "双链已解开，但操作无法继续，因为新链无法合成，请加入引物，并条节反应温度为52°", 999);
         }
         else
         {
             // warningText.text = "双链已解开，且已加入了引物，请调节反应体系温度!";
-            SpeechController.Speak("双链已解开，且已加入了引物，请调节反应体系温度为52°", false);
+            SpeechController.Speak("双链已解开，且已加入了引物，请调节反应体系温度为52°C", "双链已解开，且已加入了引物，请条节反应体系温度为52°", false);
         }
         canvasGroup = warningWindow.GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
@@ -362,25 +362,25 @@ public class ControlPage2 : MonoBehaviour
         {
             // warningText.text = "引物已结合，但操作无法继续，因为缺少DNA聚合酶和反应原料!";
             // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请加入DNA聚合酶和反应原料，调节反应体系的温度72°C";
-            SpeechController.Speak("引物已结合，但操作无法继续，因为缺少DNA聚合酶和反应原料!请加入DNA聚合酶和反应原料，调节反应体系的温度72°", 999);
+            SpeechController.Speak("引物已结合，但操作无法继续，因为缺少DNA聚合酶和反应原料!请加入DNA聚合酶和反应原料，调节反应体系的温度为72°C", "引物已结合，但操作无法继续，因为缺少DNA聚合酶和反应原料!请加入DNA聚合酶和反应原料，条节反应体系的温度为72°", 999);
         }
         else if (!DNApolAdded)
         {
             // warningText.text = "引物已结合，但缺少DNA聚合酶!";
             // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请确认已加入DNA聚合酶，并调节反应温度为72°C";
-            SpeechController.Speak("引物已结合，但缺少DNA聚合酶!请确认已加入DNA聚合酶，并调节反应温度为72°", 999);
+            SpeechController.Speak("引物已结合，但缺少DNA聚合酶!请确认已加入DNA聚合酶，并调节反应温度为72°C", "引物已结合，但缺少DNA聚合酶!请确认已加入DNA聚合酶，并条节反应温度为72°", 999);
         }
         else if (!ATCGAdded)
         {
             // warningText.text = "引物已结合，但缺少反应原理!";
-            // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请确认已加入反应原料，并调节反应温度为72°C";
-            SpeechController.Speak("引物已结合，但缺少反应原理!请确认已加入反应原料，并调节反应温度为72°", 999);
+            // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请确认已加入反应原料，并条节反应温度为72°C";
+            SpeechController.Speak("引物已结合，但缺少反应原理!请确认已加入反应原料，并调节反应温度为72C°", "引物已结合，但缺少反应原理!请确认已加入反应原料，并条节反应温度为72°", 999);
         }
         else
         {
             // warningText.text = "引物已结合，请继续操作!";
             // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请加入DNA聚合酶和反应原料，调节反应体系的温度72°C";
-            SpeechController.Speak("引物已结合，请继续操作!请加入DNA聚合酶和反应原料，调节反应体系的温度72°", 999);
+            SpeechController.Speak("引物已结合，请继续操作!请加入DNA聚合酶和反应原料，调节反应体系的温度72°C", "引物已结合，请继续操作!请加入DNA聚合酶和反应原料，条节反应体系的温度72°", 999);
         }
         
         
@@ -399,7 +399,7 @@ public class ControlPage2 : MonoBehaviour
         step = 4;
         // warningText.text = "已经成功完成第一轮复制，但还未得到目标DNA，请继续！";
         // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请调节反应体系温度为95°C";
-        SpeechController.Speak("已经成功完成第一轮复制，但还未得到目标DNA，请继续！请调节反应体系温度为95°", 999);
+        SpeechController.Speak("已经成功完成第一轮复制，但还未得到目标DNA，请继续！请调节反应体系温度为95°C", "已经成功完成第一轮复制，但还未得到目标DNA，请继续！请条节反应体系温度为95°", 999);
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.6F, 0.7F, 0.9F, 1F);
         canvasGroup = warningWindow.GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
@@ -414,7 +414,7 @@ public class ControlPage2 : MonoBehaviour
         step = 5;
         // warningText.text = "双链已打开，请继续操作!";
         // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请调节反应温度为52°C";
-        SpeechController.Speak("双链已打开，请继续操作!请调节反应温度为52°", 999);
+        SpeechController.Speak("双链已打开，请继续操作!请调节反应温度为52°C", "双链已打开，请继续操作!请条节反应温度为52°", 999);
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.6F, 0.7F, 0.9F, 1F);
         canvasGroup = warningWindow.GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
@@ -431,13 +431,13 @@ public class ControlPage2 : MonoBehaviour
         {
             // warningText.text = "引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!";
             // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请重新加入DNA聚合酶，并调节反应温度为72°C";
-            SpeechController.Speak("引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!请重新加入DNA聚合酶，并调节反应温度为72°:", 999);
+            SpeechController.Speak("引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!请重新加入DNA聚合酶，并调节反应温度为72°C", "引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!请重新加入DNA聚合酶，并条节反应温度为72°", 999);
         }
         else
         {
             // warningText.text = "引物已结合，请继续操作!";
             // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请确认已重新加入DNA聚合酶，并调节反应温度为72°C";
-            SpeechController.Speak("引物已结合，请继续操作!请确认已重新加入DNA聚合酶，并调节反应温度为72°", 999);
+            SpeechController.Speak("引物已结合，请继续操作!请确认已重新加入DNA聚合酶，并调节反应温度为72°C", "引物已结合，请继续操作!请确认已重新加入DNA聚合酶，并条节反应温度为72°", 999);
         }
         
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
@@ -458,7 +458,7 @@ public class ControlPage2 : MonoBehaviour
         step = 7;
         // warningText.text = "已经成功完成第二轮复制，但还未得到目标DNA，请继续！";
         // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请调节反应体系温度为95°C";
-        SpeechController.Speak("已经成功完成第二轮复制，但还未得到目标DNA，请继续！请调节反应体系温度为95°", 999);
+        SpeechController.Speak("已经成功完成第二轮复制，但还未得到目标DNA，请继续！请调节反应体系温度为95°C", "已经成功完成第二轮复制，但还未得到目标DNA，请继续！请条节反应体系温度为95°", 999);
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.6F, 0.7F, 0.9F, 1F);
         canvasGroup = warningWindow.GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
@@ -472,7 +472,7 @@ public class ControlPage2 : MonoBehaviour
         Debug.Log("step7end");
         step = 8;
         // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请调节反应温度为52°C";
-        SpeechController.Speak("双链已打开，请继续操作!请调节反应温度为52°", 999);
+        SpeechController.Speak("双链已打开，请继续操作!请调节反应温度为52°C", "双链已打开，请继续操作!请条节反应温度为52°", 999);
         // warningText.text = "双链已打开，请继续操作!";
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.6F, 0.7F, 0.9F, 1F);
         canvasGroup = warningWindow.GetComponent<CanvasGroup>();
@@ -490,13 +490,15 @@ public class ControlPage2 : MonoBehaviour
         {
             // warningText.text = "引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!";
             // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请重新加入DNA聚合酶，并调节反应温度为72°C";
-            SpeechController.Speak("引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!请重新加入DNA聚合酶，并调节反应温度为72°", 999);
+            SpeechController.Speak("引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!请重新加入DNA聚合酶，并条节反应温度为72°C",
+                                    "引物已结合，但操作无法继续，因为DNA聚合酶已在高温下失活!请重新加入DNA聚合酶，并条节反应温度为72°", 999);
         }
         else
         {
             // warningText.text = "引物已结合，请继续操作!";
             // GameObject.Find("Canvas/page2/layer0/Text").GetComponent<Text>().text = "请确认已重新加入DNA聚合酶，并调节反应温度为72°C";
-            SpeechController.Speak("引物已结合，请继续操作!请确认已重新加入DNA聚合酶，并调节反应温度为72°", 999);
+            SpeechController.Speak("引物已结合，请继续操作!请确认已重新加入DNA聚合酶，并条节反应温度为72°C",
+                                    "引物已结合，请继续操作!请确认已重新加入DNA聚合酶，并条节反应温度为72°", 999);
         }
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.9F, 0.6F, 0.3F, 0.7F);
         canvasGroup = warningWindow.GetComponent<CanvasGroup>();
