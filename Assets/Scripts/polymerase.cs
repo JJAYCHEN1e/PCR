@@ -46,8 +46,19 @@ public class polymerase : MonoBehaviour
    
     void OnMouseUp()
     {
+        Debug.Log("polymerase.type");
+        Debug.Log(type);
+        Debug.Log("buffer.type");
+        Debug.Log(buffer.type);
+        Debug.Log("primer.type");
+        Debug.Log(primer.type);
+        Debug.Log("rawMaterial.type");
+        Debug.Log(rawMaterial.type);
+        Debug.Log("template.type");
+        Debug.Log(template.type);
+
         if(type != "") return;
-        // if(s.position == originSpos){
+        
         if(buffer.type == "" && primer.type== "" && rawMaterial.type == "" && template.type == ""){
             type = "2.5";
 
