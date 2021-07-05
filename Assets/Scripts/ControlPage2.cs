@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,9 +26,20 @@ public class ControlPage2 : MonoBehaviour
     Button temp5btn;
     Button temp7btn;
     Button temp9btn;
+    
+    private bool canceled = false;
+    
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    private void OnEnable()
+    {
+        
+        canceled = false;
+        MissionController.sceneSwitchedEvent += () => canceled = true;
+
         Debug.Log(MissionController.currentMissionIndex);
         ControlMedals.ShowMedalInfo();
         dnaAnimator = GameObject.Find("DNA_Line").GetComponent<Animator>();
@@ -74,7 +86,13 @@ public class ControlPage2 : MonoBehaviour
             canvasGroup.blocksRaycasts = false;
             canvasGroup.DOFade(1, 1);
             if (step == 1)
-                DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => step1animatorEnd());
+                DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() =>
+                {
+                    if (!canceled)
+                    {
+                        step1animatorEnd();
+                    }
+                });
             else if (step == 2)
                 step2animatorEnd();
             else if (step == 3)
@@ -90,7 +108,13 @@ public class ControlPage2 : MonoBehaviour
             else if (step == 8)
                 step8animatorEnd();
             else if (step == 9)
-                DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => step9animatorEnd());
+                DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() =>
+                {
+                    if (!canceled)
+                    {
+                        step9animatorEnd();
+                    }
+                });
         }
     }
 

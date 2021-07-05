@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,11 @@ public class ControlPage3 : MonoBehaviour
     Text warningText;
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    private void OnEnable()
     {
         Debug.Log(MissionController.currentMissionIndex);
         ControlMedals.ShowMedalInfo();
@@ -50,8 +56,8 @@ public class ControlPage3 : MonoBehaviour
         //uiText.text = "\u3000\u3000" + words;
         uiText.DOText("\u3000\u3000" + words, 30);
         DOTween.To(() => timer, a => timer = a, 1, 35).OnComplete(() => showButton());
-        
     }
+
     void showButton()
     {
         canvasGroup = GameObject.Find("Canvas/page3/Button").GetComponent<CanvasGroup>();
@@ -85,7 +91,12 @@ public class ControlPage3 : MonoBehaviour
     public void ClearPage()
     {
         canvasGroup= GameObject.Find("Canvas/page3/layer0").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(0, 1);
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        
+        canvasGroup= GameObject.Find("Canvas/page3/Image-Taq").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }
