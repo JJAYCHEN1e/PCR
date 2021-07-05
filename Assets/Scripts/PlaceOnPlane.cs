@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -15,6 +15,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
     [RequireComponent(typeof(ARRaycastManager))]
     public class PlaceOnPlane : MonoBehaviour
     {
+        public GameObject confirmModelButton;
+        private bool confirmed = false;
+        
         [SerializeField]
         [Tooltip("Instantiates this prefab on a plane at the touch location.")]
         GameObject m_PlacedPrefab;
@@ -50,9 +53,19 @@ namespace UnityEngine.XR.ARFoundation.Samples
             return false;
         }
 
+        public void ConfirmModelPosition()
+        {
+            confirmed = true;
+        }
+
+        public bool IsConformed()
+        {
+            return confirmed;
+        }
+
         void Update()
         {
-            if (!TryGetTouchPosition(out Vector2 touchPosition))
+            if (!TryGetTouchPosition(out Vector2 touchPosition) || confirmed)
                 return;
 
             if (m_RaycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon))
@@ -64,6 +77,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 if (spawnedObject == null)
                 {
                     spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+                    SpeechController.Speak("实验器材已放置完毕，请参照实验规则配置反应溶液。");
+                    confirmModelButton.SetActive(true);
                 }
                 else
                 {

@@ -28,9 +28,13 @@ public class ControlPage0 : MonoBehaviour
         canceled = false;
         MissionController.sceneSwitchedEvent += () => canceled = true;
         
-        Debug.Log(MissionController.currentMissionIndex);
+        Debug.Log("load_page0");
         //ControlMedals.ShowMedalInfo();
         CustomNativeView.InitExitAppButton();
+        canvasGroup = GameObject.Find("Canvas/page0").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
         canvasGroup = GameObject.Find("Canvas/page0/layer0").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(1, 2);
         canvasGroup.interactable = true;
@@ -75,6 +79,10 @@ public class ControlPage0 : MonoBehaviour
     public void ClearPage()
     {
         canvasGroup= GameObject.Find("Canvas/page0").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page0/layer0").GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
