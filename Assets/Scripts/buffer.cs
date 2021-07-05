@@ -19,10 +19,6 @@ public class buffer : MonoBehaviour
         m = GameObject.Find("10").transform;
         l = GameObject.Find("100").transform;
         hat = GameObject.Find("缓冲液试剂盖").transform;
-        originSpos = s.position;
-        originMpos = m.position;
-        originLpos = l.position;
-        originHatpos = hat.position;
     }
 
     // Update is called once per frame
@@ -69,10 +65,11 @@ public class buffer : MonoBehaviour
             se.Append(s.DOLocalRotate(new Vector3(-15f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
             DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
             se.Append(s.DOMove(GameObject.Find("试管内").transform.position ,2f));
-            se.Append(hat.DOMove(originHatpos ,2f));
+            //if(GameObject.Find("液体").GetComponent<MeshRenderer>().enabled == false) GameObject.Find("液体").GetComponent<MeshRenderer>().enabled = true;
+            se.Append(hat.DOMove(GameObject.Find("缓冲液备份盖").transform.position ,2f));
             se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
             se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
-            se.Append(s.DOMove(originSpos,1.5f));  
+            se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  
         } 
         // else if(m.position == originMpos){
         //     type = "10";

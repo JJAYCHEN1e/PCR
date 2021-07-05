@@ -44,7 +44,7 @@ public class startPCR : MonoBehaviour
     {
         if(started)
         {
-            if(timer < 60) 
+            if(timer < 40) 
             {
                 timer++;
             }
@@ -126,7 +126,7 @@ public class startPCR : MonoBehaviour
         {
             initComps();
             if (countdown != null) countdown.enabled = true;
-            if(timer == 60) {
+            if(timer == 40) {
                 n--;
                 timer = 0;
             }

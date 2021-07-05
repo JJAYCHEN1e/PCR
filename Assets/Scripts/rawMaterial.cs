@@ -19,10 +19,6 @@ public class rawMaterial : MonoBehaviour
         m = GameObject.Find("10").transform;
         l = GameObject.Find("100").transform;
         hat = GameObject.Find("原料试剂盖").transform;
-        originSpos = s.position;
-        originMpos = m.position;
-        originLpos = l.position;
-        originHatpos = hat.position;
     }
 
     // Update is called once per frame
@@ -66,11 +62,11 @@ public class rawMaterial : MonoBehaviour
             se.Append(s.DOMove(GameObject.Find("原料上方").transform.position,2f));
             se.Append(s.DOLocalRotate(new Vector3(-28.333f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
             se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
-            se.Append(hat.DOMove(originHatpos ,2f));
+            se.Append(hat.DOMove(GameObject.Find("原料备份盖").transform.position ,2f));
             DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
             se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
             se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
-            se.Append(s.DOMove(originSpos,1.5f));  
+            se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  
         }
         // else if(m.position == originMpos){
         //     type = "10";
