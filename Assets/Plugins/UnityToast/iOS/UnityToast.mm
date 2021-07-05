@@ -18,6 +18,15 @@ static UIView* _topToastView = nil;
 
 static UIView* _bottomToastView = nil;
 
+-(void)clearToastView {
+    [_botToastView removeFromSuperview];
+    _botButtonView = nil;
+    [_topToastView removeFromSuperview];
+    _topToastView = nil;
+    [_bottomToastView removeFromSuperview];
+    _bottomToastView = nil;
+}
+
 +(UIMenu *)getUIMenu {
     UIAction *actionOne = [UIAction actionWithTitle:@"实验背景" image:[UIImage systemImageNamed:@"1.circle.fill"] identifier:@"page0" handler:^(__kindof UIAction * _Nonnull action) {
         UnitySendMessage("MissionController", "SwitchMission", "1");
@@ -53,6 +62,8 @@ static UIView* _bottomToastView = nil;
 }
 
 +(void)initBotEmojiView {
+    static UnityToast * unityToast = [[UnityToast alloc] init];
+    
     UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
     
     UIButton *button = [[UIButton alloc] init];
@@ -73,12 +84,14 @@ static UIView* _bottomToastView = nil;
     ]];
     
     [UnityToast botImageAnimator];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:unityToast selector:@selector(clearToastView) name:@"ClearToastView" object:nil];
 }
 
 +(void)botImageAnimator {
     UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
     UIImage *botImage1 = [UIImage imageNamed:@"Bot_1"];
-    dispatch_time_t temp_time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
+    dispatch_time_t temp_time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
     dispatch_after(temp_time, dispatch_get_main_queue(), ^(void){
         if (_botToastView != nil) {
             if (imageIndex == 0) {

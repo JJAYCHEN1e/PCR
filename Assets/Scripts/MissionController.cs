@@ -69,7 +69,9 @@ public class MissionController : MonoBehaviour
     public void SwitchMission(string message)
     {
         // TODO: Medal show-hide control!
+        CustomNativeView.PostNotification("ClearToastView");
         
+        SpeechController.Speak("");
         SpeechController.Silence();
         int missionIndex = int.Parse(message);
         if (missionIndex > 0 && missionIndex <= sceneOneMissionCount)
