@@ -47,10 +47,12 @@ public class buffer : MonoBehaviour
    
     void OnMouseUp()
     {
-        if(GameObject.Find("ARSessionOrigin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
+#if !UNITY_EDITOR
+        if(GameObject.Find("AR Session Origin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
             SpeechController.Speak("请放置实验器材");
             return;
         }
+#endif
         if(type != "") return;
         if(primer.type == "" && polymerase.type== "" && rawMaterial.type == "" && template.type == ""){
         // if(s.position == originSpos){

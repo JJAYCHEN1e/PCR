@@ -48,10 +48,12 @@ public class polymerase : MonoBehaviour
    
     void OnMouseUp()
     {
-        if(GameObject.Find("ARSessionOrigin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
+#if !UNITY_EDITOR
+        if(GameObject.Find("AR Session Origin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
             SpeechController.Speak("请放置实验器材");
             return;
         }
+#endif
         Debug.Log("polymerase.type");
 
         if(type != "") return;
