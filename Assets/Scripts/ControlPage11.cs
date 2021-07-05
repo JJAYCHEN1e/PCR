@@ -64,16 +64,16 @@ public class ControlPage11 : MonoBehaviour
     //引物长度
     //int prime_length = 5;
     //缩放尺寸
-    float reduce_scale = 1f;
+    float reduce_scale = 0.1f;
     //识别每个prefab下的标记为dntp的子对象，用于颤动
-    //GameObject[] dntps;
+    GameObject[] game_dntps;
     List<Transform> dntps = new List<Transform>();
     //每个标记为dntp的子对象的原始localPosition
     List<Vector3> positions = new List<Vector3>();
     //颤动的随机系数
     System.Random rd_shake = new System.Random();
     //颤动的基准系数
-    float shake_speed = 0.002f;
+    float shake_speed = 0.02f;
     // Use this for initialization
     void Start()
     {
@@ -124,10 +124,10 @@ public class ControlPage11 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < dntps.Count; i++)
+        for (int i = 0; i < game_dntps.Length; i++)
         {
             //xyz轴都设置颤动
-            dntps[i].localPosition = positions[i] + new Vector3((float)(rd_shake.NextDouble() * shake_speed), (float)(rd_shake.NextDouble() * shake_speed), (float)(rd_shake.NextDouble() * shake_speed));
+            game_dntps[i].transform.localPosition = positions[i] + new Vector3((float)(rd_shake.NextDouble() * shake_speed), (float)(rd_shake.NextDouble() * shake_speed), (float)(rd_shake.NextDouble() * shake_speed));
         }
        
         
@@ -163,7 +163,7 @@ public class ControlPage11 : MonoBehaviour
                 }
                 
             }
-            shake_speed = 0.002f * ((src - 55) / 10 + 1);
+            shake_speed = 0.02f * ((src - 55) / 10 + 1);
         }
         if (thermometerDown)
         {
@@ -185,7 +185,7 @@ public class ControlPage11 : MonoBehaviour
                     GameObject.Find("temperature").GetComponent<Text>().text = Mathf.Round(src).ToString();
                 }
             }
-            shake_speed = 0.002f * ((src - 55) / 10 + 1);
+            shake_speed = 0.02f * ((src - 55) / 10 + 1);
         }
         //Debug.Log(shake_speed);
     }
@@ -239,16 +239,16 @@ public class ControlPage11 : MonoBehaviour
             //Debug.Log(prefabNamestr);
             switch (prefabNamestr)
             {
-                case "A_above (1)(Clone)":
+                case "A_above(Clone)":
                     target = T_below;
                     break;
-                case "T_above (1)(Clone)":
+                case "T_above(Clone)":
                     target = A_below;
                     break;
-                case "C_above (1)(Clone)":
+                case "C_above(Clone)":
                     target = G_below;
                     break;
-                case "G_above (1)(Clone)":
+                case "G_above(Clone)":
                     target = C_below;
                     break;
             }
@@ -265,15 +265,17 @@ public class ControlPage11 : MonoBehaviour
         }
 
         //获取所有需要颤动的碱基
-        //dntps = GameObject.FindGameObjectsWithTag("dntp");
-        //for (int i = 0; i < dntps.Length; i++)
-        //{
-        //    positions.Add(dntps[i].transform.localPosition);
-        //}
+        game_dntps = GameObject.FindGameObjectsWithTag("dntp");
+        for (int i = 0; i < game_dntps.Length; i++)
+        {
+            positions.Add(game_dntps[i].transform.localPosition);
+        }
     }
     public void jielian(float src_temp,float tar_temp,float duration_temp)
     {
         var s = DOTween.Sequence();
+        var ss = DOTween.Sequence();
+        var sss = DOTween.Sequence();
         var runtime = 0f;
         var runtime2 = 0f;
         //var timer = 0f;
@@ -298,8 +300,8 @@ public class ControlPage11 : MonoBehaviour
                 float degree = (src_temp - tar_temp) / 23;
                 for (int i = 0; i < dna_length; i++)
                 {
-                    s.Insert(runtime, dna_above[i].transform.DOMove(Vector3.down * 0.2f*degree + dna_above[i].transform.position, duration_temp/2+2));
-                    s.Insert(runtime, dna_below[i].transform.DOMove(Vector3.up * 0.2f * degree + dna_below[i].transform.position, duration_temp/2+2));
+                    s.Insert(runtime, dna_above[i].transform.DOLocalMove(Vector3.down * 0.2f*degree + dna_above[i].transform.localPosition, duration_temp/2+2));
+                    ss.Insert(runtime, dna_below[i].transform.DOLocalMove(Vector3.up * 0.2f * degree + dna_below[i].transform.localPosition, duration_temp/2+2));
                 }
             }
             //初始大于72，目标小于72，先合并，再旋转
@@ -312,9 +314,9 @@ public class ControlPage11 : MonoBehaviour
                 runtime2 = (72 - tar_temp) / 5+2;
                 for (int i = 0; i < dna_length; i++)
                 {
-                    s.Insert(0f, dna_above[i].transform.DOMove(Vector3.down * 0.2f * degree + dna_above[i].transform.position, runtime));
-                    s.Insert(0f, dna_below[i].transform.DOMove(Vector3.up * 0.2f * degree + dna_below[i].transform.position, runtime));
-                    s.Insert(runtime, keyList[i].transform.DORotate(new Vector3(x_rotation * degree2 * (i - dna_length / 3), 0f, 0f), runtime2, RotateMode.LocalAxisAdd));
+                    s.Insert(0f, dna_above[i].transform.DOLocalMove(Vector3.down * 0.2f * degree + dna_above[i].transform.localPosition, runtime));
+                    ss.Insert(0f, dna_below[i].transform.DOLocalMove(Vector3.up * 0.2f * degree + dna_below[i].transform.localPosition, runtime));
+                    sss.Insert(runtime, keyList[i].transform.DORotate(new Vector3(x_rotation * degree2 * (i - dna_length / 3), 0f, 0f), runtime2, RotateMode.LocalAxisAdd));
 
                 }
             }
@@ -340,8 +342,8 @@ public class ControlPage11 : MonoBehaviour
                 float degree = (tar_temp- src_temp ) / 23;
                 for (int i = 0; i < dna_length; i++)
                 {
-                    s.Insert(runtime, dna_above[i].transform.DOMove(Vector3.up * 0.2f * degree + dna_above[i].transform.position, duration_temp / 2+2));
-                    s.Insert(runtime, dna_below[i].transform.DOMove(Vector3.down * 0.2f * degree + dna_below[i].transform.position, duration_temp / 2+2));
+                    s.Insert(runtime, dna_above[i].transform.DOLocalMove(Vector3.up * 0.2f * degree + dna_above[i].transform.localPosition, duration_temp / 2+2));
+                    ss.Insert(runtime, dna_below[i].transform.DOLocalMove(Vector3.down * 0.2f * degree + dna_below[i].transform.localPosition, duration_temp / 2+2));
                 }
             }
             //初始小于72，目标大于72，先解旋，再分开
@@ -354,9 +356,9 @@ public class ControlPage11 : MonoBehaviour
                 runtime2 = (tar_temp-72) / 5+2;
                 for (int i = 0; i < dna_length; i++)
                 {
-                    s.Insert(runtime, dna_above[i].transform.DOMove(Vector3.up * 0.2f * degree2 + dna_above[i].transform.position, runtime2));
-                    s.Insert(runtime, dna_below[i].transform.DOMove(Vector3.down * 0.2f * degree2 + dna_below[i].transform.position, runtime2));
-                    s.Insert(0f, keyList[i].transform.DORotate(new Vector3(-x_rotation * degree * (i - dna_length / 3), 0f, 0f), runtime, RotateMode.LocalAxisAdd));
+                    s.Insert(runtime, dna_above[i].transform.DOLocalMove(Vector3.up * 0.2f * degree2 + dna_above[i].transform.localPosition, runtime2));
+                    ss.Insert(runtime, dna_below[i].transform.DOLocalMove(Vector3.down * 0.2f * degree2 + dna_below[i].transform.localPosition, runtime2));
+                    sss.Insert(0f, keyList[i].transform.DORotate(new Vector3(-x_rotation * degree * (i - dna_length / 3), 0f, 0f), runtime, RotateMode.LocalAxisAdd));
 
                 }
             }
