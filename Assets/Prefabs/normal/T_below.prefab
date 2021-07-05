@@ -38,6 +38,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4762406814098395307}
     m_Modifications:
+    - target: {fileID: 3560791766693207135, guid: ca74be068a5a24ee2a5711811a900e31, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4762406814098395307, guid: ca74be068a5a24ee2a5711811a900e31, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -85,6 +89,10 @@ PrefabInstance:
     - target: {fileID: 6146335097925359628, guid: ca74be068a5a24ee2a5711811a900e31, type: 3}
       propertyPath: m_Name
       value: T_below
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146335097925359628, guid: ca74be068a5a24ee2a5711811a900e31, type: 3}
+      propertyPath: m_TagString
+      value: dntp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca74be068a5a24ee2a5711811a900e31, type: 3}

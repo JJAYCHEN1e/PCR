@@ -42,6 +42,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_above
       objectReference: {fileID: 0}
+    - target: {fileID: 4755539855831095966, guid: 238a1e0773bb5471586be0a5bc7dfb97, type: 3}
+      propertyPath: m_TagString
+      value: dntp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677203127447890790, guid: 238a1e0773bb5471586be0a5bc7dfb97, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6438441157378509748, guid: 238a1e0773bb5471586be0a5bc7dfb97, type: 3}
       propertyPath: m_RootOrder
       value: 0

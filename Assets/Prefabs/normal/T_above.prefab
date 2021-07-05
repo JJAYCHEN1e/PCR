@@ -38,9 +38,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7427437661914507968}
     m_Modifications:
+    - target: {fileID: 1903666353251020626, guid: 92d9d0222367242d7bf65ad91f9b3dfa, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4249443854988790700, guid: 92d9d0222367242d7bf65ad91f9b3dfa, type: 3}
       propertyPath: m_Name
       value: T_above
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249443854988790700, guid: 92d9d0222367242d7bf65ad91f9b3dfa, type: 3}
+      propertyPath: m_TagString
+      value: dntp
       objectReference: {fileID: 0}
     - target: {fileID: 7427437661914507968, guid: 92d9d0222367242d7bf65ad91f9b3dfa, type: 3}
       propertyPath: m_RootOrder
