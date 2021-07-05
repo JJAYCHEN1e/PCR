@@ -18,6 +18,15 @@ public class SpeechController : MonoBehaviour
         // UnityToast.ShowBottomToast("底部提示");
         // UnityToast.ShowAlert("操作失误", "请先加入AAAA。");
     }
+    
+    public static void Silence()
+    {
+        SpeechText speechText = GameObject.Find("SpeechController/SpeechText").GetComponent<SpeechText>();
+        if (speechText)
+        {
+            speechText.Silence();
+        }
+    }
 
     public static void Speak(string text, bool toast = true)
     {

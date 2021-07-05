@@ -74,9 +74,23 @@ public class ControlPage11 : MonoBehaviour
     System.Random rd_shake = new System.Random();
     //颤动的基准系数
     float shake_speed = 0.02f;
+    
+    
+    private bool canceled = false;
+    
+    
     // Use this for initialization
     void Start()
     {
+    }
+
+
+    private void OnEnable()
+    {
+        
+        canceled = false;
+        MissionController.sceneSwitchedEvent += () => canceled = true;
+        
         Debug.Log(MissionController.currentMissionIndex);
         ControlMedals.ShowMedalInfo();
         thermometer = GameObject.Find("温度计液面").GetComponent<Image>();
@@ -118,8 +132,6 @@ public class ControlPage11 : MonoBehaviour
         SpeechController.Speak("第一个小任务，先来探索一下温度对DNA双链的影响吧！你可以设置不同温度来观察DNA的变化情况。");
     }
 
-
-    
 
     // Update is called once per frame
     void Update()
@@ -363,14 +375,6 @@ public class ControlPage11 : MonoBehaviour
                 }
             }
         }
-        //for (int i = 0; i < dna_length; i++)
-        //{
-        //    //解旋之后上下两条链分开
-        //    s.Insert(runtime, keyList[i].transform.DORotate(new Vector3(-x_rotation * (i - dna_length / 3), 0f, 0f), 10f, RotateMode.LocalAxisAdd));
-        //    s.Insert(10f, dna_below[i].transform.DOMove(Vector3.down * 0.2f + dna_below[i].transform.position, 2f));
-        //    s.Insert(10f, dna_above[i].transform.DOMove(Vector3.up * 0.2f + dna_above[i].transform.position, 2f));
-        //}
-        //DOTween.To(() => timer, a => timer = a, 1, 12).OnComplete(() => adjust());
 
     }
     
@@ -448,7 +452,13 @@ public class ControlPage11 : MonoBehaviour
         ControlMedals.GetMedal(1);
         SpeechController.Speak("恭喜你点亮了一枚奖牌！");
         var timer = 0;
-        DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("4"));
+        DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() =>
+        {
+            if (!canceled)
+            {
+                GameObject.Find("MissionController").GetComponent<MissionController>().SwitchMission("4");
+            }
+        });
     }
 
 }
