@@ -26,11 +26,11 @@ public class lab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isShow)
-        {
-            isShow = true;
-            ControlMedals.ShowMedalInfo();
-        }
+        //if(!isShow)
+        //{
+        //    isShow = true;
+        //    ControlMedals.ShowMedalInfo();
+        //}
     }
     public void click()
     {

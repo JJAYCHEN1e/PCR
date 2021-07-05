@@ -18853,7 +18853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7205972363664711280, guid: 089ae9261cf934da3b62b75b28bb70b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.304
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 7205972363664711280, guid: 089ae9261cf934da3b62b75b28bb70b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27172,7 +27172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.96862745, b: 0.99215686, a: 1}
+  m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -31131,7 +31131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.96862745, b: 0.99215686, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -35366,7 +35366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.96862745, b: 0.99215686, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -65480,18 +65480,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1659157820}
     m_Modifications:
-    - target: {fileID: 7641364333256273992, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7641364333256273992, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7641364333256273992, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_BlocksRaycasts
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7641364334503755077, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
       propertyPath: m_Name
       value: medals
@@ -65578,10 +65566,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7641364334503755082, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7641364334503755083, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

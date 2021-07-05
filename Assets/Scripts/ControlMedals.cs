@@ -14,15 +14,19 @@ public class ControlMedals : MonoBehaviour
     public static bool task2 = false;
     public static bool task3 = false;
 
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         canvasGroup_cup = GameObject.Find("cup").GetComponent<CanvasGroup>();
         canvasGroup_medals = GameObject.Find("medals").GetComponent<CanvasGroup>();
-        canvasGroup_medal_list[0]= GameObject.Find("medal1").GetComponent<CanvasGroup>();
+        canvasGroup_medal_list[0] = GameObject.Find("medal1").GetComponent<CanvasGroup>();
         canvasGroup_medal_list[1] = GameObject.Find("medal2").GetComponent<CanvasGroup>();
         canvasGroup_medal_list[2] = GameObject.Find("medal3").GetComponent<CanvasGroup>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
