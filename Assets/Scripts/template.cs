@@ -28,6 +28,8 @@ public class template : MonoBehaviour
             if(s.position != GameObject.Find("2.5备份").transform.position) startCheck = true;
             if(startCheck && s.position == GameObject.Find("2.5备份").transform.position){
                 type = "";employed = true;startCheck = false;
+                if(buffer.employed && primer.employed && rawMaterial.employed && polymerase.employed) SpeechController.Speak("试剂全部采样结束，请点击PCR仪的盖子，将混合液放入PCR仪中");
+                else SpeechController.Speak("模板采样结束，可以采样其他试剂");
             }
         }
         // else if(type == "10") {
@@ -81,7 +83,11 @@ public class template : MonoBehaviour
             SpeechController.Speak("模板已采样完成，请勿重复采样");
             return;
         }
-        
+        if(!buffer.employed)
+        {
+            SpeechController.Speak("请先采集缓冲液");
+            return;
+        }
        
         type = "2.5";
 

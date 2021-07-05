@@ -26,13 +26,14 @@ public class cycle : MonoBehaviour
         &&yanshen.programCache && yanshen.temperatureCache)
         {
             GameObject.Find("程序顺序").GetComponent<Text>().text = "循环次数在25～35次\n之间为佳";
+            SpeechController.Speak("循环次数在25～35次之间为佳，点击加号增加次数，点击减号减少次数");
             GameObject.Find("循环程序").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.Find("循环程序").GetComponent<CanvasGroup>().interactable = true;
             GameObject.Find("循环程序").GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         else {
             GameObject.Find("程序顺序").GetComponent<Text>().text = "请先将程序添加完毕!";
-            
+            SpeechController.Speak("请先将程序添加完毕");
             GameObject.Find("循环程序").GetComponent<CanvasGroup>().alpha = 0;
             GameObject.Find("循环程序").GetComponent<CanvasGroup>().interactable = false;
             GameObject.Find("循环程序").GetComponent<CanvasGroup>().blocksRaycasts = false;

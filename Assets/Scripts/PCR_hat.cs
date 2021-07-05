@@ -9,10 +9,10 @@ public class PCR_hat : MonoBehaviour
     // Start is called before the first frame update
     public bool opened = false;
     public static bool employed = false;
-    public static Vector3 tubePos;
+    float timer;
     void Start()
     {
-        tubePos = GameObject.Find("试管").transform.position;
+
     }
 
     void OnMouseUp()
@@ -77,10 +77,10 @@ public class PCR_hat : MonoBehaviour
             this.transform.Rotate(new Vector3(-1,0,0));
             t--;
         }
-        Vector3 HatPos = GameObject.Find("PCR仪_ 1").transform.position;
-        GameObject.Find("试管").transform.DOMove(GameObject.Find("移液枪架").transform.position + new Vector3(-0.01f,0.1f,0) * 0.5f,2.5f);
-        GameObject.Find("试管").transform.DOMove(HatPos + new Vector3(-0.02f,0f,-0.02f) * 0.5f,2.5f);
+        DOTween.To(() => timer, a => timer = a, 1, 1f).OnComplete(() => SpeechController.Speak("将混合液放进PCR仪"));
+        GameObject.Find("试管").transform.DOMove(GameObject.Find("试管槽").transform.position,2.5f);
         opened = true;
+        DOTween.To(() => timer, a => timer = a, 1, 4.5f).OnComplete(() => SpeechController.Speak("请点击PCR仪的盖子，关上盖子"));
     }
     private void close(){
         int t=90;
@@ -89,5 +89,6 @@ public class PCR_hat : MonoBehaviour
             t--;
         }
         opened = false;
+        SpeechController.Speak("请点击PCR仪的屏幕设置程序");
     }
 }

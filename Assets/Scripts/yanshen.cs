@@ -25,6 +25,8 @@ public class yanshen : MonoBehaviour
         if(bianxing.programCache && bianxing.temperatureCache && tuihuo.programCache && tuihuo.temperatureCache)
         {
             GameObject.Find("程序顺序").GetComponent<Text>().text = "";
+
+            SpeechController.Speak("请选择这一阶段的程序");
         }
         else {
             GameObject.Find("程序顺序").GetComponent<Text>().text = "请按顺序添加程序!";
@@ -50,7 +52,10 @@ public class yanshen : MonoBehaviour
             GameObject.Find("72").GetComponent<Toggle>().isOn = true;
             GameObject.Find("程序时间").GetComponent<Text>().text = "60";
         }
-        else GameObject.Find("程序时间").GetComponent<Text>().text = "";
+        else if(programCache){
+            SpeechController.Speak("请选择温度");
+            GameObject.Find("程序时间").GetComponent<Text>().text = "";
+        }
     }
     // public void selectProgram()
     // {

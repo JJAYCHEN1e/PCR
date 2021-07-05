@@ -30,6 +30,8 @@ public class polymerase : MonoBehaviour
             if(s.position != GameObject.Find("2.5备份").transform.position) startCheck = true;
             if(startCheck && s.position == GameObject.Find("2.5备份").transform.position){
                 type = "";employed = true;startCheck = false;
+                if(buffer.employed && primer.employed && rawMaterial.employed && template.employed) SpeechController.Speak("试剂全部采样结束，请点击PCR仪的盖子，将混合液放入PCR仪中");
+                else SpeechController.Speak("Taq酶采样结束，可以采样其他试剂");
             }
         }
         // else if(type == "10") {
@@ -85,7 +87,11 @@ public class polymerase : MonoBehaviour
             SpeechController.Speak("Taq酶已采样完成，请勿重复采样");
             return;
         }
-        
+        if(!buffer.employed)
+        {
+            SpeechController.Speak("请先采集缓冲液");
+            return;
+        }
         type = "2.5";
         Sequence se = DOTween.Sequence();
         se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));

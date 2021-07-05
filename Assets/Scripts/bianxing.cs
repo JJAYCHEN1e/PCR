@@ -33,9 +33,15 @@ public class bianxing : MonoBehaviour
             GameObject.Find("选温度").GetComponent<CanvasGroup>().interactable = true;
             GameObject.Find("选温度").GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
+        else{
+            SpeechController.Speak("请选择该阶段的程序");
+        }
         if(temperatureCache){
             GameObject.Find("95").GetComponent<Toggle>().isOn = true;
             GameObject.Find("程序时间").GetComponent<Text>().text = "30";
+        }
+        else if(programCache){
+            SpeechController.Speak("请选择温度");
         }
     }
     // public void selectProgram()

@@ -84,8 +84,9 @@ public class startPCR : MonoBehaviour
             UnityToast.ShowAlert("提示", "仪器正在运行中，请耐心等待");
             SpeechController.Speak("仪器正在运行中，请耐心等待");
         }
-        else
+        else if(GameObject.Find("设置程序").GetComponent<CanvasGroup>().alpha == 0)
         {
+            SpeechController.Speak("请点击加号依次选择程序");
             GameObject.Find("程序顺序").GetComponent<Text>().text = "";
             GameObject.Find("设置程序").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.Find("设置程序").GetComponent<CanvasGroup>().interactable = true;
@@ -118,22 +119,20 @@ public class startPCR : MonoBehaviour
             
     void OnGUI()
     {
-        if(wait&&timer==200)
+        if(wait&&timer==40)
         {
-            wait = false;timer=0;
             GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
             GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳槽";
-            UnityToast.ShowAlert("电泳完成", "电泳完成，请查看 PCR 仪上方的电泳结果。");
-            SpeechController.Speak("电泳完成，恭喜你又点亮了一枚奖牌！请查看 PCR 仪上方的电泳结果。你可以点击屏幕下方的按钮再次进行实验。");
-            ControlMedals.GetMedal(3);
             GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
             GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
-        if(wait&&timer==600)
+
+        if(wait&&timer==300)
         {
             wait = false;timer=0;
             GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = s[index];
+            GameObject.Find("电泳").transform.localScale = new Vector3(0.09f,0.09f,0.09f);
             GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳结果";
             UnityToast.ShowAlert("电泳完成", "电泳完成，请查看 PCR 仪上方的电泳结果。");
             SpeechController.Speak("电泳完成，恭喜你又点亮了一枚奖牌！请查看 PCR 仪上方的电泳结果。你可以点击屏幕下方的按钮再次进行实验。");

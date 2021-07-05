@@ -29,6 +29,8 @@ public class buffer : MonoBehaviour
             if(s.position != GameObject.Find("2.5备份").transform.position) startCheck = true;
             if(startCheck && s.position == GameObject.Find("2.5备份").transform.position){
                 type = "";employed = true;startCheck = false;
+                if(polymerase.employed && primer.employed && rawMaterial.employed && template.employed) SpeechController.Speak("试剂全部采样结束，请点击PCR仪的盖子，将混合液放入PCR仪中");
+                else SpeechController.Speak("缓冲液采样结束，可以采样其他试剂");
             }
         }
         // else if(type == "10") {
@@ -82,6 +84,7 @@ public class buffer : MonoBehaviour
             SpeechController.Speak("缓冲液已采样完成，请勿重复采样");
             return;
         }
+        
             type = "2.5";
             Sequence se = DOTween.Sequence();            
             se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
