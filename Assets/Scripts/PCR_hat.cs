@@ -72,15 +72,16 @@ public class PCR_hat : MonoBehaviour
     {
     }
     private void open(){
+        SpeechController.Speak("将混合液放进PCR仪");
         int t=90;
         while(t>0){
             this.transform.Rotate(new Vector3(-1,0,0));
             t--;
         }
-        DOTween.To(() => timer, a => timer = a, 1, 1f).OnComplete(() => SpeechController.Speak("将混合液放进PCR仪"));
+        
         GameObject.Find("试管").transform.DOMove(GameObject.Find("试管槽").transform.position,2.5f);
         opened = true;
-        DOTween.To(() => timer, a => timer = a, 1, 4.5f).OnComplete(() => SpeechController.Speak("请点击PCR仪的盖子，关上盖子"));
+        DOTween.To(() => timer, a => timer = a, 1, 4f).OnComplete(() => SpeechController.Speak("请点击PCR仪的盖子，关上盖子"));
     }
     private void close(){
         int t=90;
