@@ -68,7 +68,7 @@ public class ControlPage3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animatorInfo = dnaAnimator.GetCurrentAnimatorStateInfo(0);
+        animatorInfo = GameObject.Find("DNA_Line").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
         if(animationPlaying && animatorInfo.normalizedTime>1.0f && animatorInfo.IsName("circle3-step3"))
         {
             animationPlaying = false;
