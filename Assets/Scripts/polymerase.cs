@@ -63,7 +63,7 @@ public class polymerase : MonoBehaviour
 
             Sequence se = DOTween.Sequence();
             se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
-            SpeechController.Speak("移液枪装枪头");
+            SpeechController.Speak("移液枪装枪头", "移叶枪装枪头");
             DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有Taq酶的试管"));
             se.Append(hat.DOMove(GameObject.Find("酶开盖").transform.position,2f));
             DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集Taq酶"));

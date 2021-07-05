@@ -86,6 +86,8 @@ public class ControlPage0 : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+        
+        GameObject.Find("Canvas/page0/layer0/Text-bg/Text").GetComponent<Text>().DOText("", 0.5f);
     }
 
     public void ShowPage()

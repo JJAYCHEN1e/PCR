@@ -16,16 +16,16 @@ public class ControlMedals : MonoBehaviour
 
     private void Awake()
     {
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         canvasGroup_cup = GameObject.Find("cup").GetComponent<CanvasGroup>();
         canvasGroup_medals = GameObject.Find("medals").GetComponent<CanvasGroup>();
         canvasGroup_medal_list[0] = GameObject.Find("medal1").GetComponent<CanvasGroup>();
         canvasGroup_medal_list[1] = GameObject.Find("medal2").GetComponent<CanvasGroup>();
         canvasGroup_medal_list[2] = GameObject.Find("medal3").GetComponent<CanvasGroup>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -39,17 +39,20 @@ public class ControlMedals : MonoBehaviour
     //用于各页面初始化时控制奖牌显示
     public static void ShowMedalInfo()
     {
-        
+        Debug.Log(7052761061);
         if (MissionController.currentMissionIndex < 3)//page0和page1不显示
         {   
+            Debug.Log(7052761062);
             canvasGroup_medals.alpha = 0;
         }
         else
         {
+            Debug.Log(7052761063);
             canvasGroup_medals.alpha = 1;
             //根据当前任务完成度显示
             for (int i = 0; i < 3; i++)
             {
+                Debug.Log(7052761064);
                 canvasGroup_medal_list[i].alpha = medal_list[i];
             }
         }
