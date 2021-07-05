@@ -104,6 +104,8 @@ public class ControlPage3 : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0;
+        
+        GameObject.Find("Canvas/page3/layer0/Image/Text").GetComponent<Text>().text = "";
     }
 
     public void ShowPage()

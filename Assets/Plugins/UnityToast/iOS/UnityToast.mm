@@ -64,6 +64,8 @@ static UIView* _bottomToastView = nil;
 +(void)initBotEmojiView {
     static UnityToast * unityToast = [[UnityToast alloc] init];
     
+    if (_botButtonView != nil) return;
+    
     UIImage *botImage0 = [UIImage imageNamed:@"Bot_0"];
     
     UIButton *button = [[UIButton alloc] init];

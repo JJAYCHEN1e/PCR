@@ -16,17 +16,16 @@ public class ControlMedals : MonoBehaviour
 
     private void Awake()
     {
-        canvasGroup_cup = GameObject.Find("cup").GetComponent<CanvasGroup>();
-        canvasGroup_medals = GameObject.Find("medals").GetComponent<CanvasGroup>();
-        canvasGroup_medal_list[0] = GameObject.Find("medal1").GetComponent<CanvasGroup>();
-        canvasGroup_medal_list[1] = GameObject.Find("medal2").GetComponent<CanvasGroup>();
-        canvasGroup_medal_list[2] = GameObject.Find("medal3").GetComponent<CanvasGroup>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        canvasGroup_cup = GameObject.Find("cup").GetComponent<CanvasGroup>();
+        canvasGroup_medals = GameObject.Find("medals").GetComponent<CanvasGroup>();
+        canvasGroup_medal_list[0] = GameObject.Find("medal1").GetComponent<CanvasGroup>();
+        canvasGroup_medal_list[1] = GameObject.Find("medal2").GetComponent<CanvasGroup>();
+        canvasGroup_medal_list[2] = GameObject.Find("medal3").GetComponent<CanvasGroup>();
     }
 
     // Update is called once per frame
