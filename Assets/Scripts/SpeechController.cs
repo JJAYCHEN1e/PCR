@@ -40,6 +40,18 @@ public class SpeechController : MonoBehaviour
         }
     }
     
+    public static void Speak(string toastText, string speakingText, bool toast = true)
+    {
+        SpeechText speechText = GameObject.Find("SpeechController/SpeechText").GetComponent<SpeechText>();
+        if (speechText)
+        {
+            speechText.Text = speakingText;
+            speechText.Silence();
+            speechText.Speak();
+            if (toast) UnityToast.ShowBotToast(toastText, 0.22f * speakingText.Length);
+        }
+    }
+    
     public static void Speak(string text, float duration, bool toast = true)
     {
         SpeechText speechText = GameObject.Find("SpeechController/SpeechText").GetComponent<SpeechText>();
@@ -49,6 +61,18 @@ public class SpeechController : MonoBehaviour
             speechText.Silence();
             speechText.Speak();
             if (toast) UnityToast.ShowBotToast(text, duration);
+        }
+    }
+    
+    public static void Speak(string toastText, string speakingText, float duration, bool toast = true)
+    {
+        SpeechText speechText = GameObject.Find("SpeechController/SpeechText").GetComponent<SpeechText>();
+        if (speechText)
+        {
+            speechText.Text = speakingText;
+            speechText.Silence();
+            speechText.Speak();
+            if (toast) UnityToast.ShowBotToast(toastText, duration);
         }
     }
 }
