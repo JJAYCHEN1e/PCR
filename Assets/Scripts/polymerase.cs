@@ -11,6 +11,7 @@ public class polymerase : MonoBehaviour
     Vector3 originSpos,originMpos,originLpos,originHatpos;
     bool startCheck =  false;
     float timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class polymerase : MonoBehaviour
         m = GameObject.Find("10").transform;
         l = GameObject.Find("100").transform;
         hat = GameObject.Find("Taq酶试剂盖").transform;
+        originSpos = s.position;
     }
 
     // Update is called once per frame
@@ -30,32 +32,23 @@ public class polymerase : MonoBehaviour
                 type = "";employed = true;startCheck = false;
             }
         }
-        else if(type == "10") {
-            if(m.position != originMpos) startCheck = true;
-            if( startCheck && m.position == originMpos){
-                type = "";employed = true;startCheck=false;
-            }
-        }
-        else if(type == "100") {
-            if(l.position != originLpos) startCheck = true;
-            if( startCheck && l.position == originLpos){
-                type = "";employed = true;startCheck = false;
-            }
-        }
+        // else if(type == "10") {
+        //     if(m.position != originMpos) startCheck = true;
+        //     if( startCheck && m.position == originMpos){
+        //         type = "";employed = true;startCheck=false;
+        //     }
+        // }
+        // else if(type == "100") {
+        //     if(l.position != originLpos) startCheck = true;
+        //     if( startCheck && l.position == originLpos){
+        //         type = "";employed = true;startCheck = false;
+        //     }
+        // }
     }
    
     void OnMouseUp()
     {
         Debug.Log("polymerase.type");
-        Debug.Log(type);
-        Debug.Log("buffer.type");
-        Debug.Log(buffer.type);
-        Debug.Log("primer.type");
-        Debug.Log(primer.type);
-        Debug.Log("rawMaterial.type");
-        Debug.Log(rawMaterial.type);
-        Debug.Log("template.type");
-        Debug.Log(template.type);
 
         if(type != "") return;
         

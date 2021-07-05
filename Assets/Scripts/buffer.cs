@@ -19,6 +19,7 @@ public class buffer : MonoBehaviour
         m = GameObject.Find("10").transform;
         l = GameObject.Find("100").transform;
         hat = GameObject.Find("缓冲液试剂盖").transform;
+        originSpos = s.position;
     }
 
     // Update is called once per frame
@@ -30,18 +31,18 @@ public class buffer : MonoBehaviour
                 type = "";employed = true;startCheck = false;
             }
         }
-        else if(type == "10") {
-            if(m.position != originMpos) startCheck = true;
-            if( startCheck && m.position == originMpos){
-                type = "";employed = true;startCheck=false;
-            }
-        }
-        else if(type == "100") {
-            if(l.position != originLpos) startCheck = true;
-            if( startCheck && l.position == originLpos){
-                type = "";employed = true;startCheck = false;
-            }
-        }
+        // else if(type == "10") {
+        //     if(m.position != originMpos) startCheck = true;
+        //     if( startCheck && m.position == originMpos){
+        //         type = "";employed = true;startCheck=false;
+        //     }
+        // }
+        // else if(type == "100") {
+        //     if(l.position != originLpos) startCheck = true;
+        //     if( startCheck && l.position == originLpos){
+        //         type = "";employed = true;startCheck = false;
+        //     }
+        // }
     }
    
     void OnMouseUp()
