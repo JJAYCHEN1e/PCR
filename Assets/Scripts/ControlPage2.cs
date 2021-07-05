@@ -46,17 +46,21 @@ public class ControlPage2 : MonoBehaviour
         //dnaAnimator.Play("Target_wait");
         warningWindow = GameObject.Find("Canvas/page2/warningWindow");
         warningText = GameObject.Find("Canvas/page2/warningWindow/Image/Text").GetComponent<Text>();
-        temp = GameObject.Find("Canvas/UI/youshangjiao/Temp").GetComponent<Text>();
-        circle = GameObject.Find("Canvas/UI/youshangjiao/circle").GetComponent<Text>();
+        temp = GameObject.Find("Canvas/youshangjiao/Temp").GetComponent<Text>();
+        circle = GameObject.Find("Canvas/youshangjiao/circle").GetComponent<Text>();
         GameObject.Find("Canvas/page2/nextPageTip/Image/Text").GetComponent<Text>().text =
             "\u3000\u3000恭喜你，完成了3次DNA体外扩增，现在我们获得了目标DNA。但是目的基因量依旧不足，" +
             "需要再次加入DNA聚合酶循环操作。你是否觉得这样的步骤很繁琐，有什么好的方法能简化操作呢？让我们继续探索吧！";
-        canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(1, 1);
+        canvasGroup = GameObject.Find("Canvas/yuanliao").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup = GameObject.Find("Canvas/youshangjiao").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
         canvasGroup = GameObject.Find("Canvas/page2").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(1, 1);
+        canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
         GameObject.Find("ATCG").GetComponent<Animator>().enabled = true;
@@ -66,7 +70,8 @@ public class ControlPage2 : MonoBehaviour
         temp5btn = GameObject.Find("Temp5").GetComponent<Button>();
         temp7btn = GameObject.Find("Temp7").GetComponent<Button>();
         temp9btn = GameObject.Find("Temp9").GetComponent<Button>();
-        SpeechController.Speak("掌握了温度对DNA双链的影响，接下来我们来看看PCR的过程到底是怎样进行的吧！请先加入样品DNA，调节反应体系温度为95°", 999);
+        
+        SpeechController.Speak("在这个任务中，让我们来看看PCR的过程到底是怎样进行的吧！请先加入样品DNA，调节反应体系温度为95°", 999);
     }
 
     // Update is called once per frame
@@ -541,7 +546,11 @@ public class ControlPage2 : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
-        canvasGroup = GameObject.Find("Canvas/UI").GetComponent<CanvasGroup>();
+        canvasGroup = GameObject.Find("Canvas/yuanliao").GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/youshangjiao").GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;

@@ -14,6 +14,9 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARRaycastManager))]
 public class PlaceOnPlane : MonoBehaviour
 {
+    public delegate void ModelPlacedHandler(); 
+    public static event ModelPlacedHandler modelConfirmedEvent;
+    
     public GameObject confirmModelButton;
     private bool confirmed = false;
     
@@ -55,6 +58,10 @@ public class PlaceOnPlane : MonoBehaviour
     public void ConfirmModelPosition()
     {
         confirmed = true;
+        if (modelConfirmedEvent != null)
+        {
+            modelConfirmedEvent();
+        }
     }
 
     public bool IsConformed()
@@ -64,6 +71,10 @@ public class PlaceOnPlane : MonoBehaviour
 
     void Update()
     {
+#if UNITY_EDITOR
+        ConfirmModelPosition();
+#endif
+        
         if (!TryGetTouchPosition(out Vector2 touchPosition) || confirmed)
             return;
 
