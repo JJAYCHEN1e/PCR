@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,9 +18,20 @@ public class ControlPage1 : MonoBehaviour
     Text tips;
     //物质+条件
     public static HashSet<string> ChosenCondition = new HashSet<string>();
+    
+    
+    private bool canceled = false;
+    
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    private void OnEnable()
+    {
+        canceled = false;
+        MissionController.sceneSwitchedEvent += () => canceled = true;
+        
         Debug.Log(MissionController.currentMissionIndex);
         ControlMedals.ShowMedalInfo();
         //enterPage1 = false;
@@ -35,7 +47,13 @@ public class ControlPage1 : MonoBehaviour
     void Update()
     {
         if (enterPage1 && dnaShow)
-            DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => showDNAAnimation());
+            DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() =>
+            {
+                if (!canceled)
+                {
+                    showDNAAnimation();
+                }
+            });
         //Debug.Log(enterPage1);
         //Debug.Log(dnaShow);
         animatorInfo = dnaAnimator.GetCurrentAnimatorStateInfo(0);  
@@ -44,7 +62,13 @@ public class ControlPage1 : MonoBehaviour
         {
            
             dnaAnimator.SetBool("dnaCopyFinished", true);
-            showCanvasOne();
+            DOTween.To(() => timer, a => timer = a, 1, 5f).OnComplete(() =>
+            {
+                if (!canceled)
+                {
+                    showCanvasOne();
+                }
+            });
         }
 
     }
@@ -69,7 +93,13 @@ public class ControlPage1 : MonoBehaviour
         {
             f1 = !f1;
             SpeechController.Speak("我们先来观察DNA在细胞内是如何复制的吧！DNA解旋酶解开DNA双链");
-            DOTween.To(() => timer, a => timer = a, 1, 10f).OnComplete(() => showText2());
+            DOTween.To(() => timer, a => timer = a, 1, 10f).OnComplete(() =>
+            {
+                if (!canceled)
+                {
+                    showText2();
+                }
+            });
         }
     }
     void showText2()
@@ -79,7 +109,13 @@ public class ControlPage1 : MonoBehaviour
         {
             f2 = !f2;
             SpeechController.Speak("引物结合");
-            DOTween.To(() => timer, a => timer = a, 1, 4).OnComplete(() => showText3());
+            DOTween.To(() => timer, a => timer = a, 1, 4).OnComplete(() =>
+            {
+                if (!canceled)
+                {
+                    showText3();
+                }
+            });
         }
     }
     void showText3()
@@ -89,7 +125,13 @@ public class ControlPage1 : MonoBehaviour
         {
             f3 = !f3;
             SpeechController.Speak("DNA聚合酶催化底物dNTP分子聚合形成子代DNA");
-            DOTween.To(() => timer, a => timer = a, 1, 9).OnComplete(() => showText4());
+            DOTween.To(() => timer, a => timer = a, 1, 9).OnComplete(() =>
+            {
+                if (!canceled)
+                {
+                    showText4();
+                }
+            });
         }
 
     }
@@ -119,7 +161,13 @@ public class ControlPage1 : MonoBehaviour
         canvasGroup= GameObject.Find("Canvas/page1/layer2/Button").GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
-        DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(1,1));
+        DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() =>
+        {
+            if (!canceled)
+            {
+                canvasGroup.DOFade(1, 1);
+            }
+        });
     }
     
    

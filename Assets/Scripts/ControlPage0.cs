@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,24 @@ public class ControlPage0 : MonoBehaviour
     private string words;
     //每个字符的显示速度
     private float timer;
+
+    private bool canceled = false;
     
     CanvasGroup canvasGroup;
     
     // Use this for initialization
     void Start()
     {
+    }
+
+    private void OnEnable()
+    {
+        
+        canceled = false;
+        MissionController.sceneSwitchedEvent += () => canceled = true;
+        
         Debug.Log(MissionController.currentMissionIndex);
-        ControlMedals.ShowMedalInfo();
+        //ControlMedals.ShowMedalInfo();
         CustomNativeView.InitExitAppButton();
         canvasGroup = GameObject.Find("Canvas/page0/layer0").GetComponent<CanvasGroup>();
         canvasGroup.DOFade(1, 2);
@@ -30,9 +41,18 @@ public class ControlPage0 : MonoBehaviour
         //Debug.Log(isPrint);
         uiText.DOText(words, 28);
         
-        DOTween.To(() => timer, a => timer = a, 1, 28).OnComplete(() => SpeechController.Speak("那如何在细胞外实现DNA扩增呢？让我们一起探索吧！"));
-        DOTween.To(() => timer, a => timer = a, 1, 28).OnComplete(() => showCanvasThree());
-        
+        DOTween.To(() => timer, a => timer = a, 1, 29).OnComplete(() =>
+        {
+            if (!canceled) SpeechController.Speak("那如何在细胞外实现DNA扩增呢？让我们一起探索吧！");
+        });
+        DOTween.To(() => timer, a => timer = a, 1, 29).OnComplete(() =>
+        {
+            if (!canceled)
+            {
+                showCanvasThree();
+            }
+        });
+
     }
 
     // Update is called once per frame
@@ -55,7 +75,7 @@ public class ControlPage0 : MonoBehaviour
     public void ClearPage()
     {
         canvasGroup= GameObject.Find("Canvas/page0").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(0, 1);
+        canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }
@@ -69,7 +89,13 @@ public class ControlPage0 : MonoBehaviour
     public void enterClick()
     {
         ClearPage();
-        DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() => showNextPage());
+        DOTween.To(() => timer, a => timer = a, 1, 1).OnComplete(() =>
+        {
+            if (!canceled)
+            {
+                showNextPage();
+            }
+        });
     }
     
     void showNextPage()

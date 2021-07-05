@@ -86,6 +86,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: G_below
       objectReference: {fileID: 0}
+    - target: {fileID: 1750692501529359965, guid: e33fa36a4565344cf876a9b8e047f6f5, type: 3}
+      propertyPath: m_TagString
+      value: dntp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360662488817415771, guid: e33fa36a4565344cf876a9b8e047f6f5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e33fa36a4565344cf876a9b8e047f6f5, type: 3}
 --- !u!4 &2330526568507828618 stripped

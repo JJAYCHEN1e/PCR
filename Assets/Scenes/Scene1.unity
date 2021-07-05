@@ -5078,8 +5078,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
+  m_AnchoredPosition: {x: 20, y: 0}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &204042363
 MonoBehaviour:
@@ -17403,8 +17403,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5, y: -0.5}
-  m_SizeDelta: {x: -30, y: -3}
+  m_AnchoredPosition: {x: 20, y: -0.5}
+  m_SizeDelta: {x: -60, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &661913113
 MonoBehaviour:
@@ -18853,7 +18853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7205972363664711280, guid: 089ae9261cf934da3b62b75b28bb70b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.304
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 7205972363664711280, guid: 089ae9261cf934da3b62b75b28bb70b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27172,7 +27172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.96862745, b: 0.99215686, a: 1}
+  m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -31131,7 +31131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.96862745, b: 0.99215686, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32613,14 +32613,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropd: {fileID: 1244352461}
   btn: {fileID: 1819314919}
-  A_above: {fileID: 919132149155446097, guid: af44e99562d9c4ef6bd749876f7f7a58, type: 3}
-  T_above: {fileID: 919132149155446097, guid: f54d98094afc244d89cc383e8befac13, type: 3}
-  C_above: {fileID: 919132149155446097, guid: 9f399d77a00bd45e78351f366ae95e53, type: 3}
-  G_above: {fileID: 919132149155446097, guid: 60440d6c049794582a40c3c7e7ac9f9e, type: 3}
-  A_below: {fileID: 919132149155446097, guid: a36b7a0f6792548f48811ea13d94e314, type: 3}
-  T_below: {fileID: 919132149155446097, guid: cc1949632871e448eb1200774771bcf1, type: 3}
-  C_below: {fileID: 919132149155446097, guid: 3b77e3f4af488438d98ca6b9de320468, type: 3}
-  G_below: {fileID: 919132149155446097, guid: 30581c951c6d2431b99ba75fdf020630, type: 3}
+  A_above: {fileID: 4755539855831095966, guid: e1e2925a92d05449790d42012fc780b6, type: 3}
+  T_above: {fileID: 4249443854988790700, guid: 0b984759ec8f9456e8be2911b5b0f756, type: 3}
+  C_above: {fileID: 4374678886467073050, guid: 3254812099cfd4c35a2d20147cc7dc30, type: 3}
+  G_above: {fileID: 1297116501351565245, guid: 9279476cee6834cb1a310a655cd9b4ce, type: 3}
+  A_below: {fileID: 7818354594665167923, guid: ab9eb8b29e4e54609b28d300aa0094e2, type: 3}
+  T_below: {fileID: 6146335097925359628, guid: 03b6efdac4ccc4f6aba9d38f7e03d023, type: 3}
+  C_below: {fileID: 7818354594665167923, guid: d266a93a8675742c39e1026ac9f30601, type: 3}
+  G_below: {fileID: 1750692501529359965, guid: 1831f9b77dac74cc7b70d44622be817f, type: 3}
   DNA_pol: {fileID: 2487558001448336735, guid: 089ae9261cf934da3b62b75b28bb70b6, type: 3}
 --- !u!225 &1172069067
 CanvasGroup:
@@ -33497,7 +33497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.96862745, b: 0.99215686, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -35366,7 +35366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.96862745, b: 0.99215686, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -65480,18 +65480,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1659157820}
     m_Modifications:
-    - target: {fileID: 7641364333256273992, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7641364333256273992, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7641364333256273992, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_BlocksRaycasts
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7641364334503755077, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
       propertyPath: m_Name
       value: medals
@@ -65578,10 +65566,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7641364334503755082, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7641364334503755083, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
-      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

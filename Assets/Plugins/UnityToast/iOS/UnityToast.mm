@@ -19,31 +19,37 @@ static UIView* _topToastView = nil;
 static UIView* _bottomToastView = nil;
 
 +(UIMenu *)getUIMenu {
-    UIAction *actionOne = [UIAction actionWithTitle:@"Page0" image:[UIImage systemImageNamed:@"1.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *actionOne = [UIAction actionWithTitle:@"实验背景" image:[UIImage systemImageNamed:@"1.circle.fill"] identifier:@"page0" handler:^(__kindof UIAction * _Nonnull action) {
         UnitySendMessage("MissionController", "SwitchMission", "1");
     }];
 
-    UIAction *actionTwo = [UIAction actionWithTitle:@"Page1" image:[UIImage systemImageNamed:@"2.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *actionTwo = [UIAction actionWithTitle:@"DNA 体内复制" image:[UIImage systemImageNamed:@"2.circle.fill"] identifier:@"Page1" handler:^(__kindof UIAction * _Nonnull action) {
         UnitySendMessage("MissionController", "SwitchMission", "2");
     }];
     
-    UIAction *actionThree = [UIAction actionWithTitle:@"Page11" image:[UIImage systemImageNamed:@"3.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *actionThree = [UIAction actionWithTitle:@"任务一" image:[UIImage systemImageNamed:@"3.circle.fill"] identifier:@"Page11" handler:^(__kindof UIAction * _Nonnull action) {
         UnitySendMessage("MissionController", "SwitchMission", "3");
     }];
     
-    UIAction *actionFour = [UIAction actionWithTitle:@"Page2" image:[UIImage systemImageNamed:@"4.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *actionFour = [UIAction actionWithTitle:@"任务二" image:[UIImage systemImageNamed:@"4.circle.fill"] identifier:@"Page2" handler:^(__kindof UIAction * _Nonnull action) {
         UnitySendMessage("MissionController", "SwitchMission", "4");
+        
     }];
     
-    UIAction *actionFive = [UIAction actionWithTitle:@"Page3" image:[UIImage systemImageNamed:@"5.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *actionFive = [UIAction actionWithTitle:@"任务三" image:[UIImage systemImageNamed:@"5.circle.fill"] identifier:@"Page3" handler:^(__kindof UIAction * _Nonnull action) {
         UnitySendMessage("MissionController", "SwitchMission", "5");
     }];
     
-    UIAction *actionSix = [UIAction actionWithTitle:@"Scene2" image:[UIImage systemImageNamed:@"6.circle.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-        UnitySendMessage("MissionController", "SwitchMission", "6");
-    }];
+//    UIAction *actionSix = [UIAction actionWithTitle:@"Scene2" image:[UIImage systemImageNamed:@"6.circle.fill"] identifier:@"Scene2" handler:^(__kindof UIAction * _Nonnull action) {
+//        UnitySendMessage("MissionController", "SwitchMission", "6");
+//    }];
     
-    return [UIMenu menuWithTitle:@"" children:@[actionSix, actionFive, actionFour, actionThree, actionTwo, actionOne]];
+    UIAction *actionExit = [UIAction actionWithTitle:@"退出" image:[UIImage systemImageNamed:@"trash.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        exit(0);
+    }];
+    actionExit.attributes = UIMenuElementAttributesDestructive;
+    
+    return [UIMenu menuWithTitle:@"" children:@[actionExit, actionFive, actionFour, actionThree, actionTwo, actionOne]];
 }
 
 +(void)initBotEmojiView {

@@ -6,6 +6,9 @@ public class MissionController : MonoBehaviour
     private const int sceneOneMissionCount = 5;
     public static int currentMissionIndex = 1;
 
+    public delegate void SceneSwitchedHandler(); 
+    public static event SceneSwitchedHandler sceneSwitchedEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,13 +68,15 @@ public class MissionController : MonoBehaviour
     {
         // TODO: Medal show-hide control!
         
-        
+        SpeechController.Silence();
         int missionIndex = int.Parse(message);
         if (missionIndex > 0 && missionIndex <= sceneOneMissionCount)
         {
+            if (sceneSwitchedEvent != null) sceneSwitchedEvent();
             if (currentMissionIndex > sceneOneMissionCount)
             {
                 currentMissionIndex = missionIndex;
+                CustomNativeView.PostNotification("HideRuleViewAndButton");
                 SceneManager.LoadScene("Scene1");
             }
             else
@@ -81,7 +86,9 @@ public class MissionController : MonoBehaviour
             }
         } else if (missionIndex >= sceneOneMissionCount + 1 && missionIndex <= sceneOneMissionCount + 1)
         {
+            if (sceneSwitchedEvent != null) sceneSwitchedEvent();
             currentMissionIndex = missionIndex;
+            CustomNativeView.PostNotification("ShowRuleViewAndButton");
             SceneManager.LoadScene("Scene2");
         }
     }

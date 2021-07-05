@@ -16,6 +16,12 @@ public class CustomNativeView : MonoBehaviour
         _initExitAppButton();
 #endif
     }
+    
+    public static void PostNotification(string name){
+#if UNITY_IOS && !UNITY_EDITOR
+        _postNotification(name);
+#endif
+    }
 
 #if UNITY_IOS && !UNITY_EDITOR
     [DllImport("__Internal")]
@@ -25,5 +31,10 @@ public class CustomNativeView : MonoBehaviour
 #if UNITY_IOS && !UNITY_EDITOR
     [DllImport("__Internal")]
     private static extern void _initExitAppButton();
+#endif
+    
+#if UNITY_IOS && !UNITY_EDITOR
+    [DllImport("__Internal")]
+    private static extern void _postNotification(string name);
 #endif
 }

@@ -10,6 +10,7 @@ public class lab : MonoBehaviour
     public static string a;
 
     private GameObject rule;
+    bool isShow = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,17 @@ public class lab : MonoBehaviour
         
         SpeechController.Speak("双指单击平面以放置、拖动实验器材");
         UnityToast.ShowBotToast("双指单击平面以放置、拖动实验器材", 10);
+        ControlMedals.ShowMedalInfo();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //if(!isShow)
+        //{
+        //    isShow = true;
+        //    ControlMedals.ShowMedalInfo();
+        //}
     }
     public void click()
     {
