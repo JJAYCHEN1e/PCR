@@ -47,6 +47,10 @@ public class rawMaterial : MonoBehaviour
    
     void OnMouseUp()
     {
+        if(GameObject.Find("ARSessionOrigin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
+            SpeechController.Speak("请放置实验器材");
+            return;
+        }
         if(type != "") return;
         
         if(buffer.type == "" && polymerase.type== "" && primer.type == "" && template.type == ""){
