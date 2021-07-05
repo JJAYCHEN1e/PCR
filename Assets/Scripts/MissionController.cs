@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -103,5 +105,32 @@ public class MissionController : MonoBehaviour
     //             SwitchMission("5");
     //         }
     // }
+    
+    void Update()
+    {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SwitchMission("1");
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            SwitchMission("2");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SwitchMission("3");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SwitchMission("4");
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SwitchMission("5");
+        }
+        
+#endif
+    }
     
 }
