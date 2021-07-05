@@ -43,7 +43,12 @@ static UIView* _bottomToastView = nil;
         UnitySendMessage("MissionController", "SwitchMission", "6");
     }];
     
-    return [UIMenu menuWithTitle:@"" children:@[actionSix, actionFive, actionFour, actionThree, actionTwo, actionOne]];
+    UIAction *actionExit = [UIAction actionWithTitle:@"退出" image:[UIImage systemImageNamed:@"trash.fill"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        exit(0);
+    }];
+    actionExit.attributes = UIMenuElementAttributesDestructive;
+    
+    return [UIMenu menuWithTitle:@"" children:@[actionSix, actionFive, actionFour, actionThree, actionTwo, actionOne, actionExit]];
 }
 
 +(void)initBotEmojiView {

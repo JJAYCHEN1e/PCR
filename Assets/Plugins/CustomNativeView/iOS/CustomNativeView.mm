@@ -24,17 +24,17 @@
 }
 
 +(void)initExitAppButton {
-    static CustomNativeView * customNativeView = [[CustomNativeView alloc] init];
-    UIViewController *vc = UnityGetGLViewController();
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
-    [button setTitle:@"退出" forState:UIControlStateNormal];
-    [vc.view addSubview:button];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:@[
-        [button.trailingAnchor constraintEqualToAnchor:vc.view.trailingAnchor constant:-16],
-        [button.bottomAnchor constraintEqualToAnchor:vc.view.bottomAnchor constant:-16],
-    ]];
-    [button addTarget:customNativeView action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
+//    static CustomNativeView * customNativeView = [[CustomNativeView alloc] init];
+//    UIViewController *vc = UnityGetGLViewController();
+//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
+//    [button setTitle:@"退出" forState:UIControlStateNormal];
+//    [vc.view addSubview:button];
+//    button.translatesAutoresizingMaskIntoConstraints = NO;
+//    [NSLayoutConstraint activateConstraints:@[
+//        [button.trailingAnchor constraintEqualToAnchor:vc.view.trailingAnchor constant:-16],
+//        [button.bottomAnchor constraintEqualToAnchor:vc.view.bottomAnchor constant:-16],
+//    ]];
+//    [button addTarget:customNativeView action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
 }
 
 +(void)initSceneTwoRuleView {
@@ -46,7 +46,7 @@
     button.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
         [button.trailingAnchor constraintEqualToAnchor:vc.view.trailingAnchor constant:-16],
-        [button.topAnchor constraintEqualToAnchor:vc.view.topAnchor constant:16],
+        [button.topAnchor constraintEqualToAnchor:vc.view.topAnchor constant:130],
         [button.widthAnchor constraintEqualToConstant:45],
         [button.heightAnchor constraintEqualToConstant:45],
     ]];
