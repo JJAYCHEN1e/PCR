@@ -72,6 +72,7 @@ public class MissionController : MonoBehaviour
             if (currentMissionIndex > sceneOneMissionCount)
             {
                 currentMissionIndex = missionIndex;
+                CustomNativeView.PostNotification("HideRuleViewAndButton");
                 SceneManager.LoadScene("Scene1");
             }
             else
@@ -82,6 +83,7 @@ public class MissionController : MonoBehaviour
         } else if (missionIndex >= sceneOneMissionCount + 1 && missionIndex <= sceneOneMissionCount + 1)
         {
             currentMissionIndex = missionIndex;
+            CustomNativeView.PostNotification("ShowRuleViewAndButton");
             SceneManager.LoadScene("Scene2");
         }
     }

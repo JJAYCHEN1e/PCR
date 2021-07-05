@@ -9,6 +9,7 @@
 
 @interface CustomNativeView ()
 @property (nonatomic) UIView *ruleView;
+@property (nonatomic) UIButton *ruleViewButton;
 @end
 
 @implementation CustomNativeView
@@ -37,8 +38,21 @@
 //    [button addTarget:customNativeView action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(void)HideRuleViewAndButton {
+    self.ruleView.alpha = 0;
+    self.ruleViewButton.alpha = 0;
+}
+
+-(void)ShowRuleViewAndButton {
+    self.ruleView.alpha = 1;
+    self.ruleViewButton.alpha = 1;
+}
+
 +(void)initSceneTwoRuleView {
     static CustomNativeView * customNativeView = [[CustomNativeView alloc] init];
+    if (customNativeView.ruleViewButton != nil || customNativeView.ruleView != nil) {
+        return;
+    }
     UIViewController *vc = UnityGetGLViewController();
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setImage:[UIImage imageNamed:@"rule"] forState:UIControlStateNormal];
@@ -51,7 +65,7 @@
         [button.heightAnchor constraintEqualToConstant:45],
     ]];
     [button addTarget:customNativeView action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
-    
+    customNativeView.ruleViewButton = button;
     
     UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -99,6 +113,9 @@
     ]];
     
     [customNativeView toggle];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:customNativeView selector:@selector(ShowRuleViewAndButton) name:@"ShowRuleViewAndButton" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:customNativeView selector:@selector(HideRuleViewAndButton) name:@"HideRuleViewAndButton" object:nil];
 }
 
 extern "C" {
@@ -111,6 +128,12 @@ extern "C" {
 extern "C" {
     void _initExitAppButton() {
         [CustomNativeView initExitAppButton];
+    }
+}
+
+extern "C" {
+    void _postNotification(const char *name) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:name] object:nil userInfo:nil];
     }
 }
 

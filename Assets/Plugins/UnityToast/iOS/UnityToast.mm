@@ -33,6 +33,7 @@ static UIView* _bottomToastView = nil;
     
     UIAction *actionFour = [UIAction actionWithTitle:@"任务二" image:[UIImage systemImageNamed:@"4.circle.fill"] identifier:@"Page2" handler:^(__kindof UIAction * _Nonnull action) {
         UnitySendMessage("MissionController", "SwitchMission", "4");
+        
     }];
     
     UIAction *actionFive = [UIAction actionWithTitle:@"任务三" image:[UIImage systemImageNamed:@"5.circle.fill"] identifier:@"Page3" handler:^(__kindof UIAction * _Nonnull action) {
@@ -48,7 +49,7 @@ static UIView* _bottomToastView = nil;
     }];
     actionExit.attributes = UIMenuElementAttributesDestructive;
     
-    return [UIMenu menuWithTitle:@"" children:@[actionSix, actionFive, actionFour, actionThree, actionTwo, actionOne, actionExit]];
+    return [UIMenu menuWithTitle:@"" children:@[actionExit, actionFive, actionFour, actionThree, actionTwo, actionOne]];
 }
 
 +(void)initBotEmojiView {
