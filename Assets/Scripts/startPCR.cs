@@ -9,12 +9,14 @@ public class startPCR : MonoBehaviour
 {
     public static Text remain,reminder;
     public Sprite[] s = new Sprite[11];
+    public Sprite dianYongCao;
     public Transform tube;
     private string instrution;
     public static int cnt = -3;//玩游戏的次数
     public bool started;
     public bool wait = false;//电泳先显示文字，再图片
     public int n;//pcr cycle
+    private int index;
     string[] counter ;
     public int timer;//counter of fixedupdate 
 
@@ -52,7 +54,7 @@ public class startPCR : MonoBehaviour
         }
         if(wait)
         {
-            if(timer < 400) 
+            if(timer < 600) 
             {
                 timer++;
             }
@@ -65,6 +67,12 @@ public class startPCR : MonoBehaviour
     }
     void OnMouseUp()
     {
+#if !UNITY_EDITOR
+        if(GameObject.Find("AR Session Origin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
+            SpeechController.Speak("请放置实验器材");
+            return;
+        }
+#endif
         if(!PCR_hat.employed)
         {
             UnityToast.ShowAlert("操作失误", "请先将试管放入 PCR 仪，再启动 PCR 仪");
@@ -88,9 +96,9 @@ public class startPCR : MonoBehaviour
     public void click()//确定循环次数后开始扩增
     {
         n = int.Parse(GameObject.Find("次数").GetComponent<Text>().text);
-        int index = n - 25;
-        Debug.Log(s[index].name);
-        GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = s[index];
+        index = n - 25;
+        
+        GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = dianYongCao;
         GameObject.Find("变性程序文本").GetComponent<Text>().text = "+";
         GameObject.Find("退火程序文本").GetComponent<Text>().text = "+";
         GameObject.Find("延伸程序文本").GetComponent<Text>().text = "+";
@@ -110,10 +118,22 @@ public class startPCR : MonoBehaviour
             
     void OnGUI()
     {
-        if(wait&&timer==400)
+        if(wait&&timer==200)
         {
             wait = false;timer=0;
             GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳槽";
+            UnityToast.ShowAlert("电泳完成", "电泳完成，请查看 PCR 仪上方的电泳结果。");
+            SpeechController.Speak("电泳完成，恭喜你又点亮了一枚奖牌！请查看 PCR 仪上方的电泳结果。你可以点击屏幕下方的按钮再次进行实验。");
+            ControlMedals.GetMedal(3);
+            GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
+            GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
+            GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        if(wait&&timer==600)
+        {
+            wait = false;timer=0;
+            GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = s[index];
             GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳结果";
             UnityToast.ShowAlert("电泳完成", "电泳完成，请查看 PCR 仪上方的电泳结果。");
             SpeechController.Speak("电泳完成，恭喜你又点亮了一枚奖牌！请查看 PCR 仪上方的电泳结果。你可以点击屏幕下方的按钮再次进行实验。");

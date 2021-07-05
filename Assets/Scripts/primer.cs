@@ -53,10 +53,38 @@ public class primer : MonoBehaviour
             return;
         }
 #endif
-        if(type != "") return;
-        if(buffer.type == "" && polymerase.type== "" && rawMaterial.type == "" && template.type == ""){
-            type = "2.5";
-
+        if(type != "") {
+            SpeechController.Speak("正在采样，请勿重复操作");
+            return;
+        }
+        if(buffer.type != "")
+        {
+            SpeechController.Speak("移液枪正在采集缓冲液，请耐心等待");
+            return;
+        }
+        if(polymerase.type!= "")
+        {
+            SpeechController.Speak("移液枪正在采集Taq酶，请耐心等待");
+            return;
+        }
+        if(rawMaterial.type != "")
+        {
+            SpeechController.Speak("移液枪正在采集原料，请耐心等待");
+            return; 
+        }
+        if(template.type != "")
+        {
+            SpeechController.Speak("移液枪正在采集模板，请耐心等待");
+            return; 
+        }
+        if(employed)
+        {
+            SpeechController.Speak("引物已采样完成，请勿重复采样");
+            return;
+        }
+        
+       
+        type = "2.5";
             Sequence se = DOTween.Sequence();
             se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
             SpeechController.Speak("移液枪装枪头");
@@ -74,7 +102,7 @@ public class primer : MonoBehaviour
             se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
             se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
             se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  
-        } 
+        
         // else if(m.position == originMpos){
         //     type = "10";
 

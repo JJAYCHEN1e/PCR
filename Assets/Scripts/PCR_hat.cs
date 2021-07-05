@@ -17,6 +17,12 @@ public class PCR_hat : MonoBehaviour
 
     void OnMouseUp()
     {
+#if !UNITY_EDITOR
+        if(GameObject.Find("AR Session Origin").GetComponent<PlaceOnPlane>().IsConformed() == false) {
+            SpeechController.Speak("请放置实验器材");
+            return;
+        }
+#endif
         if(opened) {
             close();return;
         }

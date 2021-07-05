@@ -5471,7 +5471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &608552430
 Transform:
   m_ObjectHideFlags: 0
@@ -5514,7 +5514,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636765961}
   m_LocalRotation: {x: -0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 0, z: -1.358}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children: []
   m_Father: {fileID: 771070967}
@@ -5553,7 +5553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 53541879f70004429a99362d5c172e17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d872cb6703fc747eb8862a1a2c68f80e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11682,6 +11682,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e87f7c419f2914177ab5351c9d074c43, type: 3}
   - {fileID: 21300000, guid: 5dc348974acc442099be10807a57ef00, type: 3}
   - {fileID: 21300000, guid: 458d1f3b52c1b42978d73f1ec1295107, type: 3}
+  dianYongCao: {fileID: 21300000, guid: d872cb6703fc747eb8862a1a2c68f80e, type: 3}
   tube: {fileID: 0}
   started: 0
   wait: 0

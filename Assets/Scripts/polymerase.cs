@@ -54,31 +54,57 @@ public class polymerase : MonoBehaviour
             return;
         }
 #endif
-        Debug.Log("polymerase.type");
-
-        if(type != "") return;
         
-        if(buffer.type == "" && primer.type== "" && rawMaterial.type == "" && template.type == ""){
-            type = "2.5";
 
-            Sequence se = DOTween.Sequence();
-            se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
-            SpeechController.Speak("移液枪装枪头");
-            DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有Taq酶的试管"));
-            se.Append(hat.DOMove(GameObject.Find("酶开盖").transform.position,2f));
-            DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集Taq酶"));
-            se.Append(s.DOMove(GameObject.Find("酶上方").transform.position ,2f));
-            se.Append(s.DOLocalRotate(new Vector3(20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
-            se.Append(s.DOMove(GameObject.Find("酶采样").transform.position,2f));
-            se.Append(s.DOMove(GameObject.Find("酶上方").transform.position ,2f));
-            se.Append(s.DOLocalRotate(new Vector3(-20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
-            se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
-            se.Append(hat.DOMove(GameObject.Find("Taq酶备份盖").transform.position ,2f));
-            DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
-            se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
-            se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
-            se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  
-        } 
+        if(type != "") {
+            SpeechController.Speak("正在采样，请勿重复操作");
+            return;
+        }
+        if(buffer.type != "")
+        {
+            SpeechController.Speak("移液枪正在采集缓冲液，请耐心等待");
+            return;
+        }
+        if(primer.type!= "")
+        {
+            SpeechController.Speak("移液枪正在采集引物，请耐心等待");
+            return;
+        }
+        if(rawMaterial.type != "")
+        {
+            SpeechController.Speak("移液枪正在采集原料，请耐心等待");
+            return; 
+        }
+        if(template.type != "")
+        {
+            SpeechController.Speak("移液枪正在采集模板，请耐心等待");
+            return; 
+        }
+        if(employed)
+        {
+            SpeechController.Speak("Taq酶已采样完成，请勿重复采样");
+            return;
+        }
+        
+        type = "2.5";
+        Sequence se = DOTween.Sequence();
+        se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
+        SpeechController.Speak("移液枪装枪头");
+        DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有Taq酶的试管"));
+        se.Append(hat.DOMove(GameObject.Find("酶开盖").transform.position,2f));
+        DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集Taq酶"));
+        se.Append(s.DOMove(GameObject.Find("酶上方").transform.position ,2f));
+        se.Append(s.DOLocalRotate(new Vector3(20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+        se.Append(s.DOMove(GameObject.Find("酶采样").transform.position,2f));
+        se.Append(s.DOMove(GameObject.Find("酶上方").transform.position ,2f));
+        se.Append(s.DOLocalRotate(new Vector3(-20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+        se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
+        se.Append(hat.DOMove(GameObject.Find("Taq酶备份盖").transform.position ,2f));
+        DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
+        se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
+        se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
+        se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  
+        
         // else if(m.position == originMpos){
         //     type = "10";
 

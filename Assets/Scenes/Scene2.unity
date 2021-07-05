@@ -1255,12 +1255,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1272947861}
   - {fileID: 1258789783}
   - {fileID: 1976966108}
   - {fileID: 715927205}
   - {fileID: 1777408129}
   - {fileID: 1896090624}
+  - {fileID: 1272947861}
   - {fileID: 1509966886}
   m_Father: {fileID: 1560156942}
   m_RootOrder: 0
@@ -2289,6 +2289,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e87f7c419f2914177ab5351c9d074c43, type: 3}
   - {fileID: 21300000, guid: 5dc348974acc442099be10807a57ef00, type: 3}
   - {fileID: 21300000, guid: 458d1f3b52c1b42978d73f1ec1295107, type: 3}
+  dianYongCao: {fileID: 21300000, guid: d872cb6703fc747eb8862a1a2c68f80e, type: 3}
   tube: {fileID: 0}
   started: 0
   wait: 0
@@ -2403,7 +2404,7 @@ RectTransform:
   - {fileID: 639152615}
   - {fileID: 1690315295}
   m_Father: {fileID: 500800462}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4451,7 +4452,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 500800462}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -4573,6 +4574,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 500800462}
     m_Modifications:
+    - target: {fileID: 6553633596913351839, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7641364334503755077, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
       propertyPath: m_Name
       value: medals
@@ -4665,7 +4670,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
 --- !u!224 &1272947861 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7641364334503755082, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6553633596913351839, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
   m_PrefabInstance: {fileID: 1272947860}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1288127702
@@ -6411,7 +6416,7 @@ RectTransform:
   m_Children:
   - {fileID: 519515741}
   m_Father: {fileID: 500800462}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -6442,6 +6447,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e87f7c419f2914177ab5351c9d074c43, type: 3}
   - {fileID: 21300000, guid: 5dc348974acc442099be10807a57ef00, type: 3}
   - {fileID: 21300000, guid: 458d1f3b52c1b42978d73f1ec1295107, type: 3}
+  dianYongCao: {fileID: 21300000, guid: d872cb6703fc747eb8862a1a2c68f80e, type: 3}
   tube: {fileID: 0}
   started: 0
   wait: 0
@@ -7254,7 +7260,7 @@ RectTransform:
   - {fileID: 893590437}
   - {fileID: 2140016875}
   m_Father: {fileID: 500800462}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7424,7 +7430,7 @@ RectTransform:
   - {fileID: 1488272036}
   - {fileID: 1440442134}
   m_Father: {fileID: 500800462}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
