@@ -52,7 +52,7 @@ public class UnityToast : MonoBehaviour
     public static void ShowAlert(string title, string message, string gameObjectName, string methodName, string parameter)
     {
 #if UNITY_IOS && !UNITY_EDITOR
-        _showAlert(title, message, gameObjectName, methodName, parameter);
+        _showAlertWithCallback(title, message, gameObjectName, methodName, parameter);
 #else
         Debug.Log("Showing Alter Toast: " + title + " - " + message);
 #endif
@@ -85,6 +85,6 @@ public class UnityToast : MonoBehaviour
 
 #if UNITY_IOS && !UNITY_EDITOR
     [DllImport("__Internal")]
-    private static extern void _showAlert(string title, string message, string gameObjectName, string methodName, string parameter);
+    private static extern void _showAlertWithCallback(string title, string message, string gameObjectName, string methodName, string parameter);
 #endif
 }
