@@ -47,7 +47,7 @@ public class ControlPage0 : MonoBehaviour
         
         DOTween.To(() => timer, a => timer = a, 1, 29).OnComplete(() =>
         {
-            if (!canceled) SpeechController.Speak("那如何在细胞外实现DNA扩增呢？让我们一起探索吧！");
+            if (!canceled) SpeechController.Speak("如何在细胞外实现DNA扩增呢？让我们一起探索吧！");
         });
         DOTween.To(() => timer, a => timer = a, 1, 29).OnComplete(() =>
         {

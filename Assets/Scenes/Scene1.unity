@@ -44218,6 +44218,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8401645015707955524, guid: 95caa3a5f1c7a4070a5f920afa04f02a, type: 3}
   m_PrefabInstance: {fileID: 1589222861}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1591211642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3849094525191088880, guid: 5ea10554228354042984e99e35812269, type: 3}
+  m_PrefabInstance: {fileID: 2107128114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1591759656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58507,6 +58512,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3849094525191088881, guid: 5ea10554228354042984e99e35812269, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849094525191088881, guid: 5ea10554228354042984e99e35812269, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -58552,6 +58561,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3849094525191088881, guid: 5ea10554228354042984e99e35812269, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849094525191088882, guid: 5ea10554228354042984e99e35812269, type: 3}
+      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -64871,6 +64884,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: medals
       objectReference: {fileID: 0}
+    - target: {fileID: 6553633596913351837, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
+      propertyPath: cup
+      value: 
+      objectReference: {fileID: 1591211642}
     - target: {fileID: 6553633596913351839, guid: 0b81ebbbb9dd44805b56e54bc0ba9e53, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
