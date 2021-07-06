@@ -92,6 +92,11 @@ public class ControlMedals : MonoBehaviour
         }
     }
 
+    public void GetMedalNonStatic(string taskstr)
+    {
+        ControlMedals.GetMedal(taskstr);
+    }
+
     //通关之后显示奖杯，由小变大
     void Win()
     {
