@@ -1157,6 +1157,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 500800462}
     m_Modifications:
+    - target: {fileID: 3849094524187159846, guid: 5ea10554228354042984e99e35812269, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849094524187159846, guid: 5ea10554228354042984e99e35812269, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849094524187159846, guid: 5ea10554228354042984e99e35812269, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3849094525191088880, guid: 5ea10554228354042984e99e35812269, type: 3}
       propertyPath: m_Name
       value: cup
@@ -7449,30 +7461,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1371928581, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515708682, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1714010707, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1714010707, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1714010707, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1830403767, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.001
-      objectReference: {fileID: 0}
+    - target: {fileID: 444722826, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 773676947}
     - target: {fileID: 5682977985694653190, guid: 0409642eb52d74c0ab10caddaed3ef16, type: 3}
       propertyPath: m_Name
       value: Model
