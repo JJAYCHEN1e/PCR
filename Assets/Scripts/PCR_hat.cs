@@ -23,7 +23,7 @@ public class PCR_hat : MonoBehaviour
             return;
         }
 #endif
-        if(opened) {
+        if(opened && GameObject.Find("试管").transform.position == GameObject.Find("试管槽").transform.position) {
             close();return;
         }
         if(!primer.employed )
