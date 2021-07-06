@@ -13,6 +13,7 @@ public class ControlMedals : MonoBehaviour
     public static bool task1 = false;
     public static bool task2 = false;
     public static bool task3 = false;
+    bool showed = false;
     
 
     private void Awake()
@@ -33,8 +34,9 @@ public class ControlMedals : MonoBehaviour
     void Update()
     {
         //Debug.Log(MissionController.currentMissionIndex);
-        if (task1 && task2 && task3)
+        if (task1 && task2 && task3 && !showed)
         {
+            showed = true;
             var time = 0f;
             DOTween.To(() => time, a => time = a, 1, 3).OnComplete(() => Win());
         }
@@ -81,7 +83,7 @@ public class ControlMedals : MonoBehaviour
                 break;
             case 3:
                 var timer=0f;
-                DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() =>
+                DOTween.To(() => timer, a => timer = a, 1, 5).OnComplete(() =>
                 {
                     canvasGroup_medal_list[2].DOFade(1, 2);
                     medal_list[2] = 1;
