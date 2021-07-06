@@ -523,11 +523,11 @@ public class ControlPage2 : MonoBehaviour
         canvasGroup = GameObject.Find("Canvas/page2/nextPageTip").GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
-        canvasGroup.DOFade(1, 1);
+        canvasGroup.alpha = 1;
         canvasGroup = GameObject.Find("Canvas/page2/layer0").GetComponent<CanvasGroup>();
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
-        canvasGroup.DOFade(0, 1);
+        canvasGroup.alpha = 0;
         //dnaAnimator.Play("wait");
         //DOTween.To(() => timer, a => timer = a, 1, 2).OnComplete(() => canvasGroup.DOFade(0, 1));
         //DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() => step4());
@@ -556,6 +556,11 @@ public class ControlPage2 : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page2/nextPageTip").GetComponent<CanvasGroup>();
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.alpha = 0;
+
         GameObject.Find("ATCG").GetComponent<Animator>().Play("wait");
         GameObject.Find("Prime").GetComponent<Animator>().Play("wait");
         GameObject.Find("DNA_pol").GetComponent<Animator>().Play("wait");
