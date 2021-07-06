@@ -88,28 +88,29 @@ public class template : MonoBehaviour
             SpeechController.Speak("请先采集缓冲液");
             return;
         }
-       
+        Vector3 liquid = GameObject.Find("液体").transform.localScale;
         type = "2.5";
 
-            Sequence se = DOTween.Sequence();
-            se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
-            SpeechController.Speak("移液枪装枪头", "移叶枪装枪头");
-            DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有模板的试管"));
-            se.Append(hat.DOMove(GameObject.Find("模板开盖").transform.position,2f));
-            se.Append(s.DOMove(GameObject.Find("模板上方").transform.position ,2f));
+        Sequence se = DOTween.Sequence();
+        se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
+        SpeechController.Speak("移液枪装枪头", "移叶枪装枪头");
+        DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有模板的试管"));
+        se.Append(hat.DOMove(GameObject.Find("模板开盖").transform.position,2f));
+        se.Append(s.DOMove(GameObject.Find("模板上方").transform.position ,2f));
             
-            se.Append(s.DOLocalRotate(new Vector3(20.036f, -1.274f, -0.48f), 1f, RotateMode.WorldAxisAdd));
-            se.Append(s.DOMove(GameObject.Find("模板采样").transform.position ,2f));
-            se.Append(s.DOMove(GameObject.Find("模板上方").transform.position ,2f));
-            DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集模板"));
-            se.Append(s.DOLocalRotate(new Vector3(-20.036f, 1.274f, 0.48f), 1f, RotateMode.WorldAxisAdd));
+        se.Append(s.DOLocalRotate(new Vector3(0f, -4f, 0f), 1f, RotateMode.WorldAxisAdd));
+        se.Append(s.DOMove(GameObject.Find("模板采样").transform.position ,2f));
+        se.Append(s.DOMove(GameObject.Find("模板上方").transform.position ,2f));
+        DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集模板"));
+        DOTween.To(() => timer, a => timer = a, 1, 15f).OnComplete(() => GameObject.Find("液体").transform.localScale = liquid+new Vector3(0,0,0.1f));
+        se.Append(s.DOLocalRotate(new Vector3(0f, 4f, 0f), 1f, RotateMode.WorldAxisAdd));
             
-            se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
-            se.Append(hat.DOMove(GameObject.Find("模板备份盖").transform.position ,2f));
-            DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
-            se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
-            se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
-            se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  
+        se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
+        se.Append(hat.DOMove(GameObject.Find("模板备份盖").transform.position ,2f));
+        DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
+        se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
+        se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
+        se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  
         
         // else if(m.position == originMpos){
         //     type = "10";

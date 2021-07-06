@@ -93,17 +93,19 @@ public class polymerase : MonoBehaviour
             return;
         }
         type = "2.5";
+        Vector3 liquid = GameObject.Find("液体").transform.localScale;
         Sequence se = DOTween.Sequence();
         se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
         SpeechController.Speak("移液枪装枪头", "移叶枪装枪头");
         DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有Taq酶的试管"));
         se.Append(hat.DOMove(GameObject.Find("酶开盖").transform.position,2f));
         DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集Taq酶"));
+        DOTween.To(() => timer, a => timer = a, 1, 15f).OnComplete(() => GameObject.Find("液体").transform.localScale = liquid+new Vector3(0,0,0.1f));
         se.Append(s.DOMove(GameObject.Find("酶上方").transform.position ,2f));
-        se.Append(s.DOLocalRotate(new Vector3(20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+        se.Append(s.DOLocalRotate(new Vector3(0f, -5f, 0f), 1f, RotateMode.WorldAxisAdd));
         se.Append(s.DOMove(GameObject.Find("酶采样").transform.position,2f));
         se.Append(s.DOMove(GameObject.Find("酶上方").transform.position ,2f));
-        se.Append(s.DOLocalRotate(new Vector3(-20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+        se.Append(s.DOLocalRotate(new Vector3(0f, 5f, 0f), 1f, RotateMode.WorldAxisAdd));
         se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
         se.Append(hat.DOMove(GameObject.Find("Taq酶备份盖").transform.position ,2f));
         DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
