@@ -13,6 +13,7 @@ public class ControlMedals : MonoBehaviour
     public static bool task1 = false;
     public static bool task2 = false;
     public static bool task3 = false;
+    
 
     private void Awake()
     {
@@ -33,7 +34,10 @@ public class ControlMedals : MonoBehaviour
     {
         //Debug.Log(MissionController.currentMissionIndex);
         if (task1 && task2 && task3)
-            Win();
+        {
+            var time = 0f;
+            DOTween.To(() => time, a => time = a, 1, 3).OnComplete(() => Win());
+        }
         
     }
 
@@ -76,9 +80,14 @@ public class ControlMedals : MonoBehaviour
                 medal_list[1] = 1;
                 break;
             case 3:
-                canvasGroup_medal_list[2].DOFade(1, 2);
-                medal_list[2] = 1;
-                task3 = true;
+                var timer=0f;
+                DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() =>
+                {
+                    canvasGroup_medal_list[2].DOFade(1, 2);
+                    medal_list[2] = 1;
+                    task3 = true;
+                    SpeechController.Speak("恭喜你点亮了一枚奖牌！");
+                });
                 break;
         }
     }
@@ -90,6 +99,7 @@ public class ControlMedals : MonoBehaviour
         Vector3 originalScale = cup.transform.localScale;
         Vector3 targetScale = new Vector3(1, 1, 1);
         DOTween.To(() => originalScale, x => cup.transform.localScale = x, targetScale, 2);
+        SpeechController.Speak("恭喜你完成了所有任务，送你一个奖杯，请继续努力！");
     }
 
 }
