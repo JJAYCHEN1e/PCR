@@ -25,8 +25,32 @@ public class yanshen : MonoBehaviour
         if(bianxing.programCache && bianxing.temperatureCache && tuihuo.programCache && tuihuo.temperatureCache)
         {
             GameObject.Find("程序顺序").GetComponent<Text>().text = "";
-
-            SpeechController.Speak("请选择这一阶段的程序");
+            GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().alpha = 1;
+            GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().interactable = true;
+            GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            GameObject.Find("选程序").GetComponent<CanvasGroup>().alpha = 1;
+            GameObject.Find("选程序").GetComponent<CanvasGroup>().interactable = true;
+            GameObject.Find("选程序").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            if(programCache) {
+                GameObject.Find("延伸").GetComponent<Toggle>().isOn = true;
+                GameObject.Find("选温度").GetComponent<CanvasGroup>().alpha = 1;
+                GameObject.Find("选温度").GetComponent<CanvasGroup>().interactable = true;
+                GameObject.Find("选温度").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            }
+            else{
+                SpeechController.Speak("请选择这一阶段的程序");
+                GameObject.Find("选温度").GetComponent<CanvasGroup>().alpha = 0;
+                GameObject.Find("选温度").GetComponent<CanvasGroup>().interactable = false;
+                GameObject.Find("选温度").GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
+            if(temperatureCache){
+                GameObject.Find("72").GetComponent<Toggle>().isOn = true;
+                GameObject.Find("程序时间").GetComponent<Text>().text = "60";
+            }
+            else if(programCache){
+                SpeechController.Speak("请选择温度");
+                GameObject.Find("程序时间").GetComponent<Text>().text = "";
+            }
         }
         else {
             GameObject.Find("程序顺序").GetComponent<Text>().text = "请按顺序添加程序!";
@@ -36,25 +60,6 @@ public class yanshen : MonoBehaviour
             GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().alpha = 0;
             GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().interactable = false;
             GameObject.Find("变性退火延伸").GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
-        if(programCache) {
-            GameObject.Find("延伸").GetComponent<Toggle>().isOn = true;
-            GameObject.Find("选温度").GetComponent<CanvasGroup>().alpha = 1;
-            GameObject.Find("选温度").GetComponent<CanvasGroup>().interactable = true;
-            GameObject.Find("选温度").GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-        else{
-            GameObject.Find("选温度").GetComponent<CanvasGroup>().alpha = 0;
-            GameObject.Find("选温度").GetComponent<CanvasGroup>().interactable = false;
-            GameObject.Find("选温度").GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
-        if(temperatureCache){
-            GameObject.Find("72").GetComponent<Toggle>().isOn = true;
-            GameObject.Find("程序时间").GetComponent<Text>().text = "60";
-        }
-        else if(programCache){
-            SpeechController.Speak("请选择温度");
-            GameObject.Find("程序时间").GetComponent<Text>().text = "";
         }
     }
     // public void selectProgram()

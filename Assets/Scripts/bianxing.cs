@@ -35,6 +35,9 @@ public class bianxing : MonoBehaviour
         }
         else{
             SpeechController.Speak("请选择该阶段的程序");
+            GameObject.Find("选温度").GetComponent<CanvasGroup>().alpha = 0;
+            GameObject.Find("选温度").GetComponent<CanvasGroup>().interactable = false;
+            GameObject.Find("选温度").GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
         if(temperatureCache){
             GameObject.Find("95").GetComponent<Toggle>().isOn = true;
@@ -42,6 +45,7 @@ public class bianxing : MonoBehaviour
         }
         else if(programCache){
             SpeechController.Speak("请选择温度");
+            GameObject.Find("程序时间").GetComponent<Text>().text = "";
         }
     }
     // public void selectProgram()

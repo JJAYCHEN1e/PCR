@@ -70,25 +70,29 @@ public class PCR_hat : MonoBehaviour
     }
     void OnMouseExit()
     {
+
     }
     private void open(){
-        SpeechController.Speak("将混合液放进PCR仪");
-        int t=90;
-        while(t>0){
-            this.transform.Rotate(new Vector3(-1,0,0));
-            t--;
-        }
+        SpeechController.Speak("混合液移进PCR仪");
+        Sequence se = DOTween.Sequence();     
+        se.Append(GameObject.Find("PCR仪_ 1").transform.DOLocalRotate(new Vector3(-90f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+        // int t=90;
+        // while(t>0){
+        //     this.transform.Rotate(new Vector3(-1,0,0));
+        //     t--;
+        // }
         
-        GameObject.Find("试管").transform.DOMove(GameObject.Find("试管槽").transform.position,2.5f);
+        se.Append(GameObject.Find("试管").transform.DOMove(GameObject.Find("试管槽").transform.position,2.5f));
         opened = true;
         DOTween.To(() => timer, a => timer = a, 1, 4f).OnComplete(() => SpeechController.Speak("请点击PCR仪的盖子，关上盖子"));
     }
     private void close(){
-        int t=90;
-        while(t>0){
-            this.transform.Rotate(new Vector3(1,0,0));
-            t--;
-        }
+        // int t=90;
+        // while(t>0){
+        //     this.transform.Rotate(new Vector3(1,0,0));
+        //     t--;
+        // }
+        GameObject.Find("PCR仪_ 1").transform.DOLocalRotate(new Vector3(90f, 0f, 0f), 1f, RotateMode.WorldAxisAdd);
         opened = false;
         SpeechController.Speak("请点击PCR仪的屏幕设置程序");
     }
