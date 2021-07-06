@@ -58,7 +58,7 @@ public class ControlPage1 : MonoBehaviour
         //Debug.Log(dnaShow);
         animatorInfo = dnaAnimator.GetCurrentAnimatorStateInfo(0);  
         //Debug.Log(animatorInfo.normalizedTime);
-        if (animatorInfo.normalizedTime > 0.8f && animatorInfo.IsName("dnaCopy"))
+        if (animatorInfo.normalizedTime > 0.75f && animatorInfo.IsName("dnaCopy"))
         {
            
             dnaAnimator.SetBool("dnaCopyFinished", true);
@@ -153,11 +153,11 @@ public class ControlPage1 : MonoBehaviour
         }
         
         canvasGroup = GameObject.Find("Canvas/page1/layer0").GetComponent<CanvasGroup>();
-        canvasGroup.DOFade(0, 1);
+        canvasGroup.alpha = 0;
         canvasGroup = GameObject.Find("Canvas/page1/layer2").GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
-        canvasGroup.DOFade(1, 2);
+        canvasGroup.alpha = 1;
         canvasGroup= GameObject.Find("Canvas/page1/layer2/Button").GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
@@ -203,6 +203,13 @@ public class ControlPage1 : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
         canvasGroup = GameObject.Find("Canvas/page1").GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup = GameObject.Find("Canvas/page1/layer2").GetComponent<CanvasGroup>();
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.alpha = 0;
+        canvasGroup = GameObject.Find("Canvas/page1/layer2/Button").GetComponent<CanvasGroup>();
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }

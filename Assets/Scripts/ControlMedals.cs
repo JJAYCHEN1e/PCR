@@ -5,7 +5,7 @@ using DG.Tweening;
 public class ControlMedals : MonoBehaviour
 {
 
-    public static GameObject cup;
+    public GameObject cup;
     public static CanvasGroup canvasGroup_medals;
     public static CanvasGroup canvasGroup_cup;
     public static CanvasGroup[] canvasGroup_medal_list=new CanvasGroup[3];
@@ -34,6 +34,7 @@ public class ControlMedals : MonoBehaviour
         //Debug.Log(MissionController.currentMissionIndex);
         if (task1 && task2 && task3)
             Win();
+        
     }
 
     //用于各页面初始化时控制奖牌显示
