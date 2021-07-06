@@ -60,9 +60,10 @@ public class ControlMedals : MonoBehaviour
     }
 
     //完成任务，点亮相应奖牌
-    public static void GetMedal(int task)
+    public static void GetMedal(string taskstr)
     {
-        switch(task)
+        int task = int.Parse(taskstr);
+        switch (task)
         {
             case 1:
                 canvasGroup_medal_list[0].DOFade(1, 2);
