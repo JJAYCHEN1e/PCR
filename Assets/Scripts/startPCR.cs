@@ -126,7 +126,6 @@ public class startPCR : MonoBehaviour
             GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳结果";
             UnityToast.ShowAlert("电泳完成", "电泳完成，请查看电泳结果。","medals", "GetMedalNonStatic","3");
             SpeechController.Speak("电泳完成，请查看电泳结果。");
-            ControlMedals.GetMedal("3");
             //GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
             //GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
             //GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;

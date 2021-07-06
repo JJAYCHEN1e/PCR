@@ -83,7 +83,7 @@ public class ControlMedals : MonoBehaviour
                 break;
             case 3:
                 var timer=0f;
-                DOTween.To(() => timer, a => timer = a, 1, 5).OnComplete(() =>
+                DOTween.To(() => timer, a => timer = a, 1, 3).OnComplete(() =>
                 {
                     canvasGroup_medal_list[2].DOFade(1, 2);
                     medal_list[2] = 1;
