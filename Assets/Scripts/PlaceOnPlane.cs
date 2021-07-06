@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Lean.Touch;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -58,6 +59,8 @@ public class PlaceOnPlane : MonoBehaviour
     public void ConfirmModelPosition()
     {
         confirmed = true;
+        GameObject.Find("Model").GetComponent<LeanTwistRotateAxis>().enabled = false;
+
         if (modelConfirmedEvent != null)
         {
             modelConfirmedEvent();
