@@ -47,9 +47,9 @@ public class tuihuo : MonoBehaviour
                 GameObject.Find("55").GetComponent<Toggle>().isOn = true;
                 GameObject.Find("程序时间").GetComponent<Text>().text = "30";
             }
-            else if(programCache){
+            else {
+                if(programCache) SpeechController.Speak("请选择温度");
                 GameObject.Find("程序时间").GetComponent<Text>().text = "";
-                SpeechController.Speak("请选择温度");
             }
         }
         else{

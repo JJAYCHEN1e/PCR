@@ -92,22 +92,23 @@ public class template : MonoBehaviour
         type = "2.5";
 
         Sequence se = DOTween.Sequence();
-        se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
+        se.Append(s.DOMove(GameObject.Find("枪头").transform.position,3f));
         SpeechController.Speak("移液枪装枪头", "移叶枪装枪头");
-        DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有模板的试管"));
+        DOTween.To(() => timer, a => timer = a, 1, 3f).OnComplete(() => SpeechController.Speak("打开装有模板的试管"));
         se.Append(hat.DOMove(GameObject.Find("模板开盖").transform.position,2f));
         se.Append(s.DOMove(GameObject.Find("模板上方").transform.position ,2f));
             
-        se.Append(s.DOLocalRotate(new Vector3(0f, -4f, 0f), 1f, RotateMode.WorldAxisAdd));
+        se.Append(s.DOLocalRotate(new Vector3(20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
         se.Append(s.DOMove(GameObject.Find("模板采样").transform.position ,2f));
         se.Append(s.DOMove(GameObject.Find("模板上方").transform.position ,2f));
-        DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集模板"));
-        DOTween.To(() => timer, a => timer = a, 1, 15f).OnComplete(() => GameObject.Find("液体").transform.localScale = liquid+new Vector3(0,0,0.1f));
-        se.Append(s.DOLocalRotate(new Vector3(0f, 4f, 0f), 1f, RotateMode.WorldAxisAdd));
+        DOTween.To(() => timer, a => timer = a, 1, 8f).OnComplete(() => SpeechController.Speak("采集模板"));
+        DOTween.To(() => timer, a => timer = a, 1, 16f).OnComplete(() => GameObject.Find("液体").transform.localScale = liquid+new Vector3(0,0,0.1f));
+        se.Append(s.DOLocalRotate(new Vector3(-20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
             
         se.Append(s.DOMove(GameObject.Find("试管内").transform.position,2f));
         se.Append(hat.DOMove(GameObject.Find("模板备份盖").transform.position ,2f));
         DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
+        DOTween.To(() => timer, a => timer = a, 1, 21f).OnComplete(() => GameObject.Find("模板吸头").GetComponent<SpriteRenderer>().enabled = true);
         se.Append(s.DOMove(GameObject.Find("垃圾桶上").transform.position,2f));
         se.Append(s.DOMove(GameObject.Find("垃圾桶内").transform.position ,2f));
         se.Append(s.DOMove(GameObject.Find("2.5备份").transform.position,1.5f));  

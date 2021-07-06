@@ -87,18 +87,19 @@ public class buffer : MonoBehaviour
         
             type = "2.5";
             Sequence se = DOTween.Sequence();            
-            se.Append(s.DOMove(GameObject.Find("枪头").transform.position,2f));
+            se.Append(s.DOMove(GameObject.Find("枪头").transform.position,3f));
             SpeechController.Speak("移液枪装枪头", "移叶枪装枪头");
-            DOTween.To(() => timer, a => timer = a, 1, 2f).OnComplete(() => SpeechController.Speak("打开装有缓冲液的试管"));
+            DOTween.To(() => timer, a => timer = a, 1, 3f).OnComplete(() => SpeechController.Speak("打开装有缓冲液的试管"));
             se.Append(hat.DOMove(GameObject.Find("缓冲液开盖").transform.position,2f));
-            DOTween.To(() => timer, a => timer = a, 1, 7f).OnComplete(() => SpeechController.Speak("采集缓冲液"));
-            DOTween.To(() => timer, a => timer = a, 1, 15f).OnComplete(() => GameObject.Find("液体").GetComponent<MeshRenderer>().enabled = true);
+            DOTween.To(() => timer, a => timer = a, 1, 8f).OnComplete(() => SpeechController.Speak("采集缓冲液"));
+            DOTween.To(() => timer, a => timer = a, 1, 16f).OnComplete(() => GameObject.Find("液体").GetComponent<MeshRenderer>().enabled = true);
             se.Append(s.DOMove(GameObject.Find("缓冲液上方").transform.position,2f));
-            se.Append(s.DOLocalRotate(new Vector3(15f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+            se.Append(s.DOLocalRotate(new Vector3(20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
             se.Append(s.DOMove(GameObject.Find("缓冲液采样").transform.position ,2f));
             se.Append(s.DOMove(GameObject.Find("缓冲液上方").transform.position,2f));
-            se.Append(s.DOLocalRotate(new Vector3(-15f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
+            se.Append(s.DOLocalRotate(new Vector3(-20f, 0f, 0f), 1f, RotateMode.WorldAxisAdd));
             DOTween.To(() => timer, a => timer = a, 1, 18f).OnComplete(() => SpeechController.Speak("废弃枪头"));
+            DOTween.To(() => timer, a => timer = a, 1, 21f).OnComplete(() => GameObject.Find("缓冲液吸头").GetComponent<SpriteRenderer>().enabled = true);
             se.Append(s.DOMove(GameObject.Find("试管内").transform.position ,2f));
             //if(GameObject.Find("液体").GetComponent<MeshRenderer>().enabled == false) GameObject.Find("液体").GetComponent<MeshRenderer>().enabled = true;
             se.Append(hat.DOMove(GameObject.Find("缓冲液备份盖").transform.position ,2f));

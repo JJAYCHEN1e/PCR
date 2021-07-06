@@ -43,8 +43,8 @@ public class bianxing : MonoBehaviour
             GameObject.Find("95").GetComponent<Toggle>().isOn = true;
             GameObject.Find("程序时间").GetComponent<Text>().text = "30";
         }
-        else if(programCache){
-            SpeechController.Speak("请选择温度");
+        else {
+            if(programCache) SpeechController.Speak("请选择温度");
             GameObject.Find("程序时间").GetComponent<Text>().text = "";
         }
     }

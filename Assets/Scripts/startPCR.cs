@@ -9,7 +9,7 @@ public class startPCR : MonoBehaviour
 {
     public static Text remain,reminder;
     public Sprite[] s = new Sprite[11];
-    public Sprite dianYongCao;
+    
     public Transform tube;
     private string instrution;
     public static int cnt = -3;//玩游戏的次数
@@ -98,8 +98,7 @@ public class startPCR : MonoBehaviour
     {
         n = int.Parse(GameObject.Find("次数").GetComponent<Text>().text);
         index = n - 25;
-        
-        GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = dianYongCao;
+        GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = s[index];
         GameObject.Find("变性程序文本").GetComponent<Text>().text = "+";
         GameObject.Find("退火程序文本").GetComponent<Text>().text = "+";
         GameObject.Find("延伸程序文本").GetComponent<Text>().text = "+";
@@ -119,20 +118,11 @@ public class startPCR : MonoBehaviour
             
     void OnGUI()
     {
-        if(wait&&timer==40)
-        {
-            GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
-            GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳槽";
-            GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
-            GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
-            GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-
-        if(wait&&timer==300)
+        if(wait&&timer==200)
         {
             wait = false;timer=0;
-            GameObject.Find("电泳").GetComponent<SpriteRenderer>().sprite = s[index];
-            GameObject.Find("电泳").transform.localScale = new Vector3(0.09f,0.09f,0.09f);
+            GameObject.Find("正在进行电泳").GetComponent<TextMesh>().text = "";
+            GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
             GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳结果";
             UnityToast.ShowAlert("电泳完成", "电泳完成，请查看 PCR 仪上方的电泳结果。");
             SpeechController.Speak("电泳完成，恭喜你又点亮了一枚奖牌！请查看 PCR 仪上方的电泳结果。你可以点击屏幕下方的按钮再次进行实验。");

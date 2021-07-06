@@ -47,8 +47,8 @@ public class yanshen : MonoBehaviour
                 GameObject.Find("72").GetComponent<Toggle>().isOn = true;
                 GameObject.Find("程序时间").GetComponent<Text>().text = "60";
             }
-            else if(programCache){
-                SpeechController.Speak("请选择温度");
+            else {
+                if(programCache) SpeechController.Speak("请选择温度");
                 GameObject.Find("程序时间").GetComponent<Text>().text = "";
             }
         }
