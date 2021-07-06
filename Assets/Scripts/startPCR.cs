@@ -124,12 +124,11 @@ public class startPCR : MonoBehaviour
             GameObject.Find("正在进行电泳").GetComponent<TextMesh>().text = "";
             GameObject.Find("电泳").GetComponent<SpriteRenderer>().enabled = true;
             GameObject.Find("电泳结果").GetComponent<TextMesh>().text = "电泳结果";
-            UnityToast.ShowAlert("电泳完成", "电泳完成，请查看 PCR 仪上方的电泳结果。");
-            SpeechController.Speak("电泳完成，恭喜你又点亮了一枚奖牌！请查看 PCR 仪上方的电泳结果。你可以点击屏幕下方的按钮再次进行实验。");
-            ControlMedals.GetMedal(3);
-            GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
-            GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
-            GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            UnityToast.ShowAlert("电泳完成", "电泳完成，请查看电泳结果。","medals", "GetMedal","3");
+            SpeechController.Speak("电泳完成，请查看电泳结果。");
+            //GameObject.Find("again").GetComponent<CanvasGroup>().alpha = 1;
+            //GameObject.Find("again").GetComponent<CanvasGroup>().interactable = true;
+            //GameObject.Find("again").GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         if(started)
         {

@@ -518,7 +518,7 @@ public class ControlPage2 : MonoBehaviour
         //warningText.text = "恭喜你完成了第三轮复制，并且得到了目标DNA！";
         //GameObject.Find("Canvas/page2/warningWindow/Image").GetComponent<Image>().color = new Color(0.6F, 0.7F, 0.9F, 1F);
         //canvasGroup = warningWindow.GetComponent<CanvasGroup>();
-        ControlMedals.GetMedal(2);
+        ControlMedals.GetMedal("2");
         SpeechController.Speak("恭喜你，完成了3次DNA体外扩增，又点亮了一枚奖牌，现在我们获得了目标DNA。但是目的基因量依旧不足，需要再次加入DNA聚合酶循环操作。你是否觉得这样的步骤很繁琐，有什么好的方法能简化操作呢？让我们继续探索吧！", false);
         canvasGroup = GameObject.Find("Canvas/page2/nextPageTip").GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;

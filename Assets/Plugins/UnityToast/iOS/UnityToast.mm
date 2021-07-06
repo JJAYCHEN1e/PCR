@@ -289,6 +289,25 @@ static UIView* _bottomToastView = nil;
     });
 }
 
++(void)showAlert:(NSString *)title message:(NSString *)message gameObject:(NSString *)gameObjectName methodName:(NSString *)methodName parameter:(NSString *)parameter {
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:title
+                                message:message
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+        UnitySendMessage([gameObjectName UTF8String], [methodName UTF8String], [parameter UTF8String]);
+    }];
+    
+    [alert addAction:okButton];
+    
+    UIViewController *vc = UnityGetGLViewController();
+    [vc presentViewController:alert animated:YES completion:nil];
+}
+
 +(void)showAlert:(NSString *)title message:(NSString *)message {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:title
@@ -338,6 +357,15 @@ extern "C" {
     {
         if (string) {
             [UnityToast showBottomToast:[NSString stringWithUTF8String:string] with: duration];
+        }
+    }
+}
+
+extern "C" {
+    void _showAlertWithCallback(const char* title, const char* message, const char* gameObjectName, const char* methodName, const char* parameter)
+    {
+        if (title && message) {
+            [UnityToast showAlert:[NSString stringWithUTF8String:title] message:[NSString stringWithUTF8String:message] gameObject:[NSString stringWithUTF8String:gameObjectName] methodName:[NSString stringWithUTF8String:methodName] parameter:[NSString stringWithUTF8String:parameter]];
         }
     }
 }
